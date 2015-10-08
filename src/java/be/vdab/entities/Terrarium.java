@@ -10,18 +10,16 @@ package be.vdab.entities;
  * @author Admin
  */
 public class Terrarium {
-   private int grootte=6;
+   private static final  int grootte=6;
    private static final int aantalPlanten=2,aantalHerbivoren=4,aantalCarnivoren=6;
-   private int [][] array = new int[grootte][grootte];
+   private Organisme [][] array = new Organisme[grootte][grootte];
    private int dag;
    
    //constructor
 
-   public Terrarium(){
-       
-   }
-    public Terrarium(int dag) {
-        setDag(dag);
+   
+    public Terrarium() {
+        setDag(1);
     }
     
     //getters
@@ -45,11 +43,20 @@ public class Terrarium {
     public int getDag() {
         return dag;
     }
+
+    public Organisme[][] getArray() {
+        return array;
+    }
+    
     
     //setters
 
     public void setDag(int dag) {
         this.dag = dag;
+    }
+    
+    public boolean plaatsIsVrij(int x, int y){
+        return array[x][y] == null;
     }
     
     

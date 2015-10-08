@@ -21,7 +21,7 @@ public abstract class Dier extends Organisme{
     
     public void eet(Organisme organisme){
         verhoogLevenskracht(organisme.getLevenskracht());
-    };
+    }
     
     
     

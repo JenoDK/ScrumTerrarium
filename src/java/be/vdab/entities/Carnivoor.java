@@ -11,8 +11,7 @@ package be.vdab.entities;
  */
 public class Carnivoor extends Dier {
     
-    public Carnivoor() {
-        
+    public Carnivoor() {        
         super(1);
     }
     
@@ -24,9 +23,11 @@ public class Carnivoor extends Dier {
     public void vechten(Carnivoor tegenstander) {
         if (this.getLevenskracht() > tegenstander.getLevenskracht()) {
             this.verhoogLevenskracht(tegenstander.getLevenskracht());
+            tegenstander.setLevenskracht(0);
         }
         if (this.getLevenskracht() < tegenstander.getLevenskracht()) {
             tegenstander.verhoogLevenskracht(this.getLevenskracht());
+            this.setLevenskracht(0);
         }
         
     }

@@ -11,8 +11,8 @@ package be.vdab.entities;
  */
 public class Herbivoor extends Dier{
 
-    public Herbivoor(int levenskracht) {
-        super(levenskracht);
+    public Herbivoor() {
+        super(0);
     }
     
 }
