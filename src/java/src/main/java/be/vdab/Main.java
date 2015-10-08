@@ -17,7 +17,7 @@ public class Main {
         print(terrarium.getArray());
         Scanner scanner = new Scanner(System.in);
         System.out.println("enter is voordoen, s is stoppen");
-        String gebruikerInput = scanner.nextLine();
+        String gebruikerInput = scanner.nextLine(); 
         while (gebruikerInput != null) {
             terrarium.nieuweDag();
             System.out.println("Dag: " + terrarium.getDag());
