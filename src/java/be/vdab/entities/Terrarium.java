@@ -50,6 +50,10 @@ public class Terrarium {
         organismeToevoegen("carnivoren", aantalCarnivoren );
         organismeToevoegen("Herbivoor", aantalHerbivoren);
     }
+    public boolean plaatsIsVrij(int x, int y){
+        return array[x][y] == null;
+    }
+    
     
     public void organismeToevoegen(String soort, int aantal){
         
