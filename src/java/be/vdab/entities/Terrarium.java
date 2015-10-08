@@ -12,19 +12,14 @@ import java.util.Random;
  * @author Admin
  */
 public class Terrarium {
-   private static final  int grootte=6;
-   private static final int aantalPlanten=2,aantalHerbivoren=4,aantalCarnivoren=6;
-   private static final int aantalExtraPlantenPerDag=2;
-   private Organisme [][] array = new Organisme[grootte][grootte];
-   private int dag;
-   
-   //constructor
 
     private static final int grootte = 6;
     private static final int aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
+    private static final int aantalExtraPlantenPerDag = 2;
     private Organisme[][] array = new Organisme[grootte][grootte];
     private int dag;
 
+   //constructor
     //constructor
     public Terrarium() {
         setDag(1);
@@ -82,16 +77,15 @@ public class Terrarium {
 
         }
     }
-    
-    public void organismeVerwijderen(int x, int y){
-        array[x][y]=null;
+
+    public void organismeVerwijderen(int x, int y) {
+        array[x][y] = null;
     }
-    public void nieuweDag(){
+
+    public void nieuweDag() {
         organismeToevoegen("plant", aantalExtraPlantenPerDag);
-        stappenHerbivoor();
-        stappenCarnivoor();
+//        stappenHerbivoor();
+//        stappenCarnivoor();
     }
-   
 
 }
-

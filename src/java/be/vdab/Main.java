@@ -20,7 +20,8 @@ public class Main {
         System.out.println("enter is voordoen, s is stoppen");
         String gebruikerInput = scanner.nextLine();
         if (gebruikerInput.equalsIgnoreCase("s")) {
-                gebruikerInput = null;}
+            gebruikerInput = null;
+        }
         while (gebruikerInput != null) {
             terrarium.nieuweDag();
             System.out.println("Dag: " + terrarium.getDag());
@@ -52,7 +53,8 @@ public class Main {
                         System.out.print("  H  ");
                     }
                 }
-            } System.out.println("");
+            }
+            System.out.println("");
         }
 
     }
