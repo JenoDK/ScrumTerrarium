@@ -9,6 +9,12 @@ package src.main.java.be.vdab.entities;
  *
  * @author Admin
  */
-public class Plant {
+public class Plant extends Organisme {
+
+    public Plant() {
+        super(1);
+    }
+    
+    
     
 }
