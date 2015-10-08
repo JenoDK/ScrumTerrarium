@@ -12,6 +12,7 @@ package be.vdab.entities;
 public class Terrarium {
    private static final  int grootte=6;
    private static final int aantalPlanten=2,aantalHerbivoren=4,aantalCarnivoren=6;
+   private static final int aantalExtraPlantenPerDag=2;
    private Organisme [][] array = new Organisme[grootte][grootte];
    private int dag;
    
@@ -61,6 +62,11 @@ public class Terrarium {
     
     public void organismeVerwijderen(int x, int y){
         array[x][y]=null;
+    }
+    public void nieuweDag(){
+        organismeToevoegen("plant", aantalExtraPlantenPerDag);
+        stappenHerbivoor();
+        stappenCarnivoor();
     }
    
 }
