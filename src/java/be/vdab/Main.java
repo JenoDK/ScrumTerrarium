@@ -19,6 +19,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("enter is voordoen, s is stoppen");
         String gebruikerInput = scanner.nextLine();
+        if (gebruikerInput.equalsIgnoreCase("s")) {
+                gebruikerInput = null;}
         while (gebruikerInput != null) {
             terrarium.nieuweDag();
             System.out.println("Dag: " + terrarium.getDag());
@@ -35,7 +37,6 @@ public class Main {
     private static void print(Organisme[][] organisme) {
         for (int x = 0; x < organisme.length; x++) {
             for (int y = 0; y < organisme.length; y++) {
-                System.out.print(organisme[x][y]);
                 if (organisme[x][y] == null) {
                     System.out.print("  .  ");
                 } else if (organisme[x][y] instanceof Plant) {
@@ -51,7 +52,8 @@ public class Main {
                         System.out.print("  H  ");
                     }
                 }
-            }
+            } System.out.println("");
         }
 
     }
+}
