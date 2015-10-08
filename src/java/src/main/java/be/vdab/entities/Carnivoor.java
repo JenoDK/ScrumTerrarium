@@ -9,14 +9,25 @@ package src.main.java.be.vdab.entities;
  *
  * @author Admin
  */
-public class Carnivoor extends Dier{
-
+public class Carnivoor extends Dier {
+    
     public Carnivoor(int levenskracht) {
         super(levenskracht);
     }
     
-    public void vechten(Carnivoor tegenstander){
-        verhoogLevenskracht(tegenstander.getLevenskracht());
+    /**
+     * Zal 2 carnivoren virtueel met elkaar laten vechten waarbij de carnivoor met de meeste levenskracht wint 
+     * 
+     * @param tegenstander 
+     */
+    public void vechten(Carnivoor tegenstander) {
+        if (this.getLevenskracht() > tegenstander.getLevenskracht()) {
+            this.verhoogLevenskracht(tegenstander.getLevenskracht());
+        }
+        if (this.getLevenskracht() < tegenstander.getLevenskracht()) {
+            tegenstander.verhoogLevenskracht(this.getLevenskracht());
+        }
+        
     }
     
 }
