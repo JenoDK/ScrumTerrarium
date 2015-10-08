@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.main.java.be.vdab.entities;
+package be.vdab.entities;
 
 /**
  *
@@ -11,8 +11,9 @@ package src.main.java.be.vdab.entities;
  */
 public class Carnivoor extends Dier {
     
-    public Carnivoor(int levenskracht) {
-        super(levenskracht);
+    public Carnivoor() {
+        
+        super(1);
     }
     
     /**

@@ -7,7 +7,6 @@ package be.vdab.entities;
 
 import org.junit.Before;
 import org.junit.Test;
-import src.main.java.be.vdab.entities.Carnivoor;
 
 /**
  *

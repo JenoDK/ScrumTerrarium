@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.main.java.be.vdab.entities;
+package be.vdab.valueobjects;
 
 /**
  *
  * @author Admin
  */
-public class Herbivoor extends Dier{
-
-    public Herbivoor(int levenskracht) {
-        super(levenskracht);
-    }
-    
+public enum Richting {
+    NOORD, OOST, ZUID, WEST;
 }

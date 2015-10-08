@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.main.java.be.vdab.entities;
+package be.vdab.entities;
 
 /**
  *
@@ -17,6 +17,9 @@ public class Terrarium {
    
    //constructor
 
+   public Terrarium(){
+       
+   }
     public Terrarium(int dag) {
         setDag(dag);
     }

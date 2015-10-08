@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.main.java.be.vdab.entities;
+package be.vdab.entities;
 
 /**
  *
  * @author Admin
  */
-public class Plant extends Organisme {
+public class Herbivoor extends Dier{
 
-    public Plant() {
-        super(1);
+    public Herbivoor(int levenskracht) {
+        super(levenskracht);
     }
-    
-    
     
 }
