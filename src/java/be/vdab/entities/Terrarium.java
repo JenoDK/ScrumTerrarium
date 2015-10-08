@@ -75,5 +75,11 @@ public class Terrarium {
 
         }
     }
+    
+    public void organismeVerwijderen(int x, int y){
+        array[x][y]=null;
+    }
+   
 
 }
+
