@@ -9,6 +9,10 @@ package src.main.java.be.vdab.entities;
  *
  * @author Admin
  */
-public class Herbivoor {
+public class Herbivoor extends Dier{
+
+    public Herbivoor(int levenskracht) {
+        super(levenskracht);
+    }
     
 }

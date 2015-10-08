@@ -9,6 +9,26 @@ package src.main.java.be.vdab.entities;
  *
  * @author Admin
  */
-public class Organisme {
+public abstract class Organisme {
+    
+    private int levenskracht;
+
+    public Organisme(int levenskracht) {
+        this.levenskracht = levenskracht;
+    }
+
+    public int getLevenskracht() {
+        return levenskracht;
+    }
+
+    public void setLevenskracht(int levenskracht) {
+        this.levenskracht = levenskracht;
+    }
+
+    
+    
+    
+    
+    
     
 }

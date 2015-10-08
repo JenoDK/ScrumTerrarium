@@ -9,7 +9,14 @@ package src.main.java.be.vdab.entities;
  *
  * @author Admin
  */
-public class Carnivoor {
+public class Carnivoor extends Dier{
+
+    public Carnivoor(int levenskracht) {
+        super(levenskracht);
+    }
     
+    public void vechten(Carnivoor tegenstander){
+        verhoogLevenskracht(tegenstander.getLevenskracht());
+    }
     
 }
