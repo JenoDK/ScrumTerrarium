@@ -5,6 +5,8 @@
  */
 package be.vdab.entities;
 
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,15 +26,47 @@ public class CarnivoorTest {
 
    @Test
    public void nieuweCarnivoorHeeft1AlsLevenIsJuist() {
-   }
-   
-   
-   @Test
-   public void nieuweCarnivoorHeeftNiet1AlsLevenIsFout() {
+       Assert.assertEquals(1, carnivoor.getLevenskracht());
    }
    
    @Test
-   public void carnivoorZijnNieuwLevenNaEten(){
+   public void carnivoorZijnNieuwLevenNaVechtenTegenSterkereTegenstander(){
+       Carnivoor tegenstander = new Carnivoor();
+       tegenstander.setLevenskracht(3);
+       carnivoor.vechten(tegenstander);
+       Assert.assertEquals(0, carnivoor.getLevenskracht());
        
+   }
+   
+      @Test
+   public void carnivoorZijnNieuwLevenNaVechtenTegenZwakkereTegenstander(){
+       Carnivoor tegenstander = new Carnivoor();
+       carnivoor.setLevenskracht(3);
+       carnivoor.vechten(tegenstander);
+       Assert.assertEquals(4, carnivoor.getLevenskracht());
+
+   }
+   @Test
+   public void tegenstanderZijnNieuwLevenNaEtenZwakkereCarnivoor(){
+       Carnivoor tegenstander = new Carnivoor();    
+       tegenstander.setLevenskracht(3);
+       carnivoor.vechten(tegenstander);
+       Assert.assertEquals(4, tegenstander.getLevenskracht());
+   }
+   
+    @Test
+   public void tegenstanderZijnNieuwLevenNaEtenSterkereCarnivoor(){
+       Carnivoor tegenstander = new Carnivoor();
+       carnivoor.setLevenskracht(3);
+       carnivoor.vechten(tegenstander);
+       Assert.assertEquals(0, tegenstander.getLevenskracht());
+   }
+   
+   @Test
+   public void carnivoorZijnLevensKrachtNaEtenHerbivoor(){
+       Herbivoor herbivoor = new Herbivoor();
+       herbivoor.setLevenskracht(3);
+       carnivoor.eet(herbivoor);
+       Assert.assertEquals(4, carnivoor.getLevenskracht());
    }
 }
