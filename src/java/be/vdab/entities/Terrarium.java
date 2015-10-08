@@ -58,5 +58,10 @@ public class Terrarium {
     public void organismeToevoegen(String soort, int aantal){
         
     }
+    
+    public void organismeVerwijderen(int x, int y){
+        array[x][y]=null;
+    }
    
 }
+
