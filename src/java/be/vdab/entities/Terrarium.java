@@ -5,39 +5,30 @@
  */
 package be.vdab.entities;
 
+import java.util.Random;
+
 /**
  *
  * @author Admin
  */
 public class Terrarium {
-   private static final  int grootte=6;
-   private static final int aantalPlanten=2,aantalHerbivoren=4,aantalCarnivoren=6;
-   private Organisme [][] array = new Organisme[grootte][grootte];
-   private int dag;
-   
-   //constructor
 
-   
+    private static final int grootte = 6;
+    private static final int aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
+    private static final int aantalExtraPlantenPerDag = 2;
+    private Organisme[][] array = new Organisme[grootte][grootte];
+    private int dag;
+
+   //constructor
+    //constructor
     public Terrarium() {
         setDag(1);
+        initialiseer();
     }
-    
-    //getters
 
+    //getters
     public int getGrootte() {
         return grootte;
-    }
-
-    public static int getAantalPlanten() {
-        return aantalPlanten;
-    }
-
-    public static int getAantalHerbivoren() {
-        return aantalHerbivoren;
-    }
-
-    public static int getAantalCarnivoren() {
-        return aantalCarnivoren;
     }
 
     public int getDag() {
@@ -47,18 +38,54 @@ public class Terrarium {
     public Organisme[][] getArray() {
         return array;
     }
-    
-    
-    //setters
 
+    //setters
     public void setDag(int dag) {
         this.dag = dag;
     }
-    
-    public boolean plaatsIsVrij(int x, int y){
+
+    public void initialiseer() {
+        organismeToevoegen("plant", aantalPlanten);
+        organismeToevoegen("carnivoor", aantalCarnivoren);
+        organismeToevoegen("herbivoor", aantalHerbivoren);
+    }
+
+    public boolean plaatsIsVrij(int x, int y) {
         return array[x][y] == null;
     }
-    
-    
-   
+
+    public void organismeToevoegen(String soort, int aantal) {
+        Random r = new Random();
+        for (int i = 0; i < aantal; i++) {
+            int x = r.nextInt(grootte);
+            int y = r.nextInt(grootte);
+            boolean isVrij = plaatsIsVrij(x, y);
+            while (!isVrij) {
+                x = r.nextInt(grootte);
+                y = r.nextInt(grootte);
+                isVrij = plaatsIsVrij(x, y);
+            }
+            if (soort.equals("plant")) {
+                array[x][y] = new Plant();
+            }
+            if (soort.equals("carnivoor")) {
+                array[x][y] = new Carnivoor();
+            }
+            if (soort.equals("herbivoor")) {
+                array[x][y] = new Herbivoor();
+            }
+
+        }
+    }
+
+    public void organismeVerwijderen(int x, int y) {
+        array[x][y] = null;
+    }
+
+    public void nieuweDag() {
+        organismeToevoegen("plant", aantalExtraPlantenPerDag);
+//        stappenHerbivoor();
+//        stappenCarnivoor();
+    }
+
 }
