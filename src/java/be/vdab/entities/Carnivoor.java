@@ -11,8 +11,7 @@ package be.vdab.entities;
  */
 public class Carnivoor extends Dier {
     
-    public Carnivoor() {
-        
+    public Carnivoor() {        
         super(1);
     }
     
