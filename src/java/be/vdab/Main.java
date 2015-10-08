@@ -1,6 +1,7 @@
 
 package be.vdab;
 
+import be.vdab.entities.Organisme;
 import be.vdab.entities.Terrarium;
 import java.util.Scanner;
 
@@ -32,10 +33,10 @@ public class Main {
         
     }
 
-    private static void print(Terrarium[][] terrarium) {
-        for (int x = 0; x < terrarium.length; x++) {
-            for (int y = 0; y < terrarium.length; y++) {
-                System.out.print(terrarium[x][y]);
+    private static void print(Organisme[][] organisme) {
+        for (int x = 0; x < organisme.length; x++) {
+            for (int y = 0; y < organisme.length; y++) {
+                System.out.print(organisme[x][y]);
             }
             System.out.println();
         }
