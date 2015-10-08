@@ -55,6 +55,10 @@ public class Terrarium {
         this.dag = dag;
     }
     
+    public boolean plaatsIsVrij(int x, int y){
+        return array[x][y] == null;
+    }
+    
     
    
 }
