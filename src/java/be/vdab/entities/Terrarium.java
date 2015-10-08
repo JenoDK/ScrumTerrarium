@@ -55,6 +55,10 @@ public class Terrarium {
         this.dag = dag;
     }
     
+    public void organismeVerwijderen(int x, int y){
+        array[x][y]=null;
+    }
+    
     
    
 }
