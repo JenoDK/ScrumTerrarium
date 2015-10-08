@@ -69,4 +69,25 @@ public class CarnivoorTest {
        carnivoor.eet(herbivoor);
        Assert.assertEquals(4, carnivoor.getLevenskracht());
    }
+   
+   @Test
+   public void carnivoorZijnLevensKrachtNaEtenNieuweHerbivoor(){
+       Herbivoor herbivoor = new Herbivoor();
+       carnivoor.eet(herbivoor);
+       Assert.assertEquals(1, carnivoor.getLevenskracht());
+   }
+   
+   @Test
+   public void levenskrachtCarnivoorNaVechtenEvenSterkteTegenstander(){
+       Carnivoor tegenstander = new Carnivoor();
+       carnivoor.vechten(tegenstander);
+       Assert.assertEquals(1, carnivoor.getLevenskracht());
+   }
+   
+   @Test
+   public void levenskrachtTegenstanderNaVechtenEvenSterkteCarnivoor(){
+       Carnivoor tegenstander = new Carnivoor();
+       carnivoor.vechten(tegenstander);
+       Assert.assertEquals(1, tegenstander.getLevenskracht());
+   }
 }
