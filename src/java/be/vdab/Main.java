@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.main.java.be.vdab;
+package be.vdab;
 
+import be.vdab.entities.Terrarium;
 import java.util.Scanner;
-import src.main.java.be.vdab.entities.Terrarium;
 
 /**
  *
