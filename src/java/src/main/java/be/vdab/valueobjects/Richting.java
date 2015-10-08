@@ -10,5 +10,5 @@ package src.main.java.be.vdab.valueobjects;
  * @author Admin
  */
 public enum Richting {
-    Noord, OOST, ZUID, WEST;
+    NOORD, OOST, ZUID, WEST;
 }
