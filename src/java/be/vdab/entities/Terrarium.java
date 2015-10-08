@@ -20,6 +20,7 @@ public class Terrarium {
    
     public Terrarium() {
         setDag(1);
+        initialiseer();
     }
     
     //getters
@@ -28,17 +29,6 @@ public class Terrarium {
         return grootte;
     }
 
-    public static int getAantalPlanten() {
-        return aantalPlanten;
-    }
-
-    public static int getAantalHerbivoren() {
-        return aantalHerbivoren;
-    }
-
-    public static int getAantalCarnivoren() {
-        return aantalCarnivoren;
-    }
 
     public int getDag() {
         return dag;
@@ -55,10 +45,18 @@ public class Terrarium {
         this.dag = dag;
     }
     
-    public void organismeVerwijderen(int x, int y){
-        array[x][y]=null;
+    public void initialiseer(){
+        organismeToevoegen("plant",aantalPlanten );
+        organismeToevoegen("carnivoren", aantalCarnivoren );
+        organismeToevoegen("Herbivoor", aantalHerbivoren);
+    }
+    public boolean plaatsIsVrij(int x, int y){
+        return array[x][y] == null;
     }
     
     
+    public void organismeToevoegen(String soort, int aantal){
+        
+    }
    
 }
