@@ -40,7 +40,7 @@ public class HerbivoorTest {
         Plant plant2 = new Plant();
         herbivoor.eet(plant1);
         herbivoor.eet(plant2);
-        Assert.assertEquals(1, herbivoor.getLevenskracht());
+        Assert.assertEquals(2, herbivoor.getLevenskracht());
     }
     
     
