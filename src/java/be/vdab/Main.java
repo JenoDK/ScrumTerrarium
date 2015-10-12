@@ -28,18 +28,19 @@ public class Main {
                     System.out.print(". \t" );
                 } else if (organisme[x][y] instanceof Plant) {
                     {
-                        System.out.print("P " + 
-                                organisme[x][y].getLevenskracht() + "\t");
+                        System.out.print("P " +
+                                /**
+                                organisme[x][y].getLevenskracht() +*/ "\t");
                     }
                 } else if (organisme[x][y] instanceof Carnivoor) {
                     {
                         System.out.print("C " +  
-                                organisme[x][y].getLevenskracht() + "\t");
+                               /** organisme[x][y].getLevenskracht() +*/ "\t");
                     }
                 } else if (organisme[x][y] instanceof Herbivoor) {
                     {
                         System.out.print("H " +
-                                organisme[x][y].getLevenskracht() + "\t");
+                               /** organisme[x][y].getLevenskracht() +*/ "\t");
                     }
                 }
             }
