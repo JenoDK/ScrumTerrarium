@@ -70,6 +70,14 @@ public class TerrariumTest {
         Assert.assertFalse(terrarium.controleGrens(6, 0, Richting.OOST));
     }
     
+    @Test
+    public void controleGrensOpGrensGeeftTrue(){
+        Assert.assertTrue(terrarium.controleGrens(0, 0, Richting.OOST));
+    }
     
+    @Test
+    public void geefBewegingsMogelijkheidGeeftInstanceOfEnumRichtingTerug(){
+        Assert.assertTrue(terrarium.geefBewegingsMogelijkheid(0,0) instanceof Richting);
+    }
     
 }
