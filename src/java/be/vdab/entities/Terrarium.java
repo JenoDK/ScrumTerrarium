@@ -5,6 +5,8 @@
  */
 package be.vdab.entities;
 
+import be.vdab.valueobjects.Richting;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -19,7 +21,7 @@ public class Terrarium {
     private Organisme[][] array = new Organisme[grootte][grootte];
     private int dag;
 
-   //constructor
+    //constructor
     //constructor
     public Terrarium() {
         setDag(1);
@@ -67,11 +69,9 @@ public class Terrarium {
             }
             if (soort.equals("plant")) {
                 array[x][y] = new Plant();
-            }
-            if (soort.equals("carnivoor")) {
+            } else if (soort.equals("carnivoor")) {
                 array[x][y] = new Carnivoor();
-            }
-            if (soort.equals("herbivoor")) {
+            } else if (soort.equals("herbivoor")) {
                 array[x][y] = new Herbivoor();
             }
 
@@ -88,11 +88,39 @@ public class Terrarium {
         stappenCarnivoor();
         dag++;
     }
-    public void stappenHerbivoor(){
-        
+
+    public void stappenHerbivoor() {
+
     }
-    public void stappenCarnivoor(){
-        
+
+    public void stappenCarnivoor() {
+
+    }
+
+    public Richting geefBewegingsMogelijkheid(int x, int y) {
+        ArrayList<Richting> mogelijkheden = new ArrayList<>();
+        Richting resultaat;
+        if (plaatsIsVrij(x + 1, y)) {
+            mogelijkheden.add(Richting.OOST);
+        }
+        if (plaatsIsVrij(x - 1, y)) {
+            mogelijkheden.add(Richting.WEST);
+        }
+        if (plaatsIsVrij(x, y + 1)) {
+            mogelijkheden.add(Richting.ZUID);
+        }
+        if (plaatsIsVrij(x, y - 1)) {
+            mogelijkheden.add(Richting.NOORD);
+        }
+        if (!mogelijkheden.isEmpty()) {
+            Random r = new Random();
+            int keuze = r.nextInt(mogelijkheden.size());
+            resultaat = mogelijkheden.get(keuze);
+        } else {
+            resultaat = Richting.OMSINGELD;
+        }
+        return resultaat;
+
     }
 
 }
