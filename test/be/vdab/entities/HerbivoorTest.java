@@ -43,6 +43,28 @@ public class HerbivoorTest {
         Assert.assertEquals(2, herbivoor.getLevenskracht());
     }
     
-    
+    @Test
+   public void toStringMethodeTestHerbivoor(){
+       org.junit.Assert.assertEquals("Herbivoor: 0", herbivoor.toString());
+   }
+   
+   @Test
+   public void tegenstanderIsNietGelijkAanCarnivoor(){
+       Herbivoor bulbasaur = new Herbivoor();
+       org.junit.Assert.assertNotSame(bulbasaur,herbivoor);
+   }
+   
+   @Test
+   public void carnivoorIsHetzelfdeAlsZichzelf(){
+       org.junit.Assert.assertSame(herbivoor, herbivoor);
+   }
+   
+   @Test
+   public void herbivoorNietHetzeldeAlsCarnivoor(){
+        Carnivoor charmander = new Carnivoor();
+        Assert.assertNotSame(herbivoor, charmander);
+       
+       
+   }
     
 }
