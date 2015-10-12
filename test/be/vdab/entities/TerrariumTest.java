@@ -6,6 +6,7 @@
 package be.vdab.entities;
 
 
+import be.vdab.valueobjects.Richting;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class TerrariumTest {
     
     @Test
     public void nieuwTerrariumHeeftAantalOrganismenGelijkAanDeSomVanDeAantallen(){
-        int aantalOrganismen = terrarium.getAantalOrganismenInArray();
+        int aantalOrganismen = terrarium.geefAantalOrganismen();
         int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten() + 
                                                terrarium.getAantalHerbivoren() + 
                                                terrarium.getAantalCarnivoren();
@@ -42,7 +43,7 @@ public class TerrariumTest {
                                                terrarium.getAantalCarnivoren() +
                                                1;
          terrarium.organismeToevoegen("plant", 1);
-         Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.getAantalOrganismenInArray());
+         Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.geefAantalOrganismen());
     }
     
     @Test
@@ -59,9 +60,16 @@ public class TerrariumTest {
     
 //    @Test
 //    public void controleRechtsGeeftHetJuisteObjectTerug(){
-//        terrarium.getArray()[0][0] = new Herbivoor();
-//        terrarium.getArray()[1][0] = new Plant();
-//        Assert.assertEquals(terrarium.controleerRechts(0,0), terrarium.getArray()[1][0]);
+//        Plant plant = new Plant();
+//        terrarium.getArray()[1][0] = plant;
+//        Assert.assertEquals(plant, terrarium.getArray()[1][0]);
 //    }
+    
+    @Test
+    public void controleGrensOpGrensGeeftFalse(){
+        Assert.assertFalse(terrarium.controleGrens(6, 0, Richting.OOST));
+    }
+    
+    
     
 }
