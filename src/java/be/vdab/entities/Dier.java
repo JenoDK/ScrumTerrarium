@@ -9,17 +9,17 @@ package be.vdab.entities;
  *
  * @author Admin
  */
-public abstract class Dier extends Organisme{
+public abstract class Dier extends Organisme {
 
     public Dier(int levenskracht) {
         super(levenskracht);
     }
-    
-    public void verhoogLevenskracht(int levenskrachtAnderOrganisme){
+
+    public void verhoogLevenskracht(int levenskrachtAnderOrganisme) {
         setLevenskracht(getLevenskracht() + levenskrachtAnderOrganisme);
     }
-    
-    public void eet(Organisme organisme){
+
+    public void eet(Organisme organisme) {
         verhoogLevenskracht(organisme.getLevenskracht());
     }
 
@@ -37,8 +37,5 @@ public abstract class Dier extends Organisme{
     public String toString() {
         return super.toString();
     }
-    
-    
-    
-    
+
 }

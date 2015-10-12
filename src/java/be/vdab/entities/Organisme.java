@@ -10,8 +10,9 @@ package be.vdab.entities;
  * @author Admin
  */
 public abstract class Organisme {
-    
+
     private int levenskracht;
+    private boolean handelingGedaan;
 
     public Organisme(int levenskracht) {
         this.levenskracht = levenskracht;
@@ -23,6 +24,18 @@ public abstract class Organisme {
 
     public void setLevenskracht(int levenskracht) {
         this.levenskracht = levenskracht;
+    }
+
+    public boolean isHandelingGedaan() {
+        return handelingGedaan;
+    }
+
+    public void setHandelingGedaan(boolean handelingGedaan) {
+        this.handelingGedaan = handelingGedaan;
+    }
+
+    public boolean getHandelingGedaan() {
+        return handelingGedaan;
     }
 
     @Override
@@ -52,10 +65,4 @@ public abstract class Organisme {
         return Integer.toString(levenskracht);
     }
 
-    
-    
-    
-    
-    
-    
 }
