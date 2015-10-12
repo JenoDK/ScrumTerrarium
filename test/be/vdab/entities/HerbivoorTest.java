@@ -67,5 +67,22 @@ public class HerbivoorTest {
        
        
    }
+   
+    @Test
+   public void hashCodeMagNietHetzelfdeZijnVanVerschillendeCarnivoren(){
+       Herbivoor bulbasaur = new Herbivoor();
+       Assert.assertFalse(bulbasaur.hashCode() == herbivoor.hashCode());
+       
+   }
+   
+   @Test
+   public void hashCodeMoetHetzelfdeZijnVandezelfdePlanten(){
+       Assert.assertEquals(herbivoor.hashCode(), herbivoor.hashCode());
+   }
     
+   @Test
+   public void hashcodeVerschillendOrganismenIsVerschillend(){
+       Carnivoor charmander = new Carnivoor();
+       Assert.assertFalse(charmander.hashCode() == herbivoor.hashCode());
+   }
 }

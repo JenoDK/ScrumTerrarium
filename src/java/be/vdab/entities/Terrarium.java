@@ -15,14 +15,14 @@ import java.util.Random;
  */
 public class Terrarium {
 
-    private static final int grootte = 15, aantalExtraPlantenPerDag = 2,
-            aantalPlanten = 2, aantalHerbivoren = 40, aantalCarnivoren = 40;
-    private Organisme[][] array = new Organisme[grootte][grootte];
-    private int dag, aantalHerbivorenToevoegen;
+    private static final int grootte = 6, aantalExtraPlantenPerDag = 2,
+            aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
+    private final Organisme[][] array = new Organisme[grootte][grootte];
+    private int aantalHerbivorenToevoegen;
+    private int dag = 1;
 
     //constructor
     public Terrarium() {
-        setDag(1);
         initialiseer();
     }
 
@@ -39,11 +39,6 @@ public class Terrarium {
         return array;
     }
 
-    //setters
-    public void setDag(int dag) {
-        this.dag = dag;
-    }
-
     public static int getAantalPlanten() {
         return aantalPlanten;
     }
@@ -55,6 +50,13 @@ public class Terrarium {
     public static int getAantalCarnivoren() {
         return aantalCarnivoren;
     }
+    
+    
+
+    //setters
+    public void setDag(int dag) {
+        this.dag = dag;
+    }
 
     /**
      * Indien we grootte moeten aanpassen
@@ -63,7 +65,12 @@ public class Terrarium {
 //    public void setGrootte(int grootte){
 //        this.grootte = grootte;
 //    }
-    public void initialiseer() {
+    
+     /**
+     * 1e maal array aanmaken
+     *
+     */
+    public final void initialiseer() {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
         organismeToevoegen("herbivoor", aantalHerbivoren);
@@ -73,6 +80,7 @@ public class Terrarium {
         return array[x][y] == null;
     }
 
+  
     public void organismeToevoegen(String soort, int aantal) {
         Random r = new Random();
         for (int i = 0; i < aantal; i++) {
@@ -110,17 +118,21 @@ public class Terrarium {
             }
         }
         ++dag;
-        if (getAantalOrganismen() <= grootte*grootte-aantalExtraPlantenPerDag){
+        if (getAantalOrganismen() <= grootte * grootte - aantalExtraPlantenPerDag) {
             organismeToevoegen("plant", aantalExtraPlantenPerDag);
         }
         stappenHerbivoor();
-        if (getAantalOrganismen() <= grootte*grootte-aantalHerbivorenToevoegen){
+        if (getAantalOrganismen() <= grootte * grootte - aantalHerbivorenToevoegen) {
             organismeToevoegen("herbivoor", aantalHerbivorenToevoegen);
         }
         stappenCarnivoor();
 
     }
 
+     /**
+     * actie die herbivoren kunnen doen + indien nodig verplaats
+     *
+     */
     public void stappenHerbivoor() {
         aantalHerbivorenToevoegen = 0;
         for (int x = 0; x < array.length; x++) {
@@ -147,9 +159,11 @@ public class Terrarium {
                 }
             }
         }
-
     }
-
+    /**
+     * actie die Carnivoren kunnen doen + indien nodig verplaats
+     *
+     */
     public void stappenCarnivoor() {
 
         for (int x = 0; x < array.length; x++) {
@@ -185,9 +199,14 @@ public class Terrarium {
                 }
             }
         }
-
     }
 
+    /**
+     * Methode controleert de verschillende mogelijke beweegrichtingen en geeft daar 1 van als returnwaarde
+     * @param x
+     * @param y
+     * @return 
+     */
     public Richting geefBewegingsMogelijkheid(int x, int y) {
         ArrayList<Richting> mogelijkheden = new ArrayList<>();
         Richting resultaat;
@@ -211,7 +230,6 @@ public class Terrarium {
             resultaat = Richting.OMSINGELD;
         }
         return resultaat;
-
     }
 
     public void verplaats(int x, int y, Richting richting) {
@@ -250,14 +268,13 @@ public class Terrarium {
             return true;
         }
         return false;
-
     }
 
     public int getAantalOrganismen() {
         int aantalOrganismen = 0;
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
-                if (array[x][y] instanceof Herbivoor || array[x][y] instanceof Plant || array[x][y] instanceof Carnivoor) {
+                if (array[x][y] instanceof Organisme) {
                     aantalOrganismen++;
                 }
             }
