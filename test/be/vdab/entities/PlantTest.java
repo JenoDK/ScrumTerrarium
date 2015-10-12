@@ -26,4 +26,32 @@ public class PlantTest {
     public void levenskrachtVanEenPlantIs1() {
     Assert.assertEquals(1, plant.getLevenskracht());
     }
+    
+    @Test
+   public void toStringMethodeTestCarnivoor(){
+       Assert.assertEquals("Plant: 1", plant.toString());
+   }
+   
+   @Test
+   public void tegenstanderIsNietGelijkAanCarnivoor(){
+       Plant bellsprout = new Plant();
+       Assert.assertNotSame(bellsprout,plant);
+   }
+   
+   @Test
+   public void carnivoorIsHetzelfdeAlsZichzelf(){
+       Assert.assertSame(plant, plant);
+   }
+   
+   @Test
+   public void plantNietHetzelfdeAlsHerbivoor(){
+       Herbivoor bulbasaur = new Herbivoor();
+       Assert.assertNotSame(plant, bulbasaur);
+   }
+   
+   @Test
+   public void plantNietHetzelfdeAlsCarnivoor(){
+       Carnivoor charmander = new Carnivoor();
+       Assert.assertNotSame(plant, charmander);
+   }
 }
