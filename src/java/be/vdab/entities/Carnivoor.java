@@ -15,6 +15,8 @@ public class Carnivoor extends Dier {
         super(1);
     }
     
+    
+    
     /**
      * Zal 2 carnivoren virtueel met elkaar laten vechten waarbij de carnivoor met de meeste levenskracht wint 
      * 
@@ -31,5 +33,22 @@ public class Carnivoor extends Dier {
         }
         
     }
+    
+       @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString() {
+        return "Carnivoor: " + super.toString() ;
+    }
+    
+    
     
 }
