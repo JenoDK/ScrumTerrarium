@@ -88,40 +88,42 @@ public class Terrarium {
         stappenCarnivoor();
         dag++;
     }
-    public void stappenHerbivoor(){
-        for(int x=0; x<array.length;x++){
+
+    public void stappenHerbivoor() {
+        for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
-                if(array[x][y] instanceof Herbivoor){
-                  if(controleerRechts(x,y) instanceof Organisme){
-                      
-                  }else{
-                      Richting richting=geefBewegingsMogelijkheid(x,y);
-                      if(richting!=Richting.OMSINGELD){
-                      verplaats(x,y,richting);}
-                  }  
+                if (array[x][y] instanceof Herbivoor) {
+                    if (controleerRechts(x, y) instanceof Organisme) {
+
+                    } else {
+                        Richting richting = geefBewegingsMogelijkheid(x, y);
+                        if (richting != Richting.OMSINGELD) {
+                            verplaats(x, y, richting);
+                        }
+                    }
                 }
             }
         }
-        
+
     }
 
     public void stappenCarnivoor() {
 
     }
 
-    public Richting geefBewegingsMogelijkheid(int x, int y) {
+    private Richting geefBewegingsMogelijkheid(int x, int y) {
         ArrayList<Richting> mogelijkheden = new ArrayList<>();
         Richting resultaat;
-        if (plaatsIsVrij(x + 1, y)) {
+        if (!controleGrens(x, y, Richting.OOST) && plaatsIsVrij(x + 1, y)) {
             mogelijkheden.add(Richting.OOST);
         }
-        if (plaatsIsVrij(x - 1, y)) {
+        if (!controleGrens(x, y, Richting.WEST) && plaatsIsVrij(x - 1, y)) {
             mogelijkheden.add(Richting.WEST);
         }
-        if (plaatsIsVrij(x, y + 1)) {
+        if (!controleGrens(x, y, Richting.ZUID) && plaatsIsVrij(x, y + 1)) {
             mogelijkheden.add(Richting.ZUID);
         }
-        if (plaatsIsVrij(x, y - 1)) {
+        if (!controleGrens(x, y, Richting.NOORD) && plaatsIsVrij(x, y - 1)) {
             mogelijkheden.add(Richting.NOORD);
         }
         if (!mogelijkheden.isEmpty()) {
@@ -142,12 +144,23 @@ public class Terrarium {
     private void verplaats(int x, int y, Richting richting) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    private boolean controleGrens(int x,int y,Richting Richting){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
-    private Richting geefBewegingsMogelijkheid(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private boolean controleGrens(int x, int y, Richting richting) {
 
+        if (Richting.NOORD == richting & y == 0) {
+            return true;
+        }
+        if (Richting.ZUID == richting & y == grootte - 1) {
+            return true;
+        }
+        if (Richting.OOST == richting & x == grootte - 1) {
+            return true;
+        }
+        if (Richting.WEST == richting & x == 0) {
+            return true;
+        }
+        return false;
+
+    }
 }
