@@ -16,7 +16,7 @@ import java.util.Random;
 public class Terrarium {
 
     private static final int grootte = 6, aantalExtraPlantenPerDag = 2,
-            aantalPlanten = 2, aantalHerbivoren = 6, aantalCarnivoren = 6;
+            aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
     private Organisme[][] array = new Organisme[grootte][grootte];
     private int dag, aantalHerbivorenToevoegen;
 
