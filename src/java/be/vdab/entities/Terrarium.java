@@ -40,6 +40,20 @@ public class Terrarium {
         return array;
     }
 
+    public static int getAantalPlanten() {
+        return aantalPlanten;
+    }
+
+    public static int getAantalHerbivoren() {
+        return aantalHerbivoren;
+    }
+
+    public static int getAantalCarnivoren() {
+        return aantalCarnivoren;
+    }
+    
+    
+
     //setters
     public void setDag(int dag) {
         this.dag = dag;
@@ -109,10 +123,7 @@ public class Terrarium {
         
     }
 
-    private Object controleerRechts(int rij, int kolom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     private void verplaats(int x, int y, Richting richting) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
