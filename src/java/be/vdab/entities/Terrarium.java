@@ -5,6 +5,7 @@
  */
 package be.vdab.entities;
 
+import be.vdab.valueobjects.Richting;
 import java.util.Random;
 
 /**
@@ -95,7 +96,9 @@ public class Terrarium {
                   if(controleerRechts() instanceof Organisme){
                       
                   }else{
-                      
+                      Richting richting=geefBewegingsMogelijkheid(x,y);
+                      if(richting!=Richting.OMSINGELD){
+                      verplaats(x,y,richting);}
                   }  
                 }
             }
@@ -107,6 +110,14 @@ public class Terrarium {
     }
 
     private Object controleerRechts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void verplaats(int x, int y, Richting richting) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Richting geefBewegingsMogelijkheid(int x, int y) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
