@@ -84,8 +84,15 @@ public class Terrarium {
 
     public void nieuweDag() {
         organismeToevoegen("plant", aantalExtraPlantenPerDag);
-//        stappenHerbivoor();
-//        stappenCarnivoor();
+        stappenHerbivoor();
+        stappenCarnivoor();
+        dag++;
+    }
+    public void stappenHerbivoor(){
+        
+    }
+    public void stappenCarnivoor(){
+        
     }
 
 }
