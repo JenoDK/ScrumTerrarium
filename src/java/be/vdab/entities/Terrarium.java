@@ -94,16 +94,16 @@ public class Terrarium {
             for (int y = 0; y < array.length; y++) {
                 boolean handeling = false;
                 if (array[x][y] instanceof Herbivoor) {
-                    if (controleGrens(x, y, Richting.OOST) == true) {
+                    if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
-                            organismeVerwijderen(x+1, y);
-                            array[x][y].setLevenskracht(array[x][y].getLevenskracht()+1);
+                            organismeVerwijderen(x + 1, y);
+                            array[x][y].setLevenskracht(array[x][y].getLevenskracht() + 1);
                             verplaats(x, y, Richting.OOST);
-                            handeling=true;
+                            handeling = true;
                         }
-                        if (array[x + 1][y] instanceof Herbivoor){
+                        if (array[x + 1][y] instanceof Herbivoor) {
                             organismeToevoegen("herbivoor", 1);
-                            handeling=true;
+                            handeling = true;
                         }
 
                         if (handeling == false) {
@@ -156,7 +156,6 @@ public class Terrarium {
     private void verplaats(int x, int y, Richting richting) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
     private boolean controleGrens(int x, int y, Richting richting) {
 
