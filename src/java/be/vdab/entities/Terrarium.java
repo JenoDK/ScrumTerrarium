@@ -199,7 +199,19 @@ public class Terrarium {
     }
 
     public void verplaats(int x, int y, Richting richting) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int rij = x;
+        int kolom = y;
+        if (richting == Richting.NOORD) {
+            rij--;
+        } else if (richting == Richting.ZUID) {
+            rij++;
+        } else if (richting == Richting.OOST) {
+            kolom++;
+        } else if (richting == Richting.WEST) {
+            kolom--;
+        }
+        array[rij][kolom] = array[x][y];
+        array[x][y] = null;
     }
 
     public boolean controleGrens(int x, int y, Richting richting) {
@@ -218,5 +230,17 @@ public class Terrarium {
         }
         return false;
 
+    }
+    
+    public int getAantalOrganismen(){
+        int aantalOrganismen = 0;
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                if (array[x][y] instanceof Herbivoor || array[x][y] instanceof Plant || array[x][y] instanceof Carnivoor) {
+                    aantalOrganismen++;
+                }
+            }
+        }
+        return aantalOrganismen;
     }
 }

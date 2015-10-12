@@ -29,7 +29,7 @@ public class TerrariumTest {
     
     @Test
     public void nieuwTerrariumHeeftAantalOrganismenGelijkAanDeSomVanDeAantallen(){
-        int aantalOrganismen = terrarium.geefAantalOrganismen();
+        int aantalOrganismen = terrarium.getAantalOrganismen();
         int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten() + 
                                                terrarium.getAantalHerbivoren() + 
                                                terrarium.getAantalCarnivoren();
@@ -43,7 +43,7 @@ public class TerrariumTest {
                                                terrarium.getAantalCarnivoren() +
                                                1;
          terrarium.organismeToevoegen("plant", 1);
-         Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.geefAantalOrganismen());
+         Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.getAantalOrganismen());
     }
     
     @Test
@@ -66,13 +66,13 @@ public class TerrariumTest {
 //    }
     
     @Test
-    public void controleGrensOpGrensGeeftFalse(){
-        Assert.assertFalse(terrarium.controleGrens(6, 0, Richting.OOST));
+    public void controleGrensOpGrensGeeftTrue(){
+        Assert.assertTrue(terrarium.controleGrens(terrarium.getGrootte()-1, 0, Richting.OOST));
     }
     
     @Test
-    public void controleGrensOpGrensGeeftTrue(){
-        Assert.assertTrue(terrarium.controleGrens(0, 0, Richting.OOST));
+    public void controleGrensOpGrensGeeftFalse(){
+        Assert.assertFalse(terrarium.controleGrens(0, 0, Richting.OOST));
     }
     
     @Test
