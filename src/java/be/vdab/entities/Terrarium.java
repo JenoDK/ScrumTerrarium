@@ -119,13 +119,14 @@ public class Terrarium {
                             aantalHerbivorenToevoegen++;
                             handeling = true;
                         }
+                    }
 
                         if (handeling == false) {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
                             if (richting != Richting.OMSINGELD) {
                                 verplaats(x, y, richting);
                             }
-                        }
+                        
                     }
                 }
             }
@@ -158,13 +159,14 @@ public class Terrarium {
                            organismeVerwijderen(x + 1, y);
                             handeling = true;
                         }
+                    }
 
                         if (handeling == false) {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
                             if (richting != Richting.OMSINGELD) {
                                 verplaats(x, y, richting);
                             }
-                        }
+                        
                     }
                 }
             }
@@ -204,11 +206,14 @@ public class Terrarium {
         int kolom = y;
         if (richting == Richting.NOORD) {
             rij--;
-        } else if (richting == Richting.ZUID) {
+        }
+        if (richting == Richting.ZUID) {
             rij++;
-        } else if (richting == Richting.OOST) {
+        }
+        if (richting == Richting.OOST) {
             kolom++;
-        } else if (richting == Richting.WEST) {
+        }
+        if (richting == Richting.WEST) {
             kolom--;
         }
         array[rij][kolom] = array[x][y];
