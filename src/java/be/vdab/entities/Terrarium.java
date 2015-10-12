@@ -15,13 +15,11 @@ import java.util.Random;
  */
 public class Terrarium {
 
-    private static final int grootte = 6;
-    private static final int aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
-    private static final int aantalExtraPlantenPerDag = 2;
+    private static final int grootte = 6, aantalExtraPlantenPerDag = 2,
+            aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
     private Organisme[][] array = new Organisme[grootte][grootte];
     private int dag;
 
-    //constructor
     //constructor
     public Terrarium() {
         setDag(1);
@@ -46,6 +44,15 @@ public class Terrarium {
         this.dag = dag;
     }
 
+    /**
+     *Indien we grootte moeten aanpassen 
+     * 
+     */
+//    public void setGrootte(int grootte){
+//        this.grootte = grootte;
+//    }
+    
+    
     public void initialiseer() {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
@@ -69,9 +76,11 @@ public class Terrarium {
             }
             if (soort.equals("plant")) {
                 array[x][y] = new Plant();
-            } else if (soort.equals("carnivoor")) {
+            }
+            if (soort.equals("carnivoor")) {
                 array[x][y] = new Carnivoor();
-            } else if (soort.equals("herbivoor")) {
+            }
+            if (soort.equals("herbivoor")) {
                 array[x][y] = new Herbivoor();
             }
 
@@ -83,10 +92,11 @@ public class Terrarium {
     }
 
     public void nieuweDag() {
+        ++dag;
         organismeToevoegen("plant", aantalExtraPlantenPerDag);
         stappenHerbivoor();
         stappenCarnivoor();
-        dag++;
+        
     }
 
     public void stappenHerbivoor() {
@@ -148,7 +158,6 @@ public class Terrarium {
     private void verplaats(int x, int y, Richting richting) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
     private boolean controleGrens(int x, int y, Richting richting) {
 
