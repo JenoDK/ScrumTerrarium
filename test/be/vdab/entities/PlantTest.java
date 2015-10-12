@@ -54,4 +54,15 @@ public class PlantTest {
        Carnivoor charmander = new Carnivoor();
        Assert.assertNotSame(plant, charmander);
    }
+   
+   @Test
+   public void hashCodeMagNietHetzelfdeZijnVanVerschillendePlanten(){
+       Plant plant2 = new Plant();
+       Assert.assertFalse(plant2.hashCode() == plant.hashCode());
+   }
+   
+   @Test
+   public void hashCodeMoetHetzelfdeZijnVandezelfdePlanten(){
+       Assert.assertEquals(plant.hashCode(), plant.hashCode());
+   }
 }
