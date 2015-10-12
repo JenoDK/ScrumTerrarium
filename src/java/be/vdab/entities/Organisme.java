@@ -26,9 +26,6 @@ public abstract class Organisme {
         this.levenskracht = levenskracht;
     }
 
-    public boolean isHandelingGedaan() {
-        return handelingGedaan;
-    }
 
     public void setHandelingGedaan(boolean handelingGedaan) {
         this.handelingGedaan = handelingGedaan;
@@ -40,7 +37,7 @@ public abstract class Organisme {
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = super.hashCode();
         hash = 97 * hash + this.levenskracht;
         return hash;
     }
