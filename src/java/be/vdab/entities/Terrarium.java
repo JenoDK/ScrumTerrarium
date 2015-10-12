@@ -7,6 +7,7 @@ package be.vdab.entities;
 
 import be.vdab.valueobjects.Richting;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -44,15 +45,15 @@ public class Terrarium {
         this.dag = dag;
     }
 
-    public static int getAantalPlanten() {
+    public int getAantalPlanten() {
         return aantalPlanten;
     }
 
-    public static int getAantalHerbivoren() {
+    public int getAantalHerbivoren() {
         return aantalHerbivoren;
     }
 
-    public static int getAantalCarnivoren() {
+    public int getAantalCarnivoren() {
         return aantalCarnivoren;
     }
 
@@ -264,4 +265,37 @@ public class Terrarium {
         }
         return aantalOrganismen;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Arrays.deepHashCode(this.array);
+        hash = 29 * hash + this.dag;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Terrarium other = (Terrarium) obj;
+        if (!Arrays.deepEquals(this.array, other.array)) {
+            return false;
+        }
+        if (this.dag != other.dag) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Terrarium{" + "dag = " + dag + " grootte = " + grootte + " aantal organismen = " + getAantalOrganismen() + '}';
+    }
+    
+    
 }
