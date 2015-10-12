@@ -67,6 +67,11 @@ public class Terrarium {
 //    public void setGrootte(int grootte){
 //        this.grootte = grootte;
 //    }
+    
+     /**
+     * 1e maal array aanmaken
+     *
+     */
     public void initialiseer() {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
@@ -125,6 +130,10 @@ public class Terrarium {
 
     }
 
+     /**
+     * actie die herbivoren kunnen doen + indien nodig verplaats
+     *
+     */
     public void stappenHerbivoor() {
         aantalHerbivorenToevoegen = 0;
         for (int x = 0; x < array.length; x++) {
@@ -152,7 +161,10 @@ public class Terrarium {
             }
         }
     }
-
+    /**
+     * actie die Carnivoren kunnen doen + indien nodig verplaats
+     *
+     */
     public void stappenCarnivoor() {
 
         for (int x = 0; x < array.length; x++) {
