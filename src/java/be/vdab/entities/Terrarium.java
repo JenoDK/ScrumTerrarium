@@ -5,6 +5,7 @@
  */
 package be.vdab.entities;
 
+import be.vdab.valueobjects.Richting;
 import java.util.Random;
 
 /**
@@ -19,7 +20,7 @@ public class Terrarium {
     private Organisme[][] array = new Organisme[grootte][grootte];
     private int dag;
 
-   //constructor
+    //constructor
     //constructor
     public Terrarium() {
         setDag(1);
@@ -88,25 +89,45 @@ public class Terrarium {
         stappenCarnivoor();
         dag++;
     }
-    public void stappenHerbivoor(){
-        for(int x=0; x<array.length;x++){
+
+    public void stappenHerbivoor() {
+        for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
-                if(array[x][y] instanceof Herbivoor){
-                  if(controleerRechts() instanceof Organisme){
-                      
-                  }else{
-                      
-                  }  
+                if (controleGrens(x, y, Richting.OOST) == true) {
+                    if (array[x][y] instanceof Herbivoor) {
+                        if (controleerRechts(x, y) instanceof Organisme) {
+
+                        } else {
+                            Richting richting = geefBewegingsMogelijkheid(x, y);
+                            if (richting != Richting.OMSINGELD) {
+                                verplaats(x, y, richting);
+                            }
+                        }
+                    }
                 }
+
             }
         }
-        
-    }
-    public void stappenCarnivoor(){
-        
+
     }
 
-    private Object controleerRechts() {
+    public void stappenCarnivoor() {
+
+    }
+
+    private Object controleerRechts(int rij, int kolom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void verplaats(int x, int y, Richting richting) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controleGrens(int x, int y, Richting Richting) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Richting geefBewegingsMogelijkheid(int x, int y) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
