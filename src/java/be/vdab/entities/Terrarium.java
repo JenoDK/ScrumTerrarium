@@ -123,7 +123,7 @@ public class Terrarium {
 
     }
 
-    private Richting geefBewegingsMogelijkheid(int x, int y) {
+    public Richting geefBewegingsMogelijkheid(int x, int y) {
         ArrayList<Richting> mogelijkheden = new ArrayList<>();
         Richting resultaat;
         if (!controleGrens(x, y, Richting.OOST) && plaatsIsVrij(x + 1, y)) {
@@ -149,15 +149,15 @@ public class Terrarium {
 
     }
 
-    private Object controleerRechts(int rij, int kolom) {
+    public Object controleerRechts(int rij, int kolom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void verplaats(int x, int y, Richting richting) {
+    public void verplaats(int x, int y, Richting richting) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private boolean controleGrens(int x, int y, Richting richting) {
+    public boolean controleGrens(int x, int y, Richting richting) {
 
         if (Richting.NOORD == richting & y == 0) {
             return true;
