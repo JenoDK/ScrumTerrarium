@@ -90,7 +90,13 @@ public class Terrarium {
     }
 
     public void nieuweDag() {
-
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                if (array[x][y] instanceof Organisme) {
+                    array[x][y].setHandelingGedaan(false);
+                }
+            }
+        }
         ++dag;
         organismeToevoegen("plant", aantalExtraPlantenPerDag);
         stappenHerbivoor();
@@ -103,24 +109,19 @@ public class Terrarium {
         aantalHerbivorenToevoegen = 0;
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
-                boolean handeling = false;
-                if (array[x][y] instanceof Herbivoor) {
+                if (array[x][y] instanceof Herbivoor && !array[x][y].getHandelingGedaan()) {
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
-
                             array[x][y].setLevenskracht(
                                     array[x + 1][y].getLevenskracht()
                                     + array[x][y].getLevenskracht());
                             organismeVerwijderen(x + 1, y);
                             verplaats(x, y, Richting.OOST);
-                            handeling = true;
-                        }
-                        if (array[x + 1][y] instanceof Herbivoor) {
+                            array[x + 1][y].setHandelingGedaan(true);
+                        } else if (array[x + 1][y] instanceof Herbivoor) {
                             aantalHerbivorenToevoegen++;
-                            handeling = true;
-                        }
-
-                        if (handeling == false) {
+                            array[x][y].setHandelingGedaan(true);
+                        } else {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
                             if (richting != Richting.OMSINGELD) {
                                 verplaats(x, y, richting);
@@ -137,8 +138,7 @@ public class Terrarium {
 
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
-                boolean handeling = false;
-                if (array[x][y] instanceof Carnivoor) {
+                if (array[x][y] instanceof Carnivoor && !array[x][y].getHandelingGedaan()) {
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Herbivoor) {
 
@@ -147,19 +147,19 @@ public class Terrarium {
                                     + array[x][y].getLevenskracht());
                             organismeVerwijderen(x + 1, y);
                             verplaats(x, y, Richting.OOST);
-                            handeling = true;
-                        }
-                        if (array[x + 1][y] instanceof Carnivoor) {
-                           Carnivoor carnivoor = (Carnivoor) array[x][y];
-                           Carnivoor tegenstander = (Carnivoor) array[x + 1][y];
-                           carnivoor.vechten(tegenstander);
-                           array[x][y] = carnivoor;
-                           array[x + 1][y] = tegenstander;
-                           organismeVerwijderen(x + 1, y);
-                            handeling = true;
-                        }
-
-                        if (handeling == false) {
+                            array[x + 1][y].setHandelingGedaan(true);
+                        } else if (array[x + 1][y] instanceof Carnivoor) {
+                            Carnivoor carnivoor = (Carnivoor) array[x][y];
+                            Carnivoor tegenstander = (Carnivoor) array[x + 1][y];
+                            carnivoor.vechten(tegenstander);
+                            if (carnivoor.getLevenskracht() == 0){
+                                organismeVerwijderen(x, y);
+                            }
+                            if (tegenstander.getLevenskracht() == 0){
+                                organismeVerwijderen(x + 1, y);
+                            }
+                            array[x][y].setHandelingGedaan(true);
+                        } else {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
                             if (richting != Richting.OMSINGELD) {
                                 verplaats(x, y, richting);
@@ -170,7 +170,6 @@ public class Terrarium {
             }
         }
 
-        
     }
 
     public Richting geefBewegingsMogelijkheid(int x, int y) {
@@ -232,8 +231,8 @@ public class Terrarium {
         return false;
 
     }
-    
-    public int getAantalOrganismen(){
+
+    public int getAantalOrganismen() {
         int aantalOrganismen = 0;
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
