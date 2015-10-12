@@ -106,4 +106,15 @@ public class CarnivoorTest {
    public void carnivoorIsHetzelfdeAlsZichzelf(){
        Assert.assertSame(carnivoor, carnivoor);
    }
+   
+    @Test
+   public void hashCodeMagNietHetzelfdeZijnVanVerschillendeCarnivoren(){
+       Carnivoor charmander = new Carnivoor();
+       Assert.assertFalse(charmander.hashCode()==carnivoor.hashCode());       
+   }
+   
+   @Test
+   public void hashCodeMoetHetzelfdeZijnVandezelfdePlanten(){
+       Assert.assertEquals(carnivoor.hashCode(), carnivoor.hashCode());
+   }
 }

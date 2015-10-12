@@ -151,7 +151,6 @@ public class Terrarium {
                 }
             }
         }
-
     }
 
     public void stappenCarnivoor() {
@@ -257,11 +256,11 @@ public class Terrarium {
 
     }
 
-    public int getAantalOrganismen() {
+        public int getAantalOrganismen() {
         int aantalOrganismen = 0;
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
-                if (array[x][y] instanceof Herbivoor || array[x][y] instanceof Plant || array[x][y] instanceof Carnivoor) {
+                if (array[x][y] instanceof Organisme) {
                     aantalOrganismen++;
                 }
             }
