@@ -200,8 +200,8 @@ public class Terrarium {
     }
 
     public void verplaats(int x, int y, Richting richting) {
-        int rij = x;
-        int kolom = y;
+        int rij = y;
+        int kolom = x;
         if (richting == Richting.NOORD) {
             rij--;
         } else if (richting == Richting.ZUID) {
@@ -211,7 +211,7 @@ public class Terrarium {
         } else if (richting == Richting.WEST) {
             kolom--;
         }
-        array[rij][kolom] = array[x][y];
+        array[kolom][rij] = array[x][y];
         array[x][y] = null;
     }
 
