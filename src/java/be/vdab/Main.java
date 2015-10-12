@@ -26,7 +26,6 @@ public class Main {
             System.out.println("enter is voordoen, s is stoppen");
             gebruikerInput = scanner.nextLine();
         }
-
     }
 
     private static void print(Organisme[][] organisme) {
