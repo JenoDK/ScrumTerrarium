@@ -50,7 +50,8 @@ public class Terrarium {
     public static int getAantalCarnivoren() {
         return aantalCarnivoren;
     }
-
+    
+    
 
     //setters
     public void setDag(int dag) {
@@ -65,6 +66,10 @@ public class Terrarium {
 //        this.grootte = grootte;
 //    }
     
+     /**
+     * 1e maal array aanmaken
+     *
+     */
     public final void initialiseer() {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
@@ -75,6 +80,7 @@ public class Terrarium {
         return array[x][y] == null;
     }
 
+  
     public void organismeToevoegen(String soort, int aantal) {
         Random r = new Random();
         for (int i = 0; i < aantal; i++) {
@@ -123,6 +129,10 @@ public class Terrarium {
 
     }
 
+     /**
+     * actie die herbivoren kunnen doen + indien nodig verplaats
+     *
+     */
     public void stappenHerbivoor() {
         aantalHerbivorenToevoegen = 0;
         for (int x = 0; x < array.length; x++) {
@@ -150,7 +160,10 @@ public class Terrarium {
             }
         }
     }
-
+    /**
+     * actie die Carnivoren kunnen doen + indien nodig verplaats
+     *
+     */
     public void stappenCarnivoor() {
 
         for (int x = 0; x < array.length; x++) {
@@ -188,6 +201,12 @@ public class Terrarium {
         }
     }
 
+    /**
+     * Methode controleert de verschillende mogelijke beweegrichtingen en geeft daar 1 van als returnwaarde
+     * @param x
+     * @param y
+     * @return 
+     */
     public Richting geefBewegingsMogelijkheid(int x, int y) {
         ArrayList<Richting> mogelijkheden = new ArrayList<>();
         Richting resultaat;
