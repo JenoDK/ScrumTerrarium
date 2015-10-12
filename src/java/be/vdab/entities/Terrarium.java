@@ -221,7 +221,6 @@ public class Terrarium {
             array[x][y] = null;
         }
         array[kolom][rij].setHandelingGedaan(true);
-        System.out.println("Organisme op plaats " + x + " " + y + " beweegt naar plaats " + kolom + " " + rij);
     }
 
     public boolean controleGrens(int x, int y, Richting richting) {
