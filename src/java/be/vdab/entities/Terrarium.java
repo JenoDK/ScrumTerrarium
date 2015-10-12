@@ -170,6 +170,7 @@ public class Terrarium {
             }
         }
 
+        
     }
 
     public Richting geefBewegingsMogelijkheid(int x, int y) {
