@@ -45,14 +45,12 @@ public class Terrarium {
     }
 
     /**
-     *Indien we grootte moeten aanpassen 
-     * 
+     * Indien we grootte moeten aanpassen
+     *
      */
 //    public void setGrootte(int grootte){
 //        this.grootte = grootte;
 //    }
-    
-    
     public void initialiseer() {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
@@ -92,14 +90,13 @@ public class Terrarium {
     }
 
     public void nieuweDag() {
-        
-        
+
         ++dag;
         organismeToevoegen("plant", aantalExtraPlantenPerDag);
         stappenHerbivoor();
         organismeToevoegen("herbivoor", aantalHerbivorenToevoegen);
         stappenCarnivoor();
-        
+
     }
 
     public void stappenHerbivoor() {
@@ -110,10 +107,10 @@ public class Terrarium {
                 if (array[x][y] instanceof Herbivoor) {
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
-                            
+
                             array[x][y].setLevenskracht(
-                                    array[x+1][y].getLevenskracht() +
-                                            array[x][y].getLevenskracht() );
+                                    array[x + 1][y].getLevenskracht()
+                                    + array[x][y].getLevenskracht());
                             organismeVerwijderen(x + 1, y);
                             verplaats(x, y, Richting.OOST);
                             handeling = true;
@@ -137,6 +134,41 @@ public class Terrarium {
     }
 
     public void stappenCarnivoor() {
+
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                boolean handeling = false;
+                if (array[x][y] instanceof Carnivoor) {
+                    if (controleGrens(x, y, Richting.OOST) == false) {
+                        if (array[x + 1][y] instanceof Herbivoor) {
+
+                            array[x][y].setLevenskracht(
+                                    array[x + 1][y].getLevenskracht()
+                                    + array[x][y].getLevenskracht());
+                            organismeVerwijderen(x + 1, y);
+                            verplaats(x, y, Richting.OOST);
+                            handeling = true;
+                        }
+                        if (array[x + 1][y] instanceof Carnivoor) {
+                           Carnivoor carnivoor = (Carnivoor) array[x][y];
+                           Carnivoor tegenstander = (Carnivoor) array[x + 1][y];
+                           carnivoor.vechten(tegenstander);
+                           array[x][y] = carnivoor;
+                           array[x + 1][y] = tegenstander;
+                           organismeVerwijderen(x + 1, y);
+                            handeling = true;
+                        }
+
+                        if (handeling == false) {
+                            Richting richting = geefBewegingsMogelijkheid(x, y);
+                            if (richting != Richting.OMSINGELD) {
+                                verplaats(x, y, richting);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     }
 
