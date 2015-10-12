@@ -58,17 +58,7 @@ public class Terrarium {
         this.dag = dag;
     }
 
-    public static int getAantalPlanten() {
-        return aantalPlanten;
-    }
-
-    public static int getAantalHerbivoren() {
-        return aantalHerbivoren;
-    }
-
-    public static int getAantalCarnivoren() {
-        return aantalCarnivoren;
-    }
+    
 
     /**
      * Indien we grootte moeten aanpassen
