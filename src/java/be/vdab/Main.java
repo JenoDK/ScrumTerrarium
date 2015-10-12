@@ -19,18 +19,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("enter is voordoen, s is stoppen");
         String gebruikerInput = scanner.nextLine();
-        if (gebruikerInput.equalsIgnoreCase("s")) {
-            gebruikerInput = null;
-        }
-        while (gebruikerInput != null) {
+        while (!gebruikerInput.equalsIgnoreCase("s")) {
             terrarium.nieuweDag();
             System.out.println("Dag: " + terrarium.getDag());
             print(terrarium.getArray());
             System.out.println("enter is voordoen, s is stoppen");
             gebruikerInput = scanner.nextLine();
-            if (gebruikerInput.equalsIgnoreCase("s")) {
-                gebruikerInput = null;
-            }
         }
 
     }
