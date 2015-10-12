@@ -36,7 +36,32 @@ public class TerrariumTest {
     }
     
     @Test
-    public void nieuwTerrariumHeeftArrayGelijkAanGrootte(){
-        Assert.assertEquals(terrarium.getGrootte(), terrarium.getArray().length());
+    public void nieuwTerrariumToevoegenVerhoogtHetAantalOrganismenInArrayMet1(){
+         int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten() + 
+                                               terrarium.getAantalHerbivoren() + 
+                                               terrarium.getAantalCarnivoren() +
+                                               1;
+         terrarium.organismeToevoegen("plant", 1);
+         Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.getAantalOrganismenInArray());
     }
+    
+    @Test
+    public void nieuwTerrariumHeeftArrayGelijkAanGrootte(){
+        Assert.assertEquals(terrarium.getGrootte(), terrarium.getArray().length);
+    }
+    
+    @Test
+    public void organismeVerwijderenGeeftAltijdNullOpDiePositieNaHetVerwijderen(){
+        int x = terrarium.getGrootte();
+        terrarium.organismeVerwijderen(x, x);
+        Assert.assertNull(terrarium.getArray()[x][x]);
+    }
+    
+//    @Test
+//    public void controleRechtsGeeftHetJuisteObjectTerug(){
+//        terrarium.getArray()[0][0] = new Herbivoor();
+//        terrarium.getArray()[1][0] = new Plant();
+//        Assert.assertEquals(terrarium.controleerRechts(0,0), terrarium.getArray()[1][0]);
+//    }
+    
 }
