@@ -6,6 +6,7 @@
 package be.vdab.entities;
 
 import be.vdab.valueobjects.Richting;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -68,11 +69,9 @@ public class Terrarium {
             }
             if (soort.equals("plant")) {
                 array[x][y] = new Plant();
-            }
-            if (soort.equals("carnivoor")) {
+            } else if (soort.equals("carnivoor")) {
                 array[x][y] = new Carnivoor();
-            }
-            if (soort.equals("herbivoor")) {
+            } else if (soort.equals("herbivoor")) {
                 array[x][y] = new Herbivoor();
             }
 
@@ -94,25 +93,59 @@ public class Terrarium {
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
                 boolean handeling = false;
-                if (controleGrens(x, y, Richting.OOST) == true) {
-                    if (array[x][y] instanceof Herbivoor) {
-                        if (controleerRechts(x, y) instanceof Organisme) {
+                if (array[x][y] instanceof Herbivoor) {
+                    if (controleGrens(x, y, Richting.OOST) == false) {
+                        if (array[x + 1][y] instanceof Plant) {
+                            organismeVerwijderen(x + 1, y);
+                            array[x][y].setLevenskracht(array[x][y].getLevenskracht() + 1);
+                            verplaats(x, y, Richting.OOST);
+                            handeling = true;
+                        }
+                        if (array[x + 1][y] instanceof Herbivoor) {
+                            organismeToevoegen("herbivoor", 1);
+                            handeling = true;
+                        }
+
+                        if (handeling == false) {
+                            Richting richting = geefBewegingsMogelijkheid(x, y);
+                            if (richting != Richting.OMSINGELD) {
+                                verplaats(x, y, richting);
+                            }
                         }
                     }
                 }
-                if (handeling == false) {
-                    Richting richting = geefBewegingsMogelijkheid(x, y);
-                    if (richting != Richting.OMSINGELD) {
-                        verplaats(x, y, richting);
-                    }
-                }
-
             }
         }
 
     }
 
     public void stappenCarnivoor() {
+
+    }
+
+    private Richting geefBewegingsMogelijkheid(int x, int y) {
+        ArrayList<Richting> mogelijkheden = new ArrayList<>();
+        Richting resultaat;
+        if (!controleGrens(x, y, Richting.OOST) && plaatsIsVrij(x + 1, y)) {
+            mogelijkheden.add(Richting.OOST);
+        }
+        if (!controleGrens(x, y, Richting.WEST) && plaatsIsVrij(x - 1, y)) {
+            mogelijkheden.add(Richting.WEST);
+        }
+        if (!controleGrens(x, y, Richting.ZUID) && plaatsIsVrij(x, y + 1)) {
+            mogelijkheden.add(Richting.ZUID);
+        }
+        if (!controleGrens(x, y, Richting.NOORD) && plaatsIsVrij(x, y - 1)) {
+            mogelijkheden.add(Richting.NOORD);
+        }
+        if (!mogelijkheden.isEmpty()) {
+            Random r = new Random();
+            int keuze = r.nextInt(mogelijkheden.size());
+            resultaat = mogelijkheden.get(keuze);
+        } else {
+            resultaat = Richting.OMSINGELD;
+        }
+        return resultaat;
 
     }
 
@@ -124,15 +157,21 @@ public class Terrarium {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private boolean controleGrens(int x, int y, Richting Richting) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private boolean controleGrens(int x, int y, Richting richting) {
 
-    private Richting geefBewegingsMogelijkheid(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    private int geefAantalOrganismen(){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        if (Richting.NOORD == richting & y == 0) {
+            return true;
+        }
+        if (Richting.ZUID == richting & y == grootte - 1) {
+            return true;
+        }
+        if (Richting.OOST == richting & x == grootte - 1) {
+            return true;
+        }
+        if (Richting.WEST == richting & x == 0) {
+            return true;
+        }
+        return false;
 
+    }
 }
