@@ -89,10 +89,25 @@ public class Terrarium {
         dag++;
     }
     public void stappenHerbivoor(){
+        for(int x=0; x<array.length;x++){
+            for (int y = 0; y < array.length; y++) {
+                if(array[x][y] instanceof Herbivoor){
+                  if(controleerRechts() instanceof Organisme){
+                      
+                  }else{
+                      
+                  }  
+                }
+            }
+        }
         
     }
     public void stappenCarnivoor(){
         
+    }
+
+    private Object controleerRechts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
