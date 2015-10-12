@@ -15,13 +15,11 @@ import java.util.Random;
  */
 public class Terrarium {
 
-    private static final int grootte = 6;
-    private static final int aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
-    private static final int aantalExtraPlantenPerDag = 2;
+    private static final int grootte = 6, aantalExtraPlantenPerDag = 2,
+            aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
     private Organisme[][] array = new Organisme[grootte][grootte];
-    private int dag;
+    private int dag, aantalHerbivorenToevoegen;
 
-    //constructor
     //constructor
     public Terrarium() {
         setDag(1);
@@ -46,6 +44,15 @@ public class Terrarium {
         this.dag = dag;
     }
 
+    /**
+     *Indien we grootte moeten aanpassen 
+     * 
+     */
+//    public void setGrootte(int grootte){
+//        this.grootte = grootte;
+//    }
+    
+    
     public void initialiseer() {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
@@ -69,9 +76,11 @@ public class Terrarium {
             }
             if (soort.equals("plant")) {
                 array[x][y] = new Plant();
-            } else if (soort.equals("carnivoor")) {
+            }
+            if (soort.equals("carnivoor")) {
                 array[x][y] = new Carnivoor();
-            } else if (soort.equals("herbivoor")) {
+            }
+            if (soort.equals("herbivoor")) {
                 array[x][y] = new Herbivoor();
             }
 
@@ -83,26 +92,34 @@ public class Terrarium {
     }
 
     public void nieuweDag() {
+        
+        
+        ++dag;
         organismeToevoegen("plant", aantalExtraPlantenPerDag);
         stappenHerbivoor();
+        organismeToevoegen("herbivoor", aantalHerbivorenToevoegen);
         stappenCarnivoor();
-        dag++;
+        
     }
 
     public void stappenHerbivoor() {
+        aantalHerbivorenToevoegen = 0;
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
                 boolean handeling = false;
                 if (array[x][y] instanceof Herbivoor) {
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
+                            
+                            array[x][y].setLevenskracht(
+                                    array[x+1][y].getLevenskracht() +
+                                            array[x][y].getLevenskracht() );
                             organismeVerwijderen(x + 1, y);
-                            array[x][y].setLevenskracht(array[x][y].getLevenskracht() + 1);
                             verplaats(x, y, Richting.OOST);
                             handeling = true;
                         }
                         if (array[x + 1][y] instanceof Herbivoor) {
-                            organismeToevoegen("herbivoor", 1);
+                            aantalHerbivorenToevoegen++;
                             handeling = true;
                         }
 
@@ -123,7 +140,7 @@ public class Terrarium {
         
     }
 
-    private Richting geefBewegingsMogelijkheid(int x, int y) {
+    public Richting geefBewegingsMogelijkheid(int x, int y) {
         ArrayList<Richting> mogelijkheden = new ArrayList<>();
         Richting resultaat;
         if (!controleGrens(x, y, Richting.OOST) && plaatsIsVrij(x + 1, y)) {
@@ -149,15 +166,23 @@ public class Terrarium {
 
     }
 
-    private Object controleerRechts(int rij, int kolom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void verplaats(int x, int y, Richting richting) {
+        int rij = x;
+        int kolom = y;
+        if (richting == Richting.NOORD) {
+            rij--;
+        } else if (richting == Richting.ZUID) {
+            rij++;
+        } else if (richting == Richting.OOST) {
+            kolom++;
+        } else if (richting == Richting.WEST) {
+            kolom--;
+        }
+        array[rij][kolom] = array[x][y];
+        array[x][y] = null;
     }
 
-    private void verplaats(int x, int y, Richting richting) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private boolean controleGrens(int x, int y, Richting richting) {
+    public boolean controleGrens(int x, int y, Richting richting) {
 
         if (Richting.NOORD == richting & y == 0) {
             return true;
@@ -173,5 +198,17 @@ public class Terrarium {
         }
         return false;
 
+    }
+    
+    public int getAantalOrganismen(){
+        int aantalOrganismen = 0;
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                if (array[x][y] instanceof Herbivoor || array[x][y] instanceof Plant || array[x][y] instanceof Carnivoor) {
+                    aantalOrganismen++;
+                }
+            }
+        }
+        return aantalOrganismen;
     }
 }
