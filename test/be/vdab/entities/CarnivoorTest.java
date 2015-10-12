@@ -90,4 +90,20 @@ public class CarnivoorTest {
        carnivoor.vechten(tegenstander);
        Assert.assertEquals(1, tegenstander.getLevenskracht());
    }
+   
+   @Test
+   public void toStringMethodeTestCarnivoor(){
+       Assert.assertEquals("Carnivoor: 1", carnivoor.toString());
+   }
+   
+   @Test
+   public void tegenstanderIsNietGelijkAanCarnivoor(){
+       Carnivoor tegenstander = new Carnivoor();
+       Assert.assertNotSame(tegenstander,carnivoor);
+   }
+   
+   @Test
+   public void carnivoorIsHetzelfdeAlsZichzelf(){
+       Assert.assertSame(carnivoor, carnivoor);
+   }
 }
