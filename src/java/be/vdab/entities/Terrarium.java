@@ -18,7 +18,7 @@ public class Terrarium {
     private static final int grootte = 6, aantalExtraPlantenPerDag = 2,
             aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
     private Organisme[][] array = new Organisme[grootte][grootte];
-    private int dag;
+    private int dag, aantalHerbivorenToevoegen;
 
     //constructor
     public Terrarium() {
@@ -92,27 +92,34 @@ public class Terrarium {
     }
 
     public void nieuweDag() {
+        
+        
         ++dag;
         organismeToevoegen("plant", aantalExtraPlantenPerDag);
         stappenHerbivoor();
+        organismeToevoegen("herbivoor", aantalHerbivorenToevoegen);
         stappenCarnivoor();
         
     }
 
     public void stappenHerbivoor() {
+        aantalHerbivorenToevoegen = 0;
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
                 boolean handeling = false;
                 if (array[x][y] instanceof Herbivoor) {
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
+                            
+                            array[x][y].setLevenskracht(
+                                    array[x+1][y].getLevenskracht() +
+                                            array[x][y].getLevenskracht() );
                             organismeVerwijderen(x + 1, y);
-                            array[x][y].setLevenskracht(array[x][y].getLevenskracht() + 1);
                             verplaats(x, y, Richting.OOST);
                             handeling = true;
                         }
                         if (array[x + 1][y] instanceof Herbivoor) {
-                            organismeToevoegen("herbivoor", 1);
+                            aantalHerbivorenToevoegen++;
                             handeling = true;
                         }
 
@@ -157,10 +164,6 @@ public class Terrarium {
         }
         return resultaat;
 
-    }
-
-    public Object controleerRechts(int rij, int kolom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void verplaats(int x, int y, Richting richting) {
