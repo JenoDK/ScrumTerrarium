@@ -30,8 +30,8 @@ public class Main {
     }
 
     private static void print(Organisme[][] organisme) {
-        for (int x = 0; x < organisme.length; x++) {
-            for (int y = 0; y < organisme.length; y++) {
+        for (int y = 0; y < organisme.length; y++) {
+            for (int x = 0; x < organisme.length; x++) {
                 if (organisme[x][y] == null) {
                     System.out.print("  .  ");
                 } else if (organisme[x][y] instanceof Plant) {
