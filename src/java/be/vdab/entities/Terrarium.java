@@ -93,16 +93,17 @@ public class Terrarium {
     public void stappenHerbivoor() {
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
+                boolean handeling = false;
                 if (controleGrens(x, y, Richting.OOST) == true) {
                     if (array[x][y] instanceof Herbivoor) {
                         if (controleerRechts(x, y) instanceof Organisme) {
-
-                        } else {
-                            Richting richting = geefBewegingsMogelijkheid(x, y);
-                            if (richting != Richting.OMSINGELD) {
-                                verplaats(x, y, richting);
-                            }
                         }
+                    }
+                }
+                if (handeling == false) {
+                    Richting richting = geefBewegingsMogelijkheid(x, y);
+                    if (richting != Richting.OMSINGELD) {
+                        verplaats(x, y, richting);
                     }
                 }
 
@@ -128,6 +129,9 @@ public class Terrarium {
     }
 
     private Richting geefBewegingsMogelijkheid(int x, int y) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private int geefAantalOrganismen(){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
