@@ -25,6 +25,33 @@ public abstract class Organisme {
         this.levenskracht = levenskracht;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + this.levenskracht;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Organisme other = (Organisme) obj;
+        if (this.levenskracht != other.levenskracht) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(levenskracht);
+    }
+
     
     
     
