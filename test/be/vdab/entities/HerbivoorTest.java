@@ -49,6 +49,7 @@ public class HerbivoorTest {
    }
    
    @Test
+   
    public void tegenstanderIsNietGelijkAanCarnivoor(){
        Herbivoor bulbasaur = new Herbivoor();
        org.junit.Assert.assertNotSame(bulbasaur,herbivoor);
