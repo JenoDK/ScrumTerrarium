@@ -58,6 +58,18 @@ public class Terrarium {
         this.dag = dag;
     }
 
+    public static int getAantalPlanten() {
+        return aantalPlanten;
+    }
+
+    public static int getAantalHerbivoren() {
+        return aantalHerbivoren;
+    }
+
+    public static int getAantalCarnivoren() {
+        return aantalCarnivoren;
+    }
+
     /**
      * Indien we grootte moeten aanpassen
      *
@@ -112,9 +124,13 @@ public class Terrarium {
             }
         }
         ++dag;
-        organismeToevoegen("plant", aantalExtraPlantenPerDag);
+        if (getAantalOrganismen() <= grootte*grootte-aantalExtraPlantenPerDag){
+            organismeToevoegen("plant", aantalExtraPlantenPerDag);
+        }
         stappenHerbivoor();
-        organismeToevoegen("herbivoor", aantalHerbivorenToevoegen);
+        if (getAantalOrganismen() <= grootte*grootte-aantalHerbivorenToevoegen){
+            organismeToevoegen("herbivoor", aantalHerbivorenToevoegen);
+        }
         stappenCarnivoor();
 
     }
@@ -131,16 +147,16 @@ public class Terrarium {
                                     + array[x][y].getLevenskracht());
                             organismeVerwijderen(x + 1, y);
                             verplaats(x, y, Richting.OOST);
-                            array[x + 1][y].setHandelingGedaan(true);
                         } else if (array[x + 1][y] instanceof Herbivoor) {
                             aantalHerbivorenToevoegen++;
                             array[x][y].setHandelingGedaan(true);
                         } else {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
-                            if (richting != Richting.OMSINGELD) {
-                                verplaats(x, y, richting);
-                            }
+                            verplaats(x, y, richting);
                         }
+                    } else {
+                        Richting richting = geefBewegingsMogelijkheid(x, y);
+                        verplaats(x, y, richting);
                     }
                 }
             }
@@ -160,25 +176,25 @@ public class Terrarium {
                                     array[x + 1][y].getLevenskracht()
                                     + array[x][y].getLevenskracht());
                             organismeVerwijderen(x + 1, y);
-                            verplaats(x, y, Richting.OOST);
-                            array[x + 1][y].setHandelingGedaan(true);
+                            array[x][y].setHandelingGedaan(true);
                         } else if (array[x + 1][y] instanceof Carnivoor) {
                             Carnivoor carnivoor = (Carnivoor) array[x][y];
                             Carnivoor tegenstander = (Carnivoor) array[x + 1][y];
                             carnivoor.vechten(tegenstander);
-                            if (carnivoor.getLevenskracht() == 0){
+                            array[x][y].setHandelingGedaan(true);
+                            if (carnivoor.getLevenskracht() == 0) {
                                 organismeVerwijderen(x, y);
                             }
-                            if (tegenstander.getLevenskracht() == 0){
+                            if (tegenstander.getLevenskracht() == 0) {
                                 organismeVerwijderen(x + 1, y);
                             }
-                            array[x][y].setHandelingGedaan(true);
                         } else {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
-                            if (richting != Richting.OMSINGELD) {
-                                verplaats(x, y, richting);
-                            }
+                            verplaats(x, y, richting);
                         }
+                    } else {
+                        Richting richting = geefBewegingsMogelijkheid(x, y);
+                        verplaats(x, y, richting);
                     }
                 }
             }
@@ -213,6 +229,7 @@ public class Terrarium {
     }
 
     public void verplaats(int x, int y, Richting richting) {
+
         int rij = y;
         int kolom = x;
         if (richting == Richting.NOORD) {
@@ -223,9 +240,13 @@ public class Terrarium {
             kolom++;
         } else if (richting == Richting.WEST) {
             kolom--;
+        } else if (richting == Richting.OMSINGELD) {
         }
         array[kolom][rij] = array[x][y];
-        array[x][y] = null;
+        if (richting != Richting.OMSINGELD) {
+            array[x][y] = null;
+        }
+        array[kolom][rij].setHandelingGedaan(true);
     }
 
     public boolean controleGrens(int x, int y, Richting richting) {

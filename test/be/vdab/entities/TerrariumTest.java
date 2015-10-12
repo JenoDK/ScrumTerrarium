@@ -53,7 +53,7 @@ public class TerrariumTest {
     
     @Test
     public void organismeVerwijderenGeeftAltijdNullOpDiePositieNaHetVerwijderen(){
-        int x = terrarium.getGrootte();
+        int x = 0;
         terrarium.organismeVerwijderen(x, x);
         Assert.assertNull(terrarium.getArray()[x][x]);
     }
@@ -78,6 +78,19 @@ public class TerrariumTest {
     @Test
     public void geefBewegingsMogelijkheidGeeftInstanceOfEnumRichtingTerug(){
         Assert.assertTrue(terrarium.geefBewegingsMogelijkheid(0,0) instanceof Richting);
+    }
+    
+    @Test
+    public void geefBewegingsMogelijkheidGeeftGeenNoordAanDeBovengrens(){
+        Assert.assertFalse(terrarium.geefBewegingsMogelijkheid(0,0).equals(Richting.NOORD));
+    }
+    
+    @Test
+    public void naHetVerplaatsenIsHandelingGedaan(){
+        Herbivoor herbivoor = new Herbivoor();
+        terrarium.getArray()[0][0] = herbivoor;
+        terrarium.verplaats(0, 0, Richting.OOST);
+        Assert.assertTrue(herbivoor.getHandelingGedaan());
     }
     
 }
