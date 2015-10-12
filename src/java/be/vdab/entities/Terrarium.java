@@ -93,7 +93,7 @@ public class Terrarium {
         for(int x=0; x<array.length;x++){
             for (int y = 0; y < array.length; y++) {
                 if(array[x][y] instanceof Herbivoor){
-                  if(controleerRechts() instanceof Organisme){
+                  if(controleerRechts(x,y) instanceof Organisme){
                       
                   }else{
                       Richting richting=geefBewegingsMogelijkheid(x,y);
@@ -109,7 +109,7 @@ public class Terrarium {
         
     }
 
-    private Object controleerRechts() {
+    private Object controleerRechts(int rij, int kolom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
