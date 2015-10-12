@@ -63,6 +63,7 @@ public class Terrarium {
 //    public void setGrootte(int grootte){
 //        this.grootte = grootte;
 //    }
+    
     public void initialiseer() {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
@@ -73,6 +74,7 @@ public class Terrarium {
         return array[x][y] == null;
     }
 
+  
     public void organismeToevoegen(String soort, int aantal) {
         Random r = new Random();
         for (int i = 0; i < aantal; i++) {
@@ -188,6 +190,12 @@ public class Terrarium {
 
     }
 
+    /**
+     * Methode controleert de verschillende mogelijke beweegrichtingen en geeft daar 1 van als returnwaarde
+     * @param x
+     * @param y
+     * @return 
+     */
     public Richting geefBewegingsMogelijkheid(int x, int y) {
         ArrayList<Richting> mogelijkheden = new ArrayList<>();
         Richting resultaat;
