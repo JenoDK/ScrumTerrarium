@@ -120,7 +120,7 @@ public class Terrarium {
     }
 
     public void stappenCarnivoor() {
-
+        
     }
 
     private Richting geefBewegingsMogelijkheid(int x, int y) {
