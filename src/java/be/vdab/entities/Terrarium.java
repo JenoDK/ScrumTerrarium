@@ -103,19 +103,27 @@ public class Terrarium {
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
                 boolean handeling = false;
-                if (controleGrens(x, y, Richting.OOST) == true) {
-                    if (array[x][y] instanceof Herbivoor) {
-                        if (controleerRechts(x, y) instanceof Organisme) {
+                if (array[x][y] instanceof Herbivoor) {
+                    if (controleGrens(x, y, Richting.OOST) == false) {
+                        if (array[x + 1][y] instanceof Plant) {
+                            organismeVerwijderen(x + 1, y);
+                            array[x][y].setLevenskracht(array[x][y].getLevenskracht() + 1);
+                            verplaats(x, y, Richting.OOST);
+                            handeling = true;
+                        }
+                        if (array[x + 1][y] instanceof Herbivoor) {
+                            organismeToevoegen("herbivoor", 1);
+                            handeling = true;
+                        }
+
+                        if (handeling == false) {
+                            Richting richting = geefBewegingsMogelijkheid(x, y);
+                            if (richting != Richting.OMSINGELD) {
+                                verplaats(x, y, richting);
+                            }
                         }
                     }
                 }
-                if (handeling == false) {
-                    Richting richting = geefBewegingsMogelijkheid(x, y);
-                    if (richting != Richting.OMSINGELD) {
-                        verplaats(x, y, richting);
-                    }
-                }
-
             }
         }
 
@@ -125,7 +133,7 @@ public class Terrarium {
 
     }
 
-    private Richting geefBewegingsMogelijkheid(int x, int y) {
+    public Richting geefBewegingsMogelijkheid(int x, int y) {
         ArrayList<Richting> mogelijkheden = new ArrayList<>();
         Richting resultaat;
         if (!controleGrens(x, y, Richting.OOST) && plaatsIsVrij(x + 1, y)) {
@@ -151,15 +159,15 @@ public class Terrarium {
 
     }
 
-    private Object controleerRechts(int rij, int kolom) {
+    public Object controleerRechts(int rij, int kolom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void verplaats(int x, int y, Richting richting) {
+    public void verplaats(int x, int y, Richting richting) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private boolean controleGrens(int x, int y, Richting richting) {
+    public boolean controleGrens(int x, int y, Richting richting) {
 
         if (Richting.NOORD == richting & y == 0) {
             return true;
