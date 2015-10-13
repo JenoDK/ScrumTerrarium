@@ -10,10 +10,17 @@ package be.vdab.entities;
  * @author Admin
  */
 public class Herbivoor extends Dier {
+    
+    
 
     public Herbivoor() {
         super(0);
+        
     }
+
+    
+    
+    
 
     @Override
     public boolean equals(Object obj) {

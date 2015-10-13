@@ -18,7 +18,7 @@ public class Terrarium {
 
     private static final int DEFAULT_GROOTTE = 6, DEFAULT_AANTAL_EXTRA_PLANTEN_PER_DAG = 2,
             DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 4, DEFAULT_AANTAL_CARNIVOREN = 6,
-            DEFAULT_AANTAL_OMNIVOREN = 6;
+            DEFAULT_AANTAL_OMNIVOREN = 6, LEVENSDUUR_PLANT = 5;
     private int grootte, aantalExtraPlantenPerDag, aantalPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
     private final Organisme[][] array;
     private int aantalHerbivorenToevoegen;
@@ -160,6 +160,17 @@ public class Terrarium {
             }
         }
         ++dag;
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                if (array[x][y] instanceof Plant) {
+                    Plant plant = (Plant) array[x][y];
+                    plant.verjaar();
+                    if(plant.getLeeftijd()> LEVENSDUUR_PLANT){
+                        array[x][y] = null;
+                    }
+                }
+            }
+        }
         if (getAantalOrganismen() <= grootte * grootte - aantalExtraPlantenPerDag) {
             organismeToevoegen("plant", aantalExtraPlantenPerDag);
         }
@@ -169,6 +180,7 @@ public class Terrarium {
         }
         stappenCarnivoor();
         stappenOmnivoor();
+        
 
     }
 
@@ -181,6 +193,7 @@ public class Terrarium {
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
                 if (array[x][y] instanceof Herbivoor && !array[x][y].getHandelingGedaan()) {
+                    
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
                             array[x][y].setLevenskracht(

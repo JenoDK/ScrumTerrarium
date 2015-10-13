@@ -10,9 +10,20 @@ package be.vdab.entities;
  * @author Admin
  */
 public class Plant extends Organisme {
+    
+    private int leeftijd;
 
     public Plant() {
         super(1);
+        leeftijd = 1;
+    }
+    
+    public int getLeeftijd() {
+        return leeftijd;
+    }
+
+    public void verjaar(){
+        leeftijd ++;
     }
     
        @Override
