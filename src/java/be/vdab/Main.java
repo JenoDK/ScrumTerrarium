@@ -30,8 +30,9 @@ public class Main {
                     System.out.print(". \t");
                 } else if (organisme[x][y] instanceof Plant) {
                     {
+                        Plant plant = (Plant) organisme[x][y];
                         System.out.print("P " + 
-                                organisme[x][y].getLevenskracht() +"\t");
+                                plant.getLeeftijd()+"\t");
                     }
                 } else if (organisme[x][y] instanceof Carnivoor) {
                     {
