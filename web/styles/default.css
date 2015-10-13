@@ -3,7 +3,6 @@ body {
 	font-family: 'Droid Sans', sans-serif;
 	font-size: 100%;
 	background-color: #e3ecf0;
-	min-width: 1366px;
 }
 
 #aanmeldenlogo {
@@ -167,13 +166,14 @@ div{
 	-moz-border-right-colors: none;
 	-moz-border-bottom-colors: none;
 	-moz-border-left-colors: none;
+        width: 25%;
 	border-image: none;
 	background: #FFF none repeat scroll 0% 0%;
 	border-radius: 5px;
 	margin-bottom: 1em;
 }
 
-.user input[type="text"], .user-in input[type="password"], .user-mail input[type="email"]
+.user input[type="text"], .user-in input[type="password"], .user-mail input[type="email"], .user input[type="number"]
 	{
 	background: none;
 	outline: none;
@@ -182,7 +182,7 @@ div{
 	color: #616161;
 	padding: 17px 15px 17px 15px;
 	border: none;
-	width: 85%;
+	width: 90%;
 	-webkit-appearance: none;
 }
 

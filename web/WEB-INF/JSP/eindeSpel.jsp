@@ -15,7 +15,7 @@
             <li>Lorien Van de Roy</li>
             <li>Jeno De Keyser</li>
             <li>Jonas Crombeke</li>
-            <li>Niels D'Hondt</li>
+            <li>Nils D'hont</li>
             <li>Christophe Devos</li>
         </ul>
         <h2>Om terug te keren naar het startscherm druk op Home</h2>
