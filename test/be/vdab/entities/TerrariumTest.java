@@ -76,33 +76,40 @@ public class TerrariumTest {
     
     @Test
     public void nieuwTerrariumMetParametersToevoegenVerhoogtHetAantalOrganismenInArrayMet1() {
-        int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten()
-                + terrarium.getAantalHerbivoren()
-                + terrarium.getAantalCarnivoren()
-                + terrarium.getAantalOmnivoren()+
+        int somVanDeAantallenBijInitialiseer = terrariumMetP.getAantalPlanten()
+                + terrariumMetP.getAantalHerbivoren()
+                + terrariumMetP.getAantalCarnivoren()
+                + terrariumMetP.getAantalOmnivoren()+
         1;
-         terrarium.organismeToevoegen("plant", 1);
-        Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.getAantalOrganismen());
+         terrariumMetP.organismeToevoegen("plant", 1);
+        Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrariumMetP.getAantalOrganismen());
     }
 
     @Test
-    public void nieuwTerrariumHeeftArrayGelijkAanGrootte() {
+    public void nieuwDefaultTerrariumHeeftArrayGelijkAanGrootte() {
         Assert.assertEquals(terrarium.getGrootte(), terrarium.getArray().length);
     }
+    
+    @Test
+    public void nieuwTerrariumMetParametersHeeftArrayGelijkAanGrootte() {
+        Assert.assertEquals(terrariumMetP.getGrootte(), terrariumMetP.getArray().length);
+    }
 
     @Test
-    public void organismeVerwijderenGeeftAltijdNullOpDiePositieNaHetVerwijderen() {
+    public void DefaultTerrariumOrganismeVerwijderenGeeftAltijdNullOpDiePositieNaHetVerwijderen() {
         int x = 0;
         terrarium.organismeVerwijderen(x, x);
         Assert.assertNull(terrarium.getArray()[x][x]);
     }
+    
+    @Test
+    public void terrariumMetParametersOrganismeVerwijderenGeeftAltijdNullOpDiePositieNaHetVerwijderen() {
+        int x = 0;
+        terrariumMetP.organismeVerwijderen(x, x);
+        Assert.assertNull(terrariumMetP.getArray()[x][x]);
+    }
 
-//    @Test
-//    public void controleRechtsGeeftHetJuisteObjectTerug(){
-//        Plant plant = new Plant();
-//        terrarium.getArray()[1][0] = plant;
-//        Assert.assertEquals(plant, terrarium.getArray()[1][0]);
-//    }
+
     @Test
     public void controleGrensOpGrensGeeftTrue() {
         Assert.assertTrue(terrarium.controleGrens(terrarium.getGrootte() - 1, 0, Richting.OOST));
