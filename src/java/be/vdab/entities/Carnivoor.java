@@ -9,7 +9,7 @@ package be.vdab.entities;
  *
  * @author Admin
  */
-public class Carnivoor extends Dier {
+public class Carnivoor extends Dier{
     
     public Carnivoor() {        
         super(1);
@@ -48,6 +48,9 @@ public class Carnivoor extends Dier {
     public String toString() {
         return "Carnivoor: " + super.toString() ;
     }
+
+    
+    
     
     
     

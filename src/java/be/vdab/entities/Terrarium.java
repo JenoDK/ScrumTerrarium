@@ -252,6 +252,41 @@ public class Terrarium {
         }
     }
 
+    public void stappenOmnivoor() {
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                if (array[x][y] instanceof Omnivoor && !array[x][y].getHandelingGedaan()) {
+                    if (controleGrens(x, y, Richting.OOST) == false) {
+                        if (array[x + 1][y] instanceof Herbivoor) {
+                            array[x][y].setLevenskracht(array[x + 1][y].getLevenskracht() + array[x][y].getLevenskracht());
+                            organismeVerwijderen(x + 1, y);
+                            array[x][y].setHandelingGedaan(true);
+                        } else if (array[x + 1][y] instanceof Carnivoor || array[x + 1][y] instanceof Omnivoor) {
+                            array[x][y].vechten(array[x + 1][y]);
+                            array[x][y].setHandelingGedaan(true);
+                            if (array[x][y].getLevenskracht() == 0) {
+                                organismeVerwijderen(x, y);
+                            }
+                            if (array[x][y].getLevenskracht() == 0) {
+                                organismeVerwijderen(x + 1, y);
+                            }
+                        } else if (array[x + 1][y] instanceof Plant) {
+                            array[x][y].setLevenskracht(array[x + 1][y].getLevenskracht() + array[x][y].getLevenskracht());
+                            organismeVerwijderen(x + 1, y);
+                            verplaats(x, y, Richting.OOST);
+                        } else {
+                            Richting richting = geefBewegingsMogelijkheid(x, y);
+                            verplaats(x, y, richting);
+                        }
+                    } else {
+                        Richting richting = geefBewegingsMogelijkheid(x, y);
+                        verplaats(x, y, richting);
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Methode controleert de verschillende mogelijke beweegrichtingen en geeft
      * daar 1 van als returnwaarde
