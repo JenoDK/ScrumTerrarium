@@ -262,12 +262,13 @@ public class Terrarium {
                             organismeVerwijderen(x + 1, y);
                             array[x][y].setHandelingGedaan(true);
                         } else if (array[x + 1][y] instanceof Carnivoor || array[x + 1][y] instanceof Omnivoor) {
-                            array[x][y].vechten(array[x + 1][y]);
+                            Omnivoor omnivoor = (Omnivoor) array[x][y];                            
+                            omnivoor.vechten(array[x + 1][y]);
                             array[x][y].setHandelingGedaan(true);
                             if (array[x][y].getLevenskracht() == 0) {
                                 organismeVerwijderen(x, y);
                             }
-                            if (array[x][y].getLevenskracht() == 0) {
+                            if (array[x+1][y].getLevenskracht() == 0) {
                                 organismeVerwijderen(x + 1, y);
                             }
                         } else if (array[x + 1][y] instanceof Plant) {

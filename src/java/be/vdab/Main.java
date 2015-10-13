@@ -30,22 +30,22 @@ public class Main {
                 } else if (organisme[x][y] instanceof Plant) {
                     {
                         System.out.print("P " + 
-                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                                organisme[x][y].getLevenskracht() +"\t");
                     }
                 } else if (organisme[x][y] instanceof Carnivoor) {
                     {
                         System.out.print("C " +  
-                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                                organisme[x][y].getLevenskracht() +  "\t");
                     }
                 } else if (organisme[x][y] instanceof Herbivoor) {
                     {
                         System.out.print("H " +
-                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                                organisme[x][y].getLevenskracht() +  "\t");
                     }
                 } else if (organisme[x][y] instanceof Omnivoor) {
                     {
                         System.out.print("O " +
-                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                                organisme[x][y].getLevenskracht() +  "\t");
                     }
                 }
             }
