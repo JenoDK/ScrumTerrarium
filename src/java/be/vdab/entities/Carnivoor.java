@@ -22,13 +22,13 @@ public class Carnivoor extends Dier{
      * 
      * @param tegenstander 
      */
-    public void vechten(Carnivoor tegenstander) {
+    public void vechten(Organisme tegenstander) {
         if (this.getLevenskracht() > tegenstander.getLevenskracht()) {
             this.verhoogLevenskracht(tegenstander.getLevenskracht());
             tegenstander.setLevenskracht(0);
         }
         if (this.getLevenskracht() < tegenstander.getLevenskracht()) {
-            tegenstander.verhoogLevenskracht(this.getLevenskracht());
+            tegenstander.setLevenskracht(this.getLevenskracht() + tegenstander.getLevenskracht());
             this.setLevenskracht(0);
         }
         
