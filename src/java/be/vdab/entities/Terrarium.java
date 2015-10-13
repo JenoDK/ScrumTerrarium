@@ -169,6 +169,13 @@ public class Terrarium {
         }
         stappenCarnivoor();
         stappenOmnivoor();
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                if (array[x][y] instanceof Plant) {
+                    Plant plant = (Plant) array[x][y];
+                }
+            }
+        }
 
     }
 
@@ -181,6 +188,9 @@ public class Terrarium {
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
                 if (array[x][y] instanceof Herbivoor && !array[x][y].getHandelingGedaan()) {
+                    Herbivoor herbivoor = (Herbivoor) array[x][y];
+                    herbivoor.verjaar();
+                    if()
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
                             array[x][y].setLevenskracht(
