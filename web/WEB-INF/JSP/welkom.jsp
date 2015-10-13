@@ -14,15 +14,21 @@
         <form method="post">
             <ul>       
                 <li>grootte:   
-                <input type="number" name= "grootte" value="${grootte}" autofocus min='6' max='20'  required/></li>
+                    <input type="number" name= "grootte" value="${grootte}" autofocus min='6' max='20'  required/></li>
                 <li>planten:
                     <input type="number" name= "planten" value="${planten}" autofocus min='6' max='20'  required/></li>
                 <li>Herbivoren:<input type="number" name= "herbivoren" value="${herbivoren}" autofocus min='6' max='20'  required/></li>
                 <li>Carnivoren:<input type="number" name= "carnivoren" value="${carnivoren}" autofocus min='6' max='20'  required/></li>
                 <li>Omnivoren:<input type="number" name= "omnivoren" value="${omnivoren}" autofocus min='6' max='20'  required/></li>
                 <li>Extra planten per dag:<input type="number" name= "extraPlanten" value="${extraPlanten}" autofocus min='6' max='20'  required/></li>
-                 <input type="submit" value="Start"/>
+                <input type="submit" value="Start"/>
             </ul>
         </form>
+
+        <c:forEach var='fout' items='${fouten}'>
+            ${fout}
+            <br>
+
+        </c:forEach>
     </body>
 </html>
