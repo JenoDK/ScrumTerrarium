@@ -19,8 +19,8 @@ public class SpelService {
         this.terrarium = new Terrarium();
     }
     
-    public SpelService(int hierKomenDeParameters){
-        this.terrarium = new Terrarium(/*parameters*/);
+    public SpelService(int grootte, int aantalPlanten, int aantalExtraPlantenPerDag, int aantalHerbivoren, int aantalCarnivoren, int aantalOmnivoren){
+        this.terrarium = new Terrarium(grootte, aantalPlanten, aantalExtraPlantenPerDag, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren);
     }
 
     public Terrarium getTerrarium() {
