@@ -16,14 +16,34 @@ import java.util.Random;
  */
 public class Terrarium {
 
-    private static final int grootte = 6, aantalExtraPlantenPerDag = 2,
-            aantalPlanten = 2, aantalHerbivoren = 4, aantalCarnivoren = 6;
-    private final Organisme[][] array = new Organisme[grootte][grootte];
+    private static final int DEFAULT_GROOTTE = 6, DEFAULT_AANTAL_EXTRA_PLANTEN_PER_DAG = 2,
+            DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 4, DEFAULT_AANTAL_CARNIVOREN = 6,
+            DEFAULT_AANTAL_OMNIVOREN = 6;
+    private int grootte, aantalExtraPlantenPerDag, aantalPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
+    private final Organisme[][] array;
     private int aantalHerbivorenToevoegen;
     private int dag = 1;
 
     //constructor
     public Terrarium() {
+        grootte = DEFAULT_GROOTTE;
+        aantalExtraPlantenPerDag = DEFAULT_AANTAL_EXTRA_PLANTEN_PER_DAG;
+        aantalPlanten = DEFAULT_AANTAL_PLANTEN;
+        aantalHerbivoren = DEFAULT_AANTAL_HERBIVOREN;
+        aantalCarnivoren = DEFAULT_AANTAL_CARNIVOREN;
+        aantalOmnivoren = DEFAULT_AANTAL_OMNIVOREN;
+        array = new Organisme[grootte][grootte];
+        initialiseer();
+    }
+
+    public Terrarium(int grootte, int aantalPlanten, int aantalExtraPlantenPerDag, int aantalHerbivoren, int aantalCarnivoren, int aantalOmnivoren) {
+        this.grootte = grootte;
+        this.array = new Organisme[grootte][grootte];
+        this.aantalExtraPlantenPerDag = aantalExtraPlantenPerDag;
+        this.aantalPlanten = aantalPlanten;
+        this.aantalHerbivoren = aantalHerbivoren;
+        this.aantalCarnivoren = aantalCarnivoren;
+        this.aantalOmnivoren = aantalOmnivoren;
         initialiseer();
     }
 
@@ -40,7 +60,7 @@ public class Terrarium {
         return array;
     }
 
-    public static int getAantalPlanten() {
+    public int getAantalPlanten() {
         return aantalPlanten;
     }
 
@@ -72,6 +92,7 @@ public class Terrarium {
         organismeToevoegen("plant", aantalPlanten);
         organismeToevoegen("carnivoor", aantalCarnivoren);
         organismeToevoegen("herbivoor", aantalHerbivoren);
+        organismeToevoegen("omnivoor", aantalOmnivoren);
     }
 
     public boolean plaatsIsVrij(int x, int y) {
@@ -92,11 +113,14 @@ public class Terrarium {
             if (soort.equals("plant")) {
                 array[x][y] = new Plant();
             }
-            if (soort.equals("carnivoor")) {
+            else if (soort.equals("carnivoor")) {
                 array[x][y] = new Carnivoor();
             }
-            if (soort.equals("herbivoor")) {
+            else if (soort.equals("herbivoor")) {
                 array[x][y] = new Herbivoor();
+            }
+            else if (soort.equals("omnivoor")) {
+                array[x][y] = new Omnivoor();
             }
 
         }
@@ -123,6 +147,7 @@ public class Terrarium {
             organismeToevoegen("herbivoor", aantalHerbivorenToevoegen);
         }
         stappenCarnivoor();
+        stappenOmnivoor();
 
     }
 
