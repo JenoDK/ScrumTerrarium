@@ -5,93 +5,130 @@
  */
 package be.vdab.entities;
 
-
 import be.vdab.valueobjects.Richting;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 /**
  *
  * @author Admin
  */
 public class TerrariumTest {
+
     private Terrarium terrarium;
-    
+    private Terrarium terrariumMetP;
+    private static final int GROOTTE = 10;
+    private static final int AANTAL_PLANTEN = 3;
+    private static final int AANTAL_HERBIVOREN = 6;
+    private static final int AANTAL_CARNIVOREN = 7;
+    private static final int AANTAL_OMNIVOREN = 8;
+    private static final int AANTAL_EXTRA_PLANTEN_PER_DAG = 2;
+
     @Before
-    public void before(){
+    public void before() {
         terrarium = new Terrarium();
+        terrariumMetP = new Terrarium(GROOTTE, AANTAL_PLANTEN,
+                AANTAL_EXTRA_PLANTEN_PER_DAG, AANTAL_HERBIVOREN,
+                AANTAL_CARNIVOREN, AANTAL_OMNIVOREN);
     }
-    
+
     @Test
-    public void nieuwTerrariumHeeftAlsDag1(){
+    public void nieuwDefaultTerrariumHeeftAlsDag1() {
         Assert.assertEquals(1, terrarium.getDag());
     }
-    
+
     @Test
-    public void nieuwTerrariumHeeftAantalOrganismenGelijkAanDeSomVanDeAantallen(){
+    public void nieuwTerrariumMetParametersHeeftAlsDag1() {
+        Assert.assertEquals(1, terrariumMetP.getDag());
+    }
+
+    @Test
+    public void nieuwDefaultTerrariumHeeftAantalOrganismenGelijkAanDeSomVanDeAantallen() {
         int aantalOrganismen = terrarium.getAantalOrganismen();
-        int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten() + 
-                                               terrarium.getAantalHerbivoren() + 
-                                               terrarium.getAantalCarnivoren() + 
-                                               terrarium.getAantalOmnivoren();
+        int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten()
+                + terrarium.getAantalHerbivoren()
+                + terrarium.getAantalCarnivoren()
+                + terrarium.getAantalOmnivoren();
         Assert.assertEquals(aantalOrganismen, somVanDeAantallenBijInitialiseer);
     }
-    
+
     @Test
-    public void nieuwTerrariumToevoegenVerhoogtHetAantalOrganismenInArrayMet1(){
-         int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten() + 
-                                               terrarium.getAantalHerbivoren() + 
-                                               terrarium.getAantalCarnivoren() +
-                                               1;
+    public void nieuwTerrariumMetParametersHeeftAantalOrganismenGelijkAanDeSomVanDeAantallen() {
+        int aantalOrganismen = terrariumMetP.getAantalOrganismen();
+        int somVanDeAantallenBijInitialiseer = terrariumMetP.getAantalPlanten()
+                + terrariumMetP.getAantalHerbivoren()
+                + terrariumMetP.getAantalCarnivoren()
+                + terrariumMetP.getAantalOmnivoren();
+        Assert.assertEquals(aantalOrganismen, somVanDeAantallenBijInitialiseer);
+    }
+
+    @Test
+    public void nieuwDefaultTerrariumToevoegenVerhoogtHetAantalOrganismenInArrayMet1() {
+        int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten()
+                + terrarium.getAantalHerbivoren()
+                + terrarium.getAantalCarnivoren()
+                + terrarium.getAantalOmnivoren()+
+        1;
          terrarium.organismeToevoegen("plant", 1);
-         Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.getAantalOrganismen());
+        Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.getAantalOrganismen());
     }
     
     @Test
-    public void nieuwTerrariumHeeftArrayGelijkAanGrootte(){
+    public void nieuwTerrariumMetParametersToevoegenVerhoogtHetAantalOrganismenInArrayMet1() {
+        int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten()
+                + terrarium.getAantalHerbivoren()
+                + terrarium.getAantalCarnivoren()
+                + terrarium.getAantalOmnivoren()+
+        1;
+         terrarium.organismeToevoegen("plant", 1);
+        Assert.assertEquals(somVanDeAantallenBijInitialiseer, terrarium.getAantalOrganismen());
+    }
+
+    @Test
+    public void nieuwTerrariumHeeftArrayGelijkAanGrootte() {
         Assert.assertEquals(terrarium.getGrootte(), terrarium.getArray().length);
     }
-    
+
     @Test
-    public void organismeVerwijderenGeeftAltijdNullOpDiePositieNaHetVerwijderen(){
+    public void organismeVerwijderenGeeftAltijdNullOpDiePositieNaHetVerwijderen() {
         int x = 0;
         terrarium.organismeVerwijderen(x, x);
         Assert.assertNull(terrarium.getArray()[x][x]);
     }
-    
+
 //    @Test
 //    public void controleRechtsGeeftHetJuisteObjectTerug(){
 //        Plant plant = new Plant();
 //        terrarium.getArray()[1][0] = plant;
 //        Assert.assertEquals(plant, terrarium.getArray()[1][0]);
 //    }
-    
     @Test
-    public void controleGrensOpGrensGeeftTrue(){
-        Assert.assertTrue(terrarium.controleGrens(terrarium.getGrootte()-1, 0, Richting.OOST));
+    public void controleGrensOpGrensGeeftTrue() {
+        Assert.assertTrue(terrarium.controleGrens(terrarium.getGrootte() - 1, 0, Richting.OOST));
     }
-    
+
     @Test
-    public void controleGrensOpGrensGeeftFalse(){
+    public void controleGrensOpGrensGeeftFalse() {
         Assert.assertFalse(terrarium.controleGrens(0, 0, Richting.OOST));
     }
-    
+
     @Test
-    public void geefBewegingsMogelijkheidGeeftInstanceOfEnumRichtingTerug(){
-        Assert.assertTrue(terrarium.geefBewegingsMogelijkheid(0,0) instanceof Richting);
+    public void geefBewegingsMogelijkheidGeeftInstanceOfEnumRichtingTerug() {
+        Assert.assertTrue(terrarium.geefBewegingsMogelijkheid(0, 0) instanceof Richting);
     }
-    
+
     @Test
-    public void geefBewegingsMogelijkheidGeeftGeenNoordAanDeBovengrens(){
-        Assert.assertFalse(terrarium.geefBewegingsMogelijkheid(0,0).equals(Richting.NOORD));
+    public void geefBewegingsMogelijkheidGeeftGeenNoordAanDeBovengrens() {
+        Assert.assertFalse(terrarium.geefBewegingsMogelijkheid(0, 0).equals(Richting.NOORD));
     }
-    
+
     @Test
-    public void naHetVerplaatsenIsHandelingGedaan(){
+    public void naHetVerplaatsenIsHandelingGedaan() {
         Herbivoor herbivoor = new Herbivoor();
         terrarium.getArray()[0][0] = herbivoor;
         terrarium.verplaats(0, 0, Richting.OOST);
         Assert.assertTrue(herbivoor.getHandelingGedaan());
     }
-    
+
 }
