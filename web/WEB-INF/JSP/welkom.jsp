@@ -11,7 +11,7 @@
     <body>
         <h1>Terrarium</h1>
         <h2>Welkom</h2>
-        <form method="post" action="${pageContext.servletContext.contextPath}">
+        <form method="post">
             <ul>       
                 <li>grootte:   
                 <input type="number" name= "grootte" value="${grootte}" autofocus min='6' max='20'  required/></li>

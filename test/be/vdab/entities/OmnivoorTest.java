@@ -122,6 +122,20 @@ public class OmnivoorTest {
        omnivoor.vechten(tegenstander);
        Assert.assertEquals(1, tegenstander.getLevenskracht());
    }
+   @Test
+    public void levenskrachtNaEtenVan1Plant(){
+        Plant plant = new Plant();
+        omnivoor.eet(plant);
+        Assert.assertEquals(2, omnivoor.getLevenskracht());
+    }
+    @Test
+    public void levenskrachtNaEtenVanMeerderePlant(){
+        Plant plant1 = new Plant();
+        Plant plant2 = new Plant();
+        omnivoor.eet(plant1);
+        omnivoor.eet(plant2);
+        Assert.assertEquals(3, omnivoor.getLevenskracht());
+    }
    
    @Test
    public void toStringMethodeTestOmnivoor(){
