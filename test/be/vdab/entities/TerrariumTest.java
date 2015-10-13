@@ -32,7 +32,8 @@ public class TerrariumTest {
         int aantalOrganismen = terrarium.getAantalOrganismen();
         int somVanDeAantallenBijInitialiseer = terrarium.getAantalPlanten() + 
                                                terrarium.getAantalHerbivoren() + 
-                                               terrarium.getAantalCarnivoren();
+                                               terrarium.getAantalCarnivoren() + 
+                                               terrarium.getAantalOmnivoren();
         Assert.assertEquals(aantalOrganismen, somVanDeAantallenBijInitialiseer);
     }
     
