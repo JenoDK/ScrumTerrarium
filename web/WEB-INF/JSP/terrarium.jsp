@@ -5,8 +5,33 @@
 <!doctype html>
 <html lang='nl'>
     <head>
-    <vdab:head title='Terrarium'/>
-</head>
-<body>
-</body>
+        <vdab:head title='Terrarium'/>
+        <link rel='stylesheet' href='<c:url value="/styles/terrarium.css"/>'>
+    </head>
+    <body>
+        <div class="login">
+
+            <div class="login-top">
+                <h2>Terrarium</h2>
+                <h3>Spelbord</h3>
+            </div>
+            <div class="login-bottom"></div>
+            <div class='keepme'>
+                <div class="keep-loginbutton"><security:csrfInput /> <input
+                        type='submit' value='Opnieuw'></div>
+                <div class="clear"></div>
+            </div>
+            <div class='keepme'>
+                <div class="keep-loginbutton"><security:csrfInput /> <input
+                        type='submit' value='Stop'></div>
+                <div class="clear"></div>
+            </div>
+            <div id="spelbord"></div>
+            <div class='keepme'>
+                <div class="keep-loginbutton"><security:csrfInput /> <input
+                        type='submit' value='Volgende dag'></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </body>
 </html>
