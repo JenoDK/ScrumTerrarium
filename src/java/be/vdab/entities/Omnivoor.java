@@ -29,8 +29,7 @@ public class Omnivoor extends Dier {
     public String toString() {
         return "Omnivoor: " + super.toString();
     }
-
-    
+  
 
     public void vechten(Organisme tegenstander) {
         if (this.getLevenskracht() > tegenstander.getLevenskracht()) {
