@@ -75,8 +75,6 @@ public class Terrarium {
     public int getAantalOmnivoren() {
         return aantalOmnivoren;
     }
-    
-    
 
     //setters
     public void setDag(int dag) {
@@ -102,8 +100,6 @@ public class Terrarium {
     public void setAantalOmnivoren(int aantalOmnivoren) {
         this.aantalOmnivoren = aantalOmnivoren;
     }
-    
-    
 
     /**
      * Indien we grootte moeten aanpassen
@@ -140,14 +136,11 @@ public class Terrarium {
             }
             if (soort.equals("plant")) {
                 array[x][y] = new Plant();
-            }
-            else if (soort.equals("carnivoor")) {
+            } else if (soort.equals("carnivoor")) {
                 array[x][y] = new Carnivoor();
-            }
-            else if (soort.equals("herbivoor")) {
+            } else if (soort.equals("herbivoor")) {
                 array[x][y] = new Herbivoor();
-            }
-            else if (soort.equals("omnivoor")) {
+            } else if (soort.equals("omnivoor")) {
                 array[x][y] = new Omnivoor();
             }
 
@@ -261,13 +254,13 @@ public class Terrarium {
                             organismeVerwijderen(x + 1, y);
                             array[x][y].setHandelingGedaan(true);
                         } else if (array[x + 1][y] instanceof Carnivoor || array[x + 1][y] instanceof Omnivoor) {
-                            Omnivoor omnivoor = (Omnivoor) array[x][y];                            
+                            Omnivoor omnivoor = (Omnivoor) array[x][y];
                             omnivoor.vechten(array[x + 1][y]);
                             array[x][y].setHandelingGedaan(true);
                             if (array[x][y].getLevenskracht() == 0) {
                                 organismeVerwijderen(x, y);
                             }
-                            if (array[x+1][y].getLevenskracht() == 0) {
+                            if (array[x + 1][y].getLevenskracht() == 0) {
                                 organismeVerwijderen(x + 1, y);
                             }
                         } else if (array[x + 1][y] instanceof Plant) {
@@ -310,6 +303,19 @@ public class Terrarium {
         if (!controleGrens(x, y, Richting.NOORD) && plaatsIsVrij(x, y - 1)) {
             mogelijkheden.add(Richting.NOORD);
         }
+        if (!controleGrens(x, y, Richting.OOST) && !controleGrens(x, y, Richting.NOORD) && plaatsIsVrij(x + 1, y - 1)) {
+            mogelijkheden.add(Richting.NOORD_OOST);
+        }
+        if (!controleGrens(x, y, Richting.WEST) && !controleGrens(x, y, Richting.NOORD) && plaatsIsVrij(x - 1, y - 1)) {
+            mogelijkheden.add(Richting.NOORD_WEST);
+        }
+        if (!controleGrens(x, y, Richting.WEST) && !controleGrens(x, y, Richting.ZUID) && plaatsIsVrij(x - 1, y + 1)) {
+            mogelijkheden.add(Richting.ZUID_WEST);
+        }
+        if (!controleGrens(x, y, Richting.OOST) && !controleGrens(x, y, Richting.ZUID) && plaatsIsVrij(x + 1, y + 1)) {
+            mogelijkheden.add(Richting.ZUID_OOST);
+        }
+
         if (!mogelijkheden.isEmpty()) {
             Random r = new Random();
             int keuze = r.nextInt(mogelijkheden.size());
@@ -332,6 +338,18 @@ public class Terrarium {
             kolom++;
         } else if (richting == Richting.WEST) {
             kolom--;
+        } else if (richting == Richting.NOORD_OOST) {
+            kolom++;
+            rij--;
+        } else if (richting == Richting.NOORD_WEST) {
+            kolom--;
+            rij--;
+        } else if (richting == Richting.ZUID_OOST) {
+            kolom++;
+            rij++;
+        } else if (richting == Richting.ZUID_WEST) {
+            kolom--;
+            rij++;
         } else if (richting == Richting.OMSINGELD) {
         }
         array[kolom][rij] = array[x][y];
@@ -339,6 +357,7 @@ public class Terrarium {
             array[x][y] = null;
         }
         array[kolom][rij].setHandelingGedaan(true);
+        //System.out.println("" + x + " " + y + " verplaatst naar " + kolom + " " + rij);
     }
 
     public boolean controleGrens(int x, int y, Richting richting) {
@@ -355,6 +374,7 @@ public class Terrarium {
         if (Richting.WEST == richting & x == 0) {
             return true;
         }
+
         return false;
     }
 
