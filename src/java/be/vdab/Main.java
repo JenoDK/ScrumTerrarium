@@ -6,6 +6,7 @@ import be.vdab.entities.Omnivoor;
 import be.vdab.entities.Organisme;
 import be.vdab.entities.Plant;
 import be.vdab.entities.Terrarium;
+import be.vdab.services.SpelService;
 import java.util.Scanner;
 
 public class Main {
@@ -14,11 +15,11 @@ public class Main {
 
         System.out.println("******Terrarium Simulatie******");
         System.out.println();
-        Terrarium terrarium = new Terrarium();
-         String gebruikerInput = printHoofdingEnInput(terrarium);  
+        SpelService spelService = new SpelService(10, 2, 1, 2, 2, 1);
+         String gebruikerInput = printHoofdingEnInput(spelService.getTerrarium());  
         while (!gebruikerInput.equalsIgnoreCase("s")) {
-            terrarium.nieuweDag();
-             gebruikerInput = printHoofdingEnInput(terrarium);            
+            spelService.nieuweDag();
+             gebruikerInput = printHoofdingEnInput(spelService.getTerrarium());            
         }
     }
 

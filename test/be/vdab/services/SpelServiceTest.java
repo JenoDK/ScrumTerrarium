@@ -5,7 +5,6 @@
  */
 package be.vdab.services;
 
-import org.junit.Before;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
