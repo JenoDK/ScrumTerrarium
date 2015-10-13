@@ -2,9 +2,11 @@ package be.vdab;
 
 import be.vdab.entities.Carnivoor;
 import be.vdab.entities.Herbivoor;
+import be.vdab.entities.Omnivoor;
 import be.vdab.entities.Organisme;
 import be.vdab.entities.Plant;
 import be.vdab.entities.Terrarium;
+import be.vdab.services.SpelService;
 import java.util.Scanner;
 
 public class Main {
@@ -13,11 +15,11 @@ public class Main {
 
         System.out.println("******Terrarium Simulatie******");
         System.out.println();
-        Terrarium terrarium = new Terrarium();
-         String gebruikerInput = printHoofdingEnInput(terrarium);  
+        SpelService spelService = new SpelService(10, 2, 1, 2, 2, 1);
+         String gebruikerInput = printHoofdingEnInput(spelService.getTerrarium());  
         while (!gebruikerInput.equalsIgnoreCase("s")) {
-            terrarium.nieuweDag();
-             gebruikerInput = printHoofdingEnInput(terrarium);            
+            spelService.nieuweDag();
+             gebruikerInput = printHoofdingEnInput(spelService.getTerrarium());            
         }
     }
 
@@ -29,17 +31,22 @@ public class Main {
                 } else if (organisme[x][y] instanceof Plant) {
                     {
                         System.out.print("P " + 
-                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                                organisme[x][y].getLevenskracht() +"\t");
                     }
                 } else if (organisme[x][y] instanceof Carnivoor) {
                     {
                         System.out.print("C " +  
-                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                                organisme[x][y].getLevenskracht() +  "\t");
                     }
                 } else if (organisme[x][y] instanceof Herbivoor) {
                     {
                         System.out.print("H " +
-                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                                organisme[x][y].getLevenskracht() +  "\t");
+                    }
+                } else if (organisme[x][y] instanceof Omnivoor) {
+                    {
+                        System.out.print("O " +
+                                organisme[x][y].getLevenskracht() +  "\t");
                     }
                 }
             }
