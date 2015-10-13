@@ -72,10 +72,38 @@ public class Terrarium {
         return aantalCarnivoren;
     }
 
+    public int getAantalOmnivoren() {
+        return aantalOmnivoren;
+    }
+    
+    
+
     //setters
     public void setDag(int dag) {
         this.dag = dag;
     }
+
+    public void setAantalExtraPlantenPerDag(int aantalExtraPlantenPerDag) {
+        this.aantalExtraPlantenPerDag = aantalExtraPlantenPerDag;
+    }
+
+    public void setAantalPlanten(int aantalPlanten) {
+        this.aantalPlanten = aantalPlanten;
+    }
+
+    public void setAantalHerbivoren(int aantalHerbivoren) {
+        this.aantalHerbivoren = aantalHerbivoren;
+    }
+
+    public void setAantalCarnivoren(int aantalCarnivoren) {
+        this.aantalCarnivoren = aantalCarnivoren;
+    }
+
+    public void setAantalOmnivoren(int aantalOmnivoren) {
+        this.aantalOmnivoren = aantalOmnivoren;
+    }
+    
+    
 
     /**
      * Indien we grootte moeten aanpassen
@@ -211,6 +239,42 @@ public class Terrarium {
                             if (tegenstander.getLevenskracht() == 0) {
                                 organismeVerwijderen(x + 1, y);
                             }
+                        } else {
+                            Richting richting = geefBewegingsMogelijkheid(x, y);
+                            verplaats(x, y, richting);
+                        }
+                    } else {
+                        Richting richting = geefBewegingsMogelijkheid(x, y);
+                        verplaats(x, y, richting);
+                    }
+                }
+            }
+        }
+    }
+
+    public void stappenOmnivoor() {
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                if (array[x][y] instanceof Omnivoor && !array[x][y].getHandelingGedaan()) {
+                    if (controleGrens(x, y, Richting.OOST) == false) {
+                        if (array[x + 1][y] instanceof Herbivoor) {
+                            array[x][y].setLevenskracht(array[x + 1][y].getLevenskracht() + array[x][y].getLevenskracht());
+                            organismeVerwijderen(x + 1, y);
+                            array[x][y].setHandelingGedaan(true);
+                        } else if (array[x + 1][y] instanceof Carnivoor || array[x + 1][y] instanceof Omnivoor) {
+                            Omnivoor omnivoor = (Omnivoor) array[x][y];                            
+                            omnivoor.vechten(array[x + 1][y]);
+                            array[x][y].setHandelingGedaan(true);
+                            if (array[x][y].getLevenskracht() == 0) {
+                                organismeVerwijderen(x, y);
+                            }
+                            if (array[x+1][y].getLevenskracht() == 0) {
+                                organismeVerwijderen(x + 1, y);
+                            }
+                        } else if (array[x + 1][y] instanceof Plant) {
+                            array[x][y].setLevenskracht(array[x + 1][y].getLevenskracht() + array[x][y].getLevenskracht());
+                            organismeVerwijderen(x + 1, y);
+                            verplaats(x, y, Richting.OOST);
                         } else {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
                             verplaats(x, y, richting);
