@@ -72,10 +72,38 @@ public class Terrarium {
         return aantalCarnivoren;
     }
 
+    public int getAantalOmnivoren() {
+        return aantalOmnivoren;
+    }
+    
+    
+
     //setters
     public void setDag(int dag) {
         this.dag = dag;
     }
+
+    public void setAantalExtraPlantenPerDag(int aantalExtraPlantenPerDag) {
+        this.aantalExtraPlantenPerDag = aantalExtraPlantenPerDag;
+    }
+
+    public void setAantalPlanten(int aantalPlanten) {
+        this.aantalPlanten = aantalPlanten;
+    }
+
+    public void setAantalHerbivoren(int aantalHerbivoren) {
+        this.aantalHerbivoren = aantalHerbivoren;
+    }
+
+    public void setAantalCarnivoren(int aantalCarnivoren) {
+        this.aantalCarnivoren = aantalCarnivoren;
+    }
+
+    public void setAantalOmnivoren(int aantalOmnivoren) {
+        this.aantalOmnivoren = aantalOmnivoren;
+    }
+    
+    
 
     /**
      * Indien we grootte moeten aanpassen
