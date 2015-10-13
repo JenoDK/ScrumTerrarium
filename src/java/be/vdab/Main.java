@@ -2,6 +2,7 @@ package be.vdab;
 
 import be.vdab.entities.Carnivoor;
 import be.vdab.entities.Herbivoor;
+import be.vdab.entities.Omnivoor;
 import be.vdab.entities.Organisme;
 import be.vdab.entities.Plant;
 import be.vdab.entities.Terrarium;
@@ -39,6 +40,11 @@ public class Main {
                 } else if (organisme[x][y] instanceof Herbivoor) {
                     {
                         System.out.print("H " +
+                                /*organisme[x][y].getLevenskracht() +  */"\t");
+                    }
+                } else if (organisme[x][y] instanceof Omnivoor) {
+                    {
+                        System.out.print("O " +
                                 /*organisme[x][y].getLevenskracht() +  */"\t");
                     }
                 }
