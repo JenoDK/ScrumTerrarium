@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Admin
  */
 @WebServlet("/eindeSpel.htm")
-public class EindeSpel extends HttpServlet {
+public class EindeSpelServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String VIEW = "/WEB-INF/JSP/eindeSpel.jsp";

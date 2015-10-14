@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Admin
  */
 @WebServlet("/terrarium.htm")
-public class Terrarium extends HttpServlet {
+public class TerrariumServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String VIEW = "/WEB-INF/JSP/terrarium.jsp";
@@ -29,12 +29,14 @@ public class Terrarium extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        grootte = Integer.parseInt(request.getParameter("grootte"));
-        planten = Integer.parseInt(request.getParameter("planten"));
-        herbivoren = Integer.parseInt(request.getParameter("herbivoren"));
-        carnivoren = Integer.parseInt(request.getParameter("carnivoren"));
-        omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
-        extraPlanten = Integer.parseInt(request.getParameter("extraPlanten"));
+       //this.getServletConfig().getServletContext().getAttribute("sharedId");
+        grootte = (Integer)(this.getServletContext().getAttribute("grootte"));
+        System.out.println("***GROOTTE***" + grootte);
+        planten = (Integer)(this.getServletConfig().getServletContext().getAttribute("planten"));
+        herbivoren = (Integer)(this.getServletConfig().getServletContext().getAttribute("herbivoren"));
+        carnivoren = (Integer)(this.getServletConfig().getServletContext().getAttribute("carnivoren"));
+        omnivoren = (Integer)(this.getServletConfig().getServletContext().getAttribute("omnivoren"));
+        extraPlanten = (Integer)(this.getServletConfig().getServletContext().getAttribute("extraPlanten"));
         spelService = new SpelService(grootte, planten, extraPlanten, herbivoren, carnivoren, omnivoren);
         request.setAttribute("terrarium", spelService.getTerrarium());
         request.getRequestDispatcher(VIEW).forward(request, response);

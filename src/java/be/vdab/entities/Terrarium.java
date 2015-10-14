@@ -51,6 +51,10 @@ public class Terrarium {
     public int getGrootte() {
         return grootte;
     }
+    
+    public int getWareGrootte(){
+        return grootte*50;
+    }
 
     public int getDag() {
         return dag;

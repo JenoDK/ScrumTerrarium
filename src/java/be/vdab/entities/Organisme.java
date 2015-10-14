@@ -26,7 +26,6 @@ public abstract class Organisme {
         this.levenskracht = levenskracht;
     }
 
-
     public void setHandelingGedaan(boolean handelingGedaan) {
         this.handelingGedaan = handelingGedaan;
     }
