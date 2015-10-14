@@ -47,47 +47,12 @@ public class TerrariumServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        try {
-//            grootte = Integer.parseInt(request.getParameter("grootte"));
-//        } catch (NumberFormatException ex) {
-//            request.getRequestDispatcher(VIEW).forward(request, response);
-//
-//        }
-//        try {
-//            planten = Integer.parseInt(request.getParameter("planten"));
-//        } catch (NumberFormatException ex) {
-//            request.getRequestDispatcher(VIEW).forward(request, response);
-//
-//        }
-//        try {
-//            herbivoren = Integer.parseInt(request.getParameter("herbivoren"));
-//        } catch (NumberFormatException ex) {
-//            request.getRequestDispatcher(VIEW).forward(request, response);
-//
-//        }
-//        try {
-//            carnivoren = Integer.parseInt(request.getParameter("carnivoren"));
-//        } catch (NumberFormatException ex) {
-//            request.getRequestDispatcher(VIEW).forward(request, response);
-//
-//        }
-//        try {
-//            omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
-//        } catch (NumberFormatException ex) {
-//            request.getRequestDispatcher(VIEW).forward(request, response);
-//
-//        }
-//        try {
-//            extraPlanten = Integer.parseInt(request.getParameter("extraPlanten"));
-//        } catch (NumberFormatException ex) {
-//            request.getRequestDispatcher(VIEW).forward(request, response);
-//
-//        }
-        
-        //Terrarium terrarium = spelService.getTerrarium();
-        request.getRequestDispatcher(REDIRECT_VIEW).forward(request, response);
-         
-
+        String button = request.getParameter("terrButton");
+        if (button.equals("Volgende dag")){
+            spelService.nieuweDag();
+            request.setAttribute("terrarium", spelService.getTerrarium());
+            request.getRequestDispatcher(VIEW).forward(request, response);
+        }
     }
 
 }
