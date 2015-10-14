@@ -6,9 +6,10 @@
 <html lang='nl'>
     <head>
         <vdab:head title='Einde spel'/>
-         <link rel='stylesheet' href='<c:url value="/styles/einde.css"/>'>
+        <link rel='stylesheet' href='<c:url value="/styles/einde.css"/>'>
     </head>
     <body>
+        <embed id= "myAudio" title= "Het smurfenlied" src="music/smurf.mp3" loop="true" autostart="true" width="0" height="0">
         <div class="login">
             <div class="login-top">
 

@@ -14,6 +14,7 @@
             <div class="login-top">
                 <h2>Terrarium</h2>
                 <h3>Welkom</h3>
+                <embed id= "myAudio" title= "Het smurfenlied" src="music/smurf.mp3" loop="true" autostart="true" width="0" height="0">
             </div>
             <div class="login-bottom">
                 <form method="post">                    
@@ -30,7 +31,7 @@
                         <div class="clear"></div>
                     </div>
                 </form>
-                   
+
                 <c:forEach var='fout' items='${fouten}'>
                     <span class="fout"><strong>${fout}</strong></span>
                     <br>
