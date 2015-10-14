@@ -18,7 +18,8 @@ public class Terrarium {
 
     private static final int DEFAULT_GROOTTE = 6, DEFAULT_AANTAL_EXTRA_PLANTEN_PER_DAG = 2,
             DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 4, DEFAULT_AANTAL_CARNIVOREN = 6,
-            DEFAULT_AANTAL_OMNIVOREN = 6, LEVENSDUUR_PLANT = 5, LEVENSDUUR_HERBIVOOR = 5;
+            DEFAULT_AANTAL_OMNIVOREN = 6, LEVENSDUUR_PLANT = 5, LEVENSDUUR_HERBIVOOR = 10;
+    
     private int grootte, aantalExtraPlantenPerDag, aantalPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
     private final Organisme[][] array;
     private int aantalHerbivorenToevoegen;
@@ -208,21 +209,23 @@ public class Terrarium {
                             herbivoor.setLevenskracht(
                                     array[x + 1][y].getLevenskracht()
                                     + herbivoor.getLevenskracht());
+                            herbivoor.setDagenTeller(1);
                             organismeVerwijderen(x + 1, y);
                             verplaats(x, y, Richting.OOST);
                         } else if (array[x + 1][y] instanceof Herbivoor) {
                             aantalHerbivorenToevoegen++;
                             herbivoor.setHandelingGedaan(true);
+                            
                         } else {
 
                             
                             if ((herbivoor.getDagenTeller() % LEVENSDUUR_HERBIVOOR) == 0) {
                                 herbivoor.verlaagLevenskracht();
-                                //System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
+                                System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
                             }
                             if (herbivoor.getLevenskracht() == 0) {
                                 array[x][y] = null;
-                                //System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
+                                System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
                             } else {
                                 Richting richting = geefBewegingsMogelijkheid(x, y);
                                 verplaats(x, y, richting);
@@ -231,7 +234,7 @@ public class Terrarium {
                         }
                     } else {
                         
-                        if ((herbivoor.getDagenTeller() % LEVENSDUUR_HERBIVOOR) == 0) {
+                        if ((herbivoor.getDagenTeller() % (LEVENSDUUR_HERBIVOOR/2)) == 0) {
                             herbivoor.verlaagLevenskracht();
                             //System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
                         }
