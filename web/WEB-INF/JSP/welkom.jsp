@@ -14,7 +14,13 @@
             <div class="login-top">
                 <h2>Terrarium</h2>
                 <h3>Welkom</h3>
-                <embed id= "myAudio" title= "Het smurfenlied" src="music/smurf.mp3" loop="true" autostart="true" width="0" height="0">
+                <audio id="myAudio" autoplay="true">
+                    <source src="music/smurf.ogg" type="audio/ogg">
+                    <source src="music/smurf.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <button onclick="playAudio()" type="button">Play Audio</button>
+                <button onclick="pauseAudio()" type="button">Pause Audio</button> 
             </div>
             <div class="login-bottom">
                 <form method="post">                    
@@ -40,5 +46,16 @@
                 <img id="welkomSmurf" src="images/welkomsmurf.png" alt="Welkomsmurf">
             </div>
         </div>
+<script>
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+    x.play(); 
+} 
+
+function pauseAudio() { 
+    x.pause(); 
+} 
+</script>
     </body>
 </html>
