@@ -32,20 +32,80 @@ public class WelkomServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        grootte = spelService.getTerrarium().getGrootte();
-        planten = spelService.getTerrarium().getAantalPlanten();
-        herbivoren = spelService.getTerrarium().getAantalHerbivoren();
-        carnivoren = spelService.getTerrarium().getAantalCarnivoren();
-        omnivoren = spelService.getTerrarium().getAantalOmnivoren();
-        extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
-        
+        List<String> fouten = new ArrayList<>();
+
+        if (request.getParameter("grootteOud") == null) {
+            grootte = spelService.getTerrarium().getGrootte();
+        } else {
+            try {
+
+                grootte = Integer.parseInt(request.getParameter("grootteOud"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                grootte = spelService.getTerrarium().getGrootte();
+            }
+        }
+        if (request.getParameter("plantenOud") == null) {
+            planten = spelService.getTerrarium().getAantalPlanten();
+        } else {
+            try {
+                planten = Integer.parseInt(request.getParameter("plantenOud"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                planten = spelService.getTerrarium().getAantalPlanten();
+            }
+
+        }
+        if (request.getParameter("herbivorenOud") == null) {
+            herbivoren = spelService.getTerrarium().getAantalHerbivoren();
+        } else {
+            try {
+                herbivoren = Integer.parseInt(request.getParameter("herbivorenOud"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                herbivoren = spelService.getTerrarium().getAantalHerbivoren();
+            }
+
+        }
+        if (request.getParameter("carnivorenOud") == null) {
+            carnivoren = spelService.getTerrarium().getAantalCarnivoren();
+        } else {
+            try {
+                carnivoren = Integer.parseInt(request.getParameter("carnivorenOud"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                carnivoren = spelService.getTerrarium().getAantalCarnivoren();
+            }
+        }
+        if (request.getParameter("omnivorenOud") == null) {
+            omnivoren = spelService.getTerrarium().getAantalOmnivoren();
+        } else {
+            try {
+                omnivoren = Integer.parseInt(request.getParameter("omnivorenOud"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                omnivoren = Integer.parseInt(request.getParameter("omnivorenOud"));
+            }
+        }
+        if (request.getParameter("extraPlantenOud") == null) {
+            extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
+        } else {
+            try {
+
+                extraPlanten = Integer.parseInt(request.getParameter("extraPlantenOud"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
+            }
+        }
+
         request.setAttribute("grootte", grootte);
         request.setAttribute("planten", planten);
         request.setAttribute("herbivoren", herbivoren);
         request.setAttribute("carnivoren", carnivoren);
         request.setAttribute("omnivoren", omnivoren);
         request.setAttribute("extraPlanten", extraPlanten);
+        request.setAttribute("fouten", fouten);
 
         request.getRequestDispatcher(VIEW).forward(request, response);
 
@@ -132,12 +192,6 @@ public class WelkomServlet extends HttpServlet {
             this.getServletConfig().getServletContext().setAttribute("carnivoren", carnivoren);
             this.getServletConfig().getServletContext().setAttribute("omnivoren", omnivoren);
             this.getServletConfig().getServletContext().setAttribute("extraPlanten", extraPlanten);
-//            request.setAttribute("grootte", grootte);
-//            request.setAttribute("planten", planten);
-//            request.setAttribute("herbivoren", herbivoren);
-//            request.setAttribute("carnivoren", carnivoren);
-//            request.setAttribute("omnivoren", omnivoren);
-//            request.setAttribute("extraPlanten", extraPlanten);
             response.sendRedirect(String.format(REDIRECT_VIEW, request
                     .getContextPath()));
         } else {

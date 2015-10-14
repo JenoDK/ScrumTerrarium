@@ -16,7 +16,7 @@
                 <h3>Welkom</h3>
             </div>
             <div class="login-bottom">
-                <form method="post">
+                <form method="post">                    
                     Grootte:</br><div class="user"><input type="number" name= "grootte" value="${grootte}" autofocus min='6' max='20'  required /></div>
                     Planten:<div class="user"><input type="number" name= "planten" value="${planten}" autofocus min='1' required /></div>
                     Herbivoren:<div class="user"><input type="number" name= "herbivoren" value="${herbivoren}" autofocus min='1' required /></div>
@@ -30,6 +30,7 @@
                         <div class="clear"></div>
                     </div>
                 </form>
+                   
                 <c:forEach var='fout' items='${fouten}'>
                     ${fout}
                     <br>

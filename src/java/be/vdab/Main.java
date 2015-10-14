@@ -64,4 +64,6 @@ public class Main {
         String gebruikerInput = scanner.nextLine();
         return gebruikerInput;
     }
+    
+    
 }

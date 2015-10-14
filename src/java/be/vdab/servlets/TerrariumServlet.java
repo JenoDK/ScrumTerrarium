@@ -5,6 +5,7 @@
  */
 package be.vdab.servlets;
 
+import be.vdab.entities.Terrarium;
 import be.vdab.services.SpelService;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ public class TerrariumServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String VIEW = "/WEB-INF/JSP/terrarium.jsp";
+    private static final String REDIRECT_VIEW = "/index.htm";
     private SpelService spelService;
     private int grootte,planten,herbivoren,carnivoren,
             omnivoren,extraPlanten,maximumBezetting,actueleBezetting;
