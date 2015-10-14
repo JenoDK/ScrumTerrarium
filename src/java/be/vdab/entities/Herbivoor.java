@@ -22,6 +22,12 @@ public class Herbivoor extends Dier {
         return dagenTeller;
     }
 
+    public void setDagenTeller(int dagenTeller) {
+        this.dagenTeller = dagenTeller;
+    }
+    
+    
+
     public void verhoogDagenTeller(){
         dagenTeller++;
     }

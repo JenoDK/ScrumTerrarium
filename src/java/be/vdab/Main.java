@@ -15,7 +15,7 @@ public class Main {
 
         System.out.println("******Terrarium Simulatie******");
         System.out.println();
-        SpelService spelService = new SpelService(6, 2, 1, 4, 6, 6);
+        SpelService spelService = new SpelService();
          String gebruikerInput = printHoofdingEnInput(spelService.getTerrarium());  
         while (!gebruikerInput.equalsIgnoreCase("s")) {
             spelService.nieuweDag();

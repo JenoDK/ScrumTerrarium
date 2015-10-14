@@ -15,18 +15,32 @@
                 <h2>Terrarium</h2>
                 <h3>Spelbord</h3>
             </div>
-            <div class="login-bottom"></div>
-            <div class='keepme'>
-                <div class="keep-loginbutton"><security:csrfInput /> <input
-                        type='submit' value='Opnieuw'></div>
-                <div class="clear"></div>
-            </div>
+            <form action="index.htm">
+                <input type="hidden" value="${terrarium}" name="terrarium">
+                <div class='keepme'>
+                    <div class="keep-loginbutton"><security:csrfInput /> <input
+                            type='submit' value='Opnieuw'></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
             <div class='keepme'>
                 <div class="keep-loginbutton"><security:csrfInput /> <input
                         type='submit' value='Stop'></div>
                 <div class="clear"></div>
             </div>
-            <div id="spelbord"></div>
+            <c:if test="${not empty terrarium}">
+                <div id="spelbord">
+                    <table style="width: ${terrarium.wareGrootte}">
+                        <c:forEach var="rij" items="${terrarium.array}">
+                            <tr>
+                                <c:forEach var="kolom" items="${rij}">
+                                    <td><c:choose><c:when test="${not empty kolom}">${kolom['class'].simpleName}</c:when><c:otherwise>NULL</c:otherwise></c:choose></td>
+                                </c:forEach>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </c:if>
             <div class='keepme'>
                 <div class="keep-loginbutton"><security:csrfInput /> <input
                         type='submit' value='Volgende dag'></div>

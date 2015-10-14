@@ -139,7 +139,7 @@ div{
     width: 50%;
     margin: 50px auto;
     /*background: #F8F8F8;*/
-    background: rgba(248,248,248, 0.9);
+    background: rgba(248,248,248, .7);
     border-radius: 4px;
     max-width: 750px;
     min-width: 300px;

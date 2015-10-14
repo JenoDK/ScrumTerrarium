@@ -24,8 +24,8 @@ public class WelkomServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final String VIEW = "/WEB-INF/JSP/welkom.jsp";
-    private static final String REDIRECT_VIEW = "/terrarium.htm";
-    private long grootte, planten, herbivoren, carnivoren,
+    private static final String REDIRECT_VIEW = "terrarium.htm";
+    private int grootte, planten, herbivoren, carnivoren,
             omnivoren, extraPlanten, maximumBezetting, actueleBezetting;
     private SpelService spelService = new SpelService();
 
@@ -57,7 +57,7 @@ public class WelkomServlet extends HttpServlet {
             throws ServletException, IOException {
         List<String> fouten = new ArrayList<>();
         try {
-            grootte = Long.parseLong(request.getParameter("grootte"));
+            grootte = Integer.parseInt(request.getParameter("grootte"));
         } catch (NumberFormatException ex) {
             fouten.add("Gelieve grootte van het veld als nummer in te geven");
             request.setAttribute("fouten", fouten);
@@ -65,7 +65,7 @@ public class WelkomServlet extends HttpServlet {
 
         }
         try {
-            planten = Long.parseLong(request.getParameter("planten"));
+            planten = Integer.parseInt(request.getParameter("planten"));
         } catch (NumberFormatException ex) {
             fouten.add("Gelieve aantal planten nummer in te geven");
             request.setAttribute("fouten", fouten);
@@ -73,7 +73,7 @@ public class WelkomServlet extends HttpServlet {
 
         }
         try {
-            herbivoren = Long.parseLong(request.getParameter("herbivoren"));
+            herbivoren = Integer.parseInt(request.getParameter("herbivoren"));
         } catch (NumberFormatException ex) {
             fouten.add("Gelieve aantal herbivoren als nummer in te geven");
             request.setAttribute("fouten", fouten);
@@ -81,7 +81,7 @@ public class WelkomServlet extends HttpServlet {
 
         }
         try {
-            carnivoren = Long.parseLong(request.getParameter("carnivoren"));
+            carnivoren = Integer.parseInt(request.getParameter("carnivoren"));
         } catch (NumberFormatException ex) {
             fouten.add("Gelieve aantal carnivoren nummer in te geven");
             request.setAttribute("fouten", fouten);
@@ -89,7 +89,7 @@ public class WelkomServlet extends HttpServlet {
 
         }
         try {
-            omnivoren = Long.parseLong(request.getParameter("omnivoren"));
+            omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
         } catch (NumberFormatException ex) {
             fouten.add("Gelieve aantal omnivoren nummer in te geven");
             request.setAttribute("fouten", fouten);
@@ -97,7 +97,7 @@ public class WelkomServlet extends HttpServlet {
 
         }
         try {
-            extraPlanten = Long.parseLong(request.getParameter("extraPlanten"));
+            extraPlanten = Integer.parseInt(request.getParameter("extraPlanten"));
         } catch (NumberFormatException ex) {
             fouten.add("Gelieve aantal extra planten per beurt als nummer in te geven");
             request.setAttribute("fouten", fouten);
@@ -127,13 +127,19 @@ public class WelkomServlet extends HttpServlet {
 
         if (fouten.isEmpty()) {
             this.getServletContext().setAttribute("grootte", grootte);
-            this.getServletContext().setAttribute("planten", planten);
-            this.getServletContext().setAttribute("herbivoren", herbivoren);
-            this.getServletContext().setAttribute("carnivoren", carnivoren);
-            this.getServletContext().setAttribute("omnivoren", omnivoren);
-            this.getServletContext().setAttribute("extraPlanten", extraPlanten);
-            response.sendRedirect(response.encodeRedirectURL(request
-                    .getContextPath() + REDIRECT_VIEW));
+            this.getServletConfig().getServletContext().setAttribute("planten", planten);
+            this.getServletConfig().getServletContext().setAttribute("herbivoren", herbivoren);
+            this.getServletConfig().getServletContext().setAttribute("carnivoren", carnivoren);
+            this.getServletConfig().getServletContext().setAttribute("omnivoren", omnivoren);
+            this.getServletConfig().getServletContext().setAttribute("extraPlanten", extraPlanten);
+//            request.setAttribute("grootte", grootte);
+//            request.setAttribute("planten", planten);
+//            request.setAttribute("herbivoren", herbivoren);
+//            request.setAttribute("carnivoren", carnivoren);
+//            request.setAttribute("omnivoren", omnivoren);
+//            request.setAttribute("extraPlanten", extraPlanten);
+            response.sendRedirect(String.format(REDIRECT_VIEW, request
+                    .getContextPath()));
         } else {
             request.setAttribute("fouten", fouten);
             request.getRequestDispatcher(VIEW).forward(request, response);
