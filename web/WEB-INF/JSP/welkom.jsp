@@ -17,7 +17,7 @@
             </div>
             <div class="login-bottom">
                 <form method="post">                    
-                    Grootte:</br><div class="user"><input type="number" name= "grootte" value="${grootte}" autofocus min='6' max='20'  required /></div>
+                    Grootte:</br><div class="user"><input type="number" name= "grootte" value="${grootte}" autofocus min='6' max='15'  required /></div>
                     Planten:<div class="user"><input type="number" name= "planten" value="${planten}" autofocus min='1' required /></div>
                     Herbivoren:<div class="user"><input type="number" name= "herbivoren" value="${herbivoren}" autofocus min='1' required /></div>
                     Carnivoren:<div class="user"><input type="number" name= "carnivoren" value="${carnivoren}" autofocus min='0' required /></div>
@@ -32,7 +32,7 @@
                 </form>
                    
                 <c:forEach var='fout' items='${fouten}'>
-                    ${fout}
+                    <span class="fout"><strong>${fout}</strong></span>
                     <br>
 
                 </c:forEach>

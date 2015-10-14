@@ -167,7 +167,7 @@ public class WelkomServlet extends HttpServlet {
         actueleBezetting = planten + herbivoren + carnivoren + omnivoren;
         maximumBezetting = (grootte * grootte) / 2;
 
-        if (grootte < 6 || grootte > 20) {
+        if (grootte < 6 || grootte > 15) {
             fouten.add("Het veld moet tussen 6x6 en 20x20 zijn.");
         }
         if (planten <= 0 || herbivoren <= 0) {

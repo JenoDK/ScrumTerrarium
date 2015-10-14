@@ -1,6 +1,9 @@
 #welkomSmurf{
-    width: 30%;
+    width: 25%;
     float: right;
-    margin-top: -325px;
+    margin-top: -40%;
     opacity: 0.8;
+}
+.fout {
+    color: red;
 }

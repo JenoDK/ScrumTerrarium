@@ -17,7 +17,7 @@ import java.util.Random;
 public class Terrarium {
 
     private static final int DEFAULT_GROOTTE = 6, DEFAULT_AANTAL_EXTRA_PLANTEN_PER_DAG = 2,
-            DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 5, DEFAULT_AANTAL_CARNIVOREN = 6,
+            DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 4, DEFAULT_AANTAL_CARNIVOREN = 6,
             DEFAULT_AANTAL_OMNIVOREN = 6, LEVENSDUUR_PLANT = 5, LEVENSDUUR_HERBIVOOR = 10;
 
     private int grootte, aantalExtraPlantenPerDag, aantalPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
