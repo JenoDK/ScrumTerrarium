@@ -6,6 +6,7 @@
 <html lang='nl'>
     <head>
         <vdab:head title='Welkom'/>
+        <link rel='stylesheet' href='<c:url value="/styles/welkom.css"/>'>
     </head>
 
     <body>
