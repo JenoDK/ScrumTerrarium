@@ -5,6 +5,7 @@
  */
 package be.vdab.servlets;
 
+import be.vdab.entities.Terrarium;
 import be.vdab.services.SpelService;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ public class TerrariumServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String VIEW = "/WEB-INF/JSP/terrarium.jsp";
+    private static final String REDIRECT_VIEW = "/index.htm";
     private SpelService spelService;
     private int grootte,planten,herbivoren,carnivoren,
             omnivoren,extraPlanten,maximumBezetting,actueleBezetting;
@@ -45,6 +47,46 @@ public class TerrariumServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        try {
+//            grootte = Integer.parseInt(request.getParameter("grootte"));
+//        } catch (NumberFormatException ex) {
+//            request.getRequestDispatcher(VIEW).forward(request, response);
+//
+//        }
+//        try {
+//            planten = Integer.parseInt(request.getParameter("planten"));
+//        } catch (NumberFormatException ex) {
+//            request.getRequestDispatcher(VIEW).forward(request, response);
+//
+//        }
+//        try {
+//            herbivoren = Integer.parseInt(request.getParameter("herbivoren"));
+//        } catch (NumberFormatException ex) {
+//            request.getRequestDispatcher(VIEW).forward(request, response);
+//
+//        }
+//        try {
+//            carnivoren = Integer.parseInt(request.getParameter("carnivoren"));
+//        } catch (NumberFormatException ex) {
+//            request.getRequestDispatcher(VIEW).forward(request, response);
+//
+//        }
+//        try {
+//            omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
+//        } catch (NumberFormatException ex) {
+//            request.getRequestDispatcher(VIEW).forward(request, response);
+//
+//        }
+//        try {
+//            extraPlanten = Integer.parseInt(request.getParameter("extraPlanten"));
+//        } catch (NumberFormatException ex) {
+//            request.getRequestDispatcher(VIEW).forward(request, response);
+//
+//        }
+        
+        //Terrarium terrarium = spelService.getTerrarium();
+        request.getRequestDispatcher(REDIRECT_VIEW).forward(request, response);
+         
 
     }
 
