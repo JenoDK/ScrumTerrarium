@@ -40,12 +40,48 @@ public class WelkomServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<String> fouten = new ArrayList<>();
-        grootte = Long.parseLong(request.getParameter("grootte"));
-        planten = Long.parseLong(request.getParameter("planten"));
-        herbivoren = Long.parseLong(request.getParameter("herbivoren"));
-        carnivoren = Long.parseLong(request.getParameter("carnivoren"));
-        omnivoren = Long.parseLong(request.getParameter("omnivoren"));
-        extraPlanten = Long.parseLong(request.getParameter("extraPlanten"));
+        try{grootte = Long.parseLong(request.getParameter("grootte"));}
+        catch(NumberFormatException ex){
+            fouten.add("Gelieve grootte van het veld als nummer in te geven");
+            request.setAttribute("fouten", fouten);     
+            request.getRequestDispatcher(VIEW).forward(request, response);
+            
+        }
+        try{planten = Long.parseLong(request.getParameter("planten"));}
+        catch(NumberFormatException ex){
+            fouten.add("Gelieve aantal planten nummer in te geven");
+            request.setAttribute("fouten", fouten);     
+            request.getRequestDispatcher(VIEW).forward(request, response);
+            
+        }
+        try{herbivoren = Long.parseLong(request.getParameter("herbivoren"));}
+        catch(NumberFormatException ex){
+            fouten.add("Gelieve aantal herbivoren als nummer in te geven");
+            request.setAttribute("fouten", fouten);     
+            request.getRequestDispatcher(VIEW).forward(request, response);
+            
+        }
+        try{carnivoren = Long.parseLong(request.getParameter("carnivoren"));}
+        catch(NumberFormatException ex){
+            fouten.add("Gelieve aantal carnivoren nummer in te geven");
+            request.setAttribute("fouten", fouten);     
+            request.getRequestDispatcher(VIEW).forward(request, response);
+            
+        }
+        try{omnivoren = Long.parseLong(request.getParameter("omnivoren"));}
+        catch(NumberFormatException ex){
+            fouten.add("Gelieve aantal omnivoren nummer in te geven");
+            request.setAttribute("fouten", fouten);     
+            request.getRequestDispatcher(VIEW).forward(request, response);
+            
+        }
+        try{extraPlanten = Long.parseLong(request.getParameter("extraPlanten"));}
+        catch(NumberFormatException ex){
+            fouten.add("Gelieve aantal extra planten per beurt als nummer in te geven");
+            request.setAttribute("fouten", fouten);     
+            request.getRequestDispatcher(VIEW).forward(request, response);
+            
+        }
         actueleBezetting = planten + herbivoren + carnivoren + omnivoren; 
         maximumBezetting = (grootte*grootte)/2;
         
