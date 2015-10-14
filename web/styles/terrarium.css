@@ -1,4 +1,9 @@
 .login {
-    width: 70%;
+    width: 80%;
 }
-
+#spelbordTable {
+    border: 2px solid black;
+}
+#spelbordTable td {
+    border: 1px solid black;
+}
