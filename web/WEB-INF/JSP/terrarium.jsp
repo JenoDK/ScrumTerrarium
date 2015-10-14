@@ -36,22 +36,22 @@
             <c:if test="${not empty terrarium}">
                 <div id="spelbord">
                     Dag: ${terrarium.dag}
-                    <table id="spelbordTable" style="width: ${terrarium.wareGrootte}">
+                    <table id="spelbordTable" style="width: ${terrarium.wareGrootte}px">
                         <c:forEach begin="0" end="${terrarium.grootte - 1}" varStatus="statusy">
                             <tr>
                               <c:forEach begin="0" end="${terrarium.grootte - 1}" varStatus="statusx">
                                     <td><c:choose><c:when test="${not empty terrarium.array[statusx.index][statusy.index]}">
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Plant'}">
-                                                    <img src="images/besjes.png"> ${terrarium.array[statusx.index][statusy.index].leeftijd}
+                                                    <img class="smurfenImg" src="images/besjes.png"> ${terrarium.array[statusx.index][statusy.index].leeftijd}
                                                 </c:if>
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Herbivoor'}">
-                                                    <img src="images/smurf.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}(${terrarium.array[statusx.index][statusy.index].dagenTeller})
+                                                    <img class="smurfenImg" src="images/smurf.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}(${terrarium.array[statusx.index][statusy.index].dagenTeller})
                                                 </c:if>
                                                     <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Carnivoor'}">
-                                                    <img src="images/azreal.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}
+                                                    <img class="smurfenImg" src="images/azreal.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}
                                                 </c:if>
                                                     <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Omnivoor'}">
-                                                    <img src="images/gargamel.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}
+                                                    <img class="smurfenImg" src="images/gargamel.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}
                                                 </c:if>
                                             </c:when>
                                                     <c:otherwise><img src="images/aarde.png"></c:otherwise>
