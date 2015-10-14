@@ -18,7 +18,7 @@ public class Terrarium {
 
     private static final int DEFAULT_GROOTTE = 6, DEFAULT_AANTAL_EXTRA_PLANTEN_PER_DAG = 2,
             DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 4, DEFAULT_AANTAL_CARNIVOREN = 6,
-            DEFAULT_AANTAL_OMNIVOREN = 6, LEVENSDUUR_PLANT = 5;
+            DEFAULT_AANTAL_OMNIVOREN = 6, LEVENSDUUR_PLANT = 5, LEVENSDUUR_HERBIVOOR = 5;
     private int grootte, aantalExtraPlantenPerDag, aantalPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
     private final Organisme[][] array;
     private int aantalHerbivorenToevoegen;
@@ -170,7 +170,7 @@ public class Terrarium {
                 if (array[x][y] instanceof Plant) {
                     Plant plant = (Plant) array[x][y];
                     plant.verjaar();
-                    if(plant.getLeeftijd()> LEVENSDUUR_PLANT){
+                    if (plant.getLeeftijd() > LEVENSDUUR_PLANT) {
                         array[x][y] = null;
                     }
                 }
@@ -185,7 +185,6 @@ public class Terrarium {
         }
         stappenCarnivoor();
         stappenOmnivoor();
-        
 
     }
 
@@ -198,24 +197,47 @@ public class Terrarium {
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array.length; y++) {
                 if (array[x][y] instanceof Herbivoor && !array[x][y].getHandelingGedaan()) {
-                    
+                    Herbivoor herbivoor = (Herbivoor) array[x][y];
+                    herbivoor.verhoogDagenTeller();
                     if (controleGrens(x, y, Richting.OOST) == false) {
                         if (array[x + 1][y] instanceof Plant) {
-                            array[x][y].setLevenskracht(
+                            herbivoor.setLevenskracht(
                                     array[x + 1][y].getLevenskracht()
-                                    + array[x][y].getLevenskracht());
+                                    + herbivoor.getLevenskracht());
                             organismeVerwijderen(x + 1, y);
                             verplaats(x, y, Richting.OOST);
                         } else if (array[x + 1][y] instanceof Herbivoor) {
                             aantalHerbivorenToevoegen++;
-                            array[x][y].setHandelingGedaan(true);
+                            herbivoor.setHandelingGedaan(true);
+                        } else {
+
+                            
+                            if ((herbivoor.getDagenTeller() % LEVENSDUUR_HERBIVOOR) == 0) {
+                                herbivoor.verlaagLevenskracht();
+                                //System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
+                            }
+                            if (herbivoor.getLevenskracht() == 0) {
+                                array[x][y] = null;
+                                //System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
+                            } else {
+                                Richting richting = geefBewegingsMogelijkheid(x, y);
+                                verplaats(x, y, richting);
+                            }
+
+                        }
+                    } else {
+                        
+                        if ((herbivoor.getDagenTeller() % LEVENSDUUR_HERBIVOOR) == 0) {
+                            herbivoor.verlaagLevenskracht();
+                            //System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
+                        }
+                        if (herbivoor.getLevenskracht() == 0) {
+                            array[x][y] = null;
+                            //System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
                         } else {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
                             verplaats(x, y, richting);
                         }
-                    } else {
-                        Richting richting = geefBewegingsMogelijkheid(x, y);
-                        verplaats(x, y, richting);
                     }
                 }
             }
