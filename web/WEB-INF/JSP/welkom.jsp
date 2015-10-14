@@ -30,6 +30,7 @@
                         <div class="clear"></div>
                     </div>
                 </form>
+                   
                 <c:forEach var='fout' items='${fouten}'>
                     ${fout}
                     <br>

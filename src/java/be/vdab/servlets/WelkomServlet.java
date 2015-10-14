@@ -37,9 +37,13 @@ public class WelkomServlet extends HttpServlet {
         if (request.getParameter("grootteOud") == null) {
             grootte = spelService.getTerrarium().getGrootte();
         } else {
+            try {
 
                 grootte = Integer.parseInt(request.getParameter("grootteOud"));
-           
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                grootte = spelService.getTerrarium().getGrootte();
+            }
         }
         if (request.getParameter("plantenOud") == null) {
             planten = spelService.getTerrarium().getAantalPlanten();

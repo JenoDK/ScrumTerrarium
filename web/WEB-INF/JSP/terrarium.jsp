@@ -21,18 +21,20 @@
                 <input type="hidden" value="${terrarium.aantalCarnivoren}" name="carnivorenOud">
                 <input type="hidden" value="${terrarium.aantalOmnivoren}" name="omnivorenOud">
                 <input type="hidden" value="${terrarium.aantalExtraPlantenPerDag}" name="extraPlantenOud">
-                
+
                 <div class='keepme'>
                     <div class="keep-loginbutton"><security:csrfInput /> <input
                             type='submit' value='Opnieuw'></div>
                     <div class="clear"></div>
                 </div>
             </form>
-            <div class='keepme'>
-                <div class="keep-loginbutton"><security:csrfInput /> <input
-                        type='submit' value='Stop'></div>
-                <div class="clear"></div>
-            </div>
+            <form action="eindeSpel.htm">
+                <div class='keepme'>
+                    <div class="keep-loginbutton"><security:csrfInput /> <input
+                            type='submit' value='Stop'></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
             <c:if test="${not empty terrarium}">
                 <div id="spelbord">
                     Dag: ${terrarium.dag}
@@ -54,9 +56,9 @@
                                                     <img class="smurfenImg" src="images/gargamel.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}
                                                 </c:if>
                                             </c:when>
-                                                    <c:otherwise><img src="images/aarde.png"></c:otherwise>
+                                            <c:otherwise><img src="images/aarde.png"></c:otherwise>
                                         </c:choose></td>
-                                </c:forEach>
+                                    </c:forEach>
                             </tr>
                         </c:forEach>
                     </table>
@@ -65,7 +67,7 @@
             <form method="post">
                 <div class='keepme'>
                     <div class="keep-loginbutton"><security:csrfInput /> <input name="terrButton"
-                            type='submit' value='Volgende dag'></div>
+                                                                                type='submit' value='Volgende dag'></div>
                     <div class="clear"></div>
                 </div>
             </form>
