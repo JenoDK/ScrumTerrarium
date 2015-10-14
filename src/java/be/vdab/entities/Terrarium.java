@@ -76,6 +76,11 @@ public class Terrarium {
         return aantalOmnivoren;
     }
 
+    public int getAantalExtraPlantenPerDag() {
+        return aantalExtraPlantenPerDag;
+    }
+    
+
     //setters
     public void setDag(int dag) {
         this.dag = dag;
