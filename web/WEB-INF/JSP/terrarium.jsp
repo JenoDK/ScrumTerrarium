@@ -59,7 +59,7 @@
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Herbivoor'}">
                                                     <c:choose>
                                                         <c:when test="${terrarium.array[statusx.index][statusy.index].levenskracht<3}">
-                                                            <img class="babySmurfenImg" src="images/baby.png">
+                                                            <img class="smurfenImg" src="images/baby.png">
                                                         </c:when>                                     
                                                         <c:otherwise>
                                                             <c:choose>
@@ -67,7 +67,7 @@
                                                                     <img class="smurfenImg" src="images/smurf.png"> 
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <img class="opaSmurfenImg" src="images/opaSmurf.png">
+                                                                    <img class="smurfenImg" src="images/opaSmurf.png">
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </c:otherwise>

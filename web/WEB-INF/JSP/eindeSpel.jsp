@@ -25,8 +25,8 @@
                 <h2>Dit spel is mede mogelijk gemaakt door: </h2>
                 <ul>
                     <li><strong>Lorien Van de Roy</strong></li>
-                    <li><strong>Jeno De Keyser</strong></li>
-                    <li><strong>Jonas Crombeke</strong></li>
+                    <li><strong>Jeno De Keyzer</strong></li>
+                    <li><strong>Jonas Cromheeke</strong></li>
                     <li><strong>Nils D'hont</strong></li>
                     <li><strong>Christophe Devos</strong></li>
                 </ul>
