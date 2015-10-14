@@ -57,7 +57,22 @@
                                                     <img class="smurfenImg" src="images/besjes.png"><br/> <span id="leeftijdPlant">${terrarium.array[statusx.index][statusy.index].leeftijd}</span>
                                                 </c:if>
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Herbivoor'}">
-                                                    <img class="smurfenImg" src="images/smurf.png"><br/> ${terrarium.array[statusx.index][statusy.index].levenskracht}<span id="dagenTeller">(${terrarium.array[statusx.index][statusy.index].dagenTeller})</span>
+                                                    <c:choose>
+                                                        <c:when test="${terrarium.array[statusx.index][statusy.index].levenskracht<3}">
+                                                            <img class="babySmurfenImg" src="images/baby.png">
+                                                        </c:when>                                     
+                                                        <c:otherwise>
+                                                            <c:choose>
+                                                                <c:when test="${terrarium.array[statusx.index][statusy.index].levenskracht< 8}"> 
+                                                                    <img class="smurfenImg" src="images/smurf.png"> 
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <img class="opaSmurfenImg" src="images/opaSmurf.png">
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    ${terrarium.array[statusx.index][statusy.index].levenskracht}<span id="dagenTeller">(${terrarium.array[statusx.index][statusy.index].dagenTeller})</span>
                                                 </c:if>
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Carnivoor'}">
                                                     <img class="smurfenImg" src="images/azreal.png"><br/> ${terrarium.array[statusx.index][statusy.index].levenskracht}
