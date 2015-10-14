@@ -4,12 +4,22 @@
 #spelbordTable {
     border: 2px solid black;
     margin: 0 auto;
+    background-color: #d7e7ee;
 }
 #spelbordTable td {
     border: 1px solid black;
-    height: 74px;
-    
+    height: 86px;
 }
-.smurfenImg {
-    width: 80%;
+#spelbordTable th{
+    border: 1px solid black;
+}
+#leeftijdPlant {
+    color: blue;
+}
+#dagenTeller {
+    color: red;
+}
+.legende {
+    width: 750px;
+    margin: 0 auto;
 }
