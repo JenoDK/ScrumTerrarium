@@ -17,9 +17,9 @@ import java.util.Random;
 public class Terrarium {
 
     private static final int DEFAULT_GROOTTE = 6, DEFAULT_AANTAL_EXTRA_PLANTEN_PER_DAG = 2,
-            DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 4, DEFAULT_AANTAL_CARNIVOREN = 6,
+            DEFAULT_AANTAL_PLANTEN = 2, DEFAULT_AANTAL_HERBIVOREN = 5, DEFAULT_AANTAL_CARNIVOREN = 6,
             DEFAULT_AANTAL_OMNIVOREN = 6, LEVENSDUUR_PLANT = 5, LEVENSDUUR_HERBIVOOR = 10;
-    
+
     private int grootte, aantalExtraPlantenPerDag, aantalPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
     private final Organisme[][] array;
     private int aantalHerbivorenToevoegen;
@@ -52,9 +52,9 @@ public class Terrarium {
     public int getGrootte() {
         return grootte;
     }
-    
-    public int getWareGrootte(){
-        return grootte*50;
+
+    public int getWareGrootte() {
+        return grootte * 50;
     }
 
     public int getDag() {
@@ -84,7 +84,6 @@ public class Terrarium {
     public int getAantalExtraPlantenPerDag() {
         return aantalExtraPlantenPerDag;
     }
-    
 
     //setters
     public void setDag(int dag) {
@@ -215,36 +214,23 @@ public class Terrarium {
                         } else if (array[x + 1][y] instanceof Herbivoor) {
                             aantalHerbivorenToevoegen++;
                             herbivoor.setHandelingGedaan(true);
-                            
+                            controleLevenskracht(x, y);
+
                         } else {
 
-                            
-                            if ((herbivoor.getDagenTeller() % LEVENSDUUR_HERBIVOOR) == 0) {
-                                herbivoor.verlaagLevenskracht();
-                                System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
-                            }
-                            if (herbivoor.getLevenskracht() == 0) {
-                                array[x][y] = null;
-                                System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
-                            } else {
+                            if (!controleLevenskracht(x, y)) {
                                 Richting richting = geefBewegingsMogelijkheid(x, y);
                                 verplaats(x, y, richting);
                             }
+                        }
 
-                        }
                     } else {
-                        
-                        if ((herbivoor.getDagenTeller() % (LEVENSDUUR_HERBIVOOR/2)) == 0) {
-                            herbivoor.verlaagLevenskracht();
-                            //System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
-                        }
-                        if (herbivoor.getLevenskracht() == 0) {
-                            array[x][y] = null;
-                            //System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
-                        } else {
+
+                        if (!controleLevenskracht(x, y)) {
                             Richting richting = geefBewegingsMogelijkheid(x, y);
                             verplaats(x, y, richting);
                         }
+
                     }
                 }
             }
@@ -466,6 +452,21 @@ public class Terrarium {
     @Override
     public String toString() {
         return "Terrarium{" + "dag = " + dag + " grootte = " + grootte + " aantal organismen = " + getAantalOrganismen() + '}';
+    }
+
+    private boolean controleLevenskracht(int x, int y) {
+        boolean dood = false;
+        Herbivoor herbivoor = (Herbivoor) array[x][y];
+        if ((herbivoor.getDagenTeller() % (LEVENSDUUR_HERBIVOOR/2)) == 0) {
+            herbivoor.verlaagLevenskracht();
+            System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
+        }
+        if (herbivoor.getLevenskracht() == 0) {
+            array[x][y] = null;
+            dood = true;
+            System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
+        }
+        return dood;
     }
 
 }
