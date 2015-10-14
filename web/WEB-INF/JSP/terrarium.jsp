@@ -30,22 +30,40 @@
             </div>
             <c:if test="${not empty terrarium}">
                 <div id="spelbord">
+                    Dag: ${terrarium.dag}
                     <table style="width: ${terrarium.wareGrootte}">
                         <c:forEach var="rij" items="${terrarium.array}">
                             <tr>
                                 <c:forEach var="kolom" items="${rij}">
-                                    <td><c:choose><c:when test="${not empty kolom}">${kolom['class'].simpleName}</c:when><c:otherwise>NULL</c:otherwise></c:choose></td>
+                                    <td><c:choose><c:when test="${not empty kolom}">
+                                                <c:if test="${kolom['class'].simpleName == 'Plant'}">
+                                                    <img src="images/besjes.png">
+                                                </c:if>
+                                                <c:if test="${kolom['class'].simpleName == 'Herbivoor'}">
+                                                    <img src="images/smurf.png">
+                                                </c:if>
+                                                    <c:if test="${kolom['class'].simpleName == 'Carnivoor'}">
+                                                    <img src="images/azreal.png">
+                                                </c:if>
+                                                    <c:if test="${kolom['class'].simpleName == 'Omnivoor'}">
+                                                    <img src="images/gargamel.png">
+                                                </c:if>
+                                            </c:when>
+                                                    <c:otherwise><img src="images/aarde.png"></c:otherwise>
+                                        </c:choose></td>
                                 </c:forEach>
                             </tr>
                         </c:forEach>
                     </table>
                 </div>
             </c:if>
-            <div class='keepme'>
-                <div class="keep-loginbutton"><security:csrfInput /> <input
-                        type='submit' value='Volgende dag'></div>
-                <div class="clear"></div>
-            </div>
+            <form method="post">
+                <div class='keepme'>
+                    <div class="keep-loginbutton"><security:csrfInput /> <input name="terrButton"
+                            type='submit' value='Volgende dag'></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
         </div>
     </body>
 </html>

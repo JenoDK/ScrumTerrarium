@@ -45,7 +45,12 @@ public class TerrariumServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String button = request.getParameter("terrButton");
+        if (button.equals("Volgende dag")){
+            spelService.nieuweDag();
+            request.setAttribute("terrarium", spelService.getTerrarium());
+            request.getRequestDispatcher(VIEW).forward(request, response);
+        }
     }
 
 }
