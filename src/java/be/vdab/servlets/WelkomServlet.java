@@ -28,24 +28,93 @@ public class WelkomServlet extends HttpServlet {
     private int grootte, planten, herbivoren, carnivoren,
             omnivoren, extraPlanten, maximumBezetting, actueleBezetting;
     private SpelService spelService = new SpelService();
+    private static List<String> INHOUD_TERRARIUM = new ArrayList<String>() {
+        {
+            add("grootte");
+            add("planten");
+            add("herbivoren");
+            add("carnivoren");
+            add("omnivoren");
+            add("extraPlanten");
+        }
+    };
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        grootte = spelService.getTerrarium().getGrootte();
-        planten = spelService.getTerrarium().getAantalPlanten();
-        herbivoren = spelService.getTerrarium().getAantalHerbivoren();
-        carnivoren = spelService.getTerrarium().getAantalCarnivoren();
-        omnivoren = spelService.getTerrarium().getAantalOmnivoren();
-        extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
-        
+        List<String> fouten = new ArrayList<>();
+
+        if (request.getParameter("grootte") == null) {
+            grootte = spelService.getTerrarium().getGrootte();
+        } else {
+            try {
+                grootte = Integer.parseInt(request.getParameter("grootte"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                grootte = spelService.getTerrarium().getGrootte();
+            }
+        }
+        if (request.getParameter("planten") == null) {
+            planten = spelService.getTerrarium().getAantalPlanten();
+        } else {
+            try {
+                planten = Integer.parseInt(request.getParameter("planten"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                planten = spelService.getTerrarium().getAantalPlanten();
+            }
+
+        }
+        if (request.getParameter("herbivoren") == null) {
+            herbivoren = spelService.getTerrarium().getAantalHerbivoren();
+        } else {
+            try {
+                herbivoren = Integer.parseInt(request.getParameter("herbivoren"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                herbivoren = spelService.getTerrarium().getAantalHerbivoren();
+            }
+
+        }
+        if (request.getParameter("carnivoren") == null) {
+            carnivoren = spelService.getTerrarium().getAantalCarnivoren();
+        } else {
+            try {
+                carnivoren = Integer.parseInt(request.getParameter("carnivoren"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                carnivoren = spelService.getTerrarium().getAantalCarnivoren();
+            }
+        }
+        if (request.getParameter("omnivoren") == null) {
+            omnivoren = spelService.getTerrarium().getAantalOmnivoren();
+        } else {
+            try {
+                omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
+            }
+        }
+        if (request.getParameter("extraPlanten") == null) {
+            extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
+        } else {
+            try {
+
+                extraPlanten = Integer.parseInt(request.getParameter("extraPlanten"));
+            } catch (NumberFormatException ex) {
+                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
+                extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
+            }
+        }
+
         request.setAttribute("grootte", grootte);
         request.setAttribute("planten", planten);
         request.setAttribute("herbivoren", herbivoren);
         request.setAttribute("carnivoren", carnivoren);
         request.setAttribute("omnivoren", omnivoren);
         request.setAttribute("extraPlanten", extraPlanten);
+        request.setAttribute("fouten", fouten);
 
         request.getRequestDispatcher(VIEW).forward(request, response);
 
@@ -132,12 +201,6 @@ public class WelkomServlet extends HttpServlet {
             this.getServletConfig().getServletContext().setAttribute("carnivoren", carnivoren);
             this.getServletConfig().getServletContext().setAttribute("omnivoren", omnivoren);
             this.getServletConfig().getServletContext().setAttribute("extraPlanten", extraPlanten);
-//            request.setAttribute("grootte", grootte);
-//            request.setAttribute("planten", planten);
-//            request.setAttribute("herbivoren", herbivoren);
-//            request.setAttribute("carnivoren", carnivoren);
-//            request.setAttribute("omnivoren", omnivoren);
-//            request.setAttribute("extraPlanten", extraPlanten);
             response.sendRedirect(String.format(REDIRECT_VIEW, request
                     .getContextPath()));
         } else {
