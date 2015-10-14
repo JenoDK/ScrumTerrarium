@@ -4,11 +4,12 @@
 #spelbordTable {
     border: 2px solid black;
     margin: 0 auto;
+    margin-top: 10px;
     background-color: #d7e7ee;
 }
 #spelbordTable td {
     border: 1px solid black;
-    height: 86px;
+    height: 55px;
 }
 #spelbordTable th{
     border: 1px solid black;
@@ -22,4 +23,30 @@
 .legende {
     width: 750px;
     margin: 0 auto;
+    font-size: 12px;
+}
+.legende img {
+    width: 50px;
+}
+.titels {
+    float: right;    
+}
+.buttons {
+    float: right;
+}
+.legende {
+    float: right;
+}
+.topBar {
+    width: 32%;
+}
+.volgendeDagButton {
+    width: 15%;
+    margin: 0 auto;
+}
+.keep-loginbutton {
+    margin-right: 10px;
+}
+.smurfenImg {
+    width: 30px;
 }
