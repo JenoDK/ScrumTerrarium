@@ -141,13 +141,13 @@ div{
     /*background: #F8F8F8;*/
     background: rgba(248,248,248, .7);
     border-radius: 4px;
-    max-width: 750px;
+    max-width: 1200px;
     min-width: 300px;
 }
 
 .login-top {
     /*background: #d7e7ee;*/
-    background: rgba(215,231,238, .6);
+    background: rgba(215,231,238, 1);
     border-radius: 4px 4px 0px 0px;
     padding: 11px 0px;
     text-align: center;

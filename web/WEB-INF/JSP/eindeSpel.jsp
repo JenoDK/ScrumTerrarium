@@ -6,6 +6,7 @@
 <html lang='nl'>
     <head>
         <vdab:head title='Einde spel'/>
+         <link rel='stylesheet' href='<c:url value="/styles/einde.css"/>'>
     </head>
     <body>
         <div class="login">
@@ -13,21 +14,24 @@
 
                 <h2>Bedankt om ons spelletje te spelen</h2>
             </div>
-            <h2>Dit spel is mede mogelijk gemaakt door: </h2>
-            <ul>
-                <li>Lorien Van de Roy</li>
-                <li>Jeno De Keyser</li>
-                <li>Jonas Crombeke</li>
-                <li>Nils D'hont</li>
-                <li>Christophe Devos</li>
-            </ul>
-            <form action="index.htm">
-                <div class='keepme'>
-                    <div class="keep-loginbutton"><security:csrfInput /> <input
-                            type='submit' value='Home'></div>
-                    <div class="clear"></div>
-                </div>
-            </form>
+            <div class="login-bottom">
+                <h2>Dit spel is mede mogelijk gemaakt door: </h2>
+                <ul>
+                    <li><strong>Lorien Van de Roy</strong></li>
+                    <li><strong>Jeno De Keyser</strong></li>
+                    <li><strong>Jonas Crombeke</strong></li>
+                    <li><strong>Nils D'hont</strong></li>
+                    <li><strong>Christophe Devos</strong></li>
+                </ul>
+                <img id="eindeSmurf" src="images/welkomsmurf.png" alt="Welkomsmurf">
+                <form action="index.htm">
+                    <div class='keepme'>
+                        <div class="keep-registrerenbutton"><security:csrfInput /> <input
+                                type='submit' value='Home'></div>
+                        <div class="clear"></div>
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>
