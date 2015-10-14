@@ -11,12 +11,22 @@ package be.vdab.entities;
  */
 public class Herbivoor extends Dier {
     
-    
+    private int dagenTeller;
 
     public Herbivoor() {
-        super(0);
-        
+        super(2);
+        dagenTeller = 0;
     }
+
+    public int getDagenTeller() {
+        return dagenTeller;
+    }
+
+    public void verhoogDagenTeller(){
+        dagenTeller++;
+    }
+    
+    
 
     
     
