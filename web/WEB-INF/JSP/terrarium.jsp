@@ -15,12 +15,12 @@
                 <h3>Spelbord</h3>
             </div>
             <form method="GET" action="index.htm">
-                <input type="hidden" value="${terrarium.grootte}" name="grootte">
-                <input type="hidden" value="${terrarium.aantalPlanten}" name="planten">
-                <input type="hidden" value="${terrarium.aantalHerbivoren}" name="herbivoren">
-                <input type="hidden" value="${terrarium.aantalCarnivoren}" name="carnivoren">
-                <input type="hidden" value="${terrarium.aantalOmnivoren}" name="omnivoren">
-                <input type="hidden" value="${terrarium.aantalExtraPlantenPerDag}" name="extraPlanten">
+                <input type="hidden" value="${terrarium.grootte}" name="grootteOud">
+                <input type="hidden" value="${terrarium.aantalPlanten}" name="plantenOud">
+                <input type="hidden" value="${terrarium.aantalHerbivoren}" name="herbivorenOud">
+                <input type="hidden" value="${terrarium.aantalCarnivoren}" name="carnivorenOud">
+                <input type="hidden" value="${terrarium.aantalOmnivoren}" name="omnivorenOud">
+                <input type="hidden" value="${terrarium.aantalExtraPlantenPerDag}" name="extraPlantenOud">
                 
                 <div class='keepme'>
                     <div class="keep-loginbutton"><security:csrfInput /> <input
