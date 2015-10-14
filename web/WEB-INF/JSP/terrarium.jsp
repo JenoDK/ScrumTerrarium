@@ -37,9 +37,9 @@
                 <div id="spelbord">
                     Dag: ${terrarium.dag}
                     <table id="spelbordTable" style="width: ${terrarium.wareGrootte}">
-                        <c:forEach begin="0" end="${terrarium.grootte}" varStatus="statusy">
+                        <c:forEach begin="0" end="${terrarium.grootte - 1}" varStatus="statusy">
                             <tr>
-                              <c:forEach begin="0" end="${terrarium.grootte}" varStatus="statusx">
+                              <c:forEach begin="0" end="${terrarium.grootte - 1}" varStatus="statusx">
                                     <td><c:choose><c:when test="${not empty terrarium.array[statusx.index][statusy.index]}">
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Plant'}">
                                                     <img src="images/besjes.png"> ${terrarium.array[statusx.index][statusy.index].leeftijd}

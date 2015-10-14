@@ -28,16 +28,6 @@ public class WelkomServlet extends HttpServlet {
     private int grootte, planten, herbivoren, carnivoren,
             omnivoren, extraPlanten, maximumBezetting, actueleBezetting;
     private SpelService spelService = new SpelService();
-    private static List<String> INHOUD_TERRARIUM = new ArrayList<String>() {
-        {
-            add("grootte");
-            add("planten");
-            add("herbivoren");
-            add("carnivoren");
-            add("omnivoren");
-            add("extraPlanten");
-        }
-    };
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
