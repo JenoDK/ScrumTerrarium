@@ -34,7 +34,7 @@ public class TerrariumServlet extends HttpServlet {
        //this.getServletConfig().getServletContext().getAttribute("sharedId");
         grootte = (Integer)(this.getServletContext().getAttribute("grootte"));
         System.out.println("***GROOTTE***" + grootte);
-        planten = (Integer)(this.getServletConfig().getServletContext().getAttribute("planten"));
+0        planten = (Integer)(this.getServletConfig().getServletContext().getAttribute("planten"));
         herbivoren = (Integer)(this.getServletConfig().getServletContext().getAttribute("herbivoren"));
         carnivoren = (Integer)(this.getServletConfig().getServletContext().getAttribute("carnivoren"));
         omnivoren = (Integer)(this.getServletConfig().getServletContext().getAttribute("omnivoren"));
