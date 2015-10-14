@@ -34,64 +34,61 @@ public class WelkomServlet extends HttpServlet {
             throws ServletException, IOException {
         List<String> fouten = new ArrayList<>();
 
-        if (request.getParameter("grootte") == null) {
+        if (request.getParameter("grootteOud") == null) {
             grootte = spelService.getTerrarium().getGrootte();
         } else {
-            try {
-                grootte = Integer.parseInt(request.getParameter("grootte"));
-            } catch (NumberFormatException ex) {
-                fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
-                grootte = spelService.getTerrarium().getGrootte();
-            }
+
+                grootte = Integer.parseInt(request.getParameter("grootteOud"));
+           
         }
-        if (request.getParameter("planten") == null) {
+        if (request.getParameter("plantenOud") == null) {
             planten = spelService.getTerrarium().getAantalPlanten();
         } else {
             try {
-                planten = Integer.parseInt(request.getParameter("planten"));
+                planten = Integer.parseInt(request.getParameter("plantenOud"));
             } catch (NumberFormatException ex) {
                 fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
                 planten = spelService.getTerrarium().getAantalPlanten();
             }
 
         }
-        if (request.getParameter("herbivoren") == null) {
+        if (request.getParameter("herbivorenOud") == null) {
             herbivoren = spelService.getTerrarium().getAantalHerbivoren();
         } else {
             try {
-                herbivoren = Integer.parseInt(request.getParameter("herbivoren"));
+                herbivoren = Integer.parseInt(request.getParameter("herbivorenOud"));
             } catch (NumberFormatException ex) {
                 fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
                 herbivoren = spelService.getTerrarium().getAantalHerbivoren();
             }
 
         }
-        if (request.getParameter("carnivoren") == null) {
+        if (request.getParameter("carnivorenOud") == null) {
             carnivoren = spelService.getTerrarium().getAantalCarnivoren();
         } else {
             try {
-                carnivoren = Integer.parseInt(request.getParameter("carnivoren"));
+                carnivoren = Integer.parseInt(request.getParameter("carnivorenOud"));
             } catch (NumberFormatException ex) {
                 fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
                 carnivoren = spelService.getTerrarium().getAantalCarnivoren();
             }
         }
-        if (request.getParameter("omnivoren") == null) {
+        if (request.getParameter("omnivorenOud") == null) {
             omnivoren = spelService.getTerrarium().getAantalOmnivoren();
         } else {
             try {
-                omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
+                omnivoren = Integer.parseInt(request.getParameter("omnivorenOud"));
             } catch (NumberFormatException ex) {
                 fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
-                omnivoren = Integer.parseInt(request.getParameter("omnivoren"));
+                omnivoren = Integer.parseInt(request.getParameter("omnivorenOud"));
             }
         }
-        if (request.getParameter("extraPlanten") == null) {
+        if (request.getParameter("extraPlantenOud") == null) {
             extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
         } else {
             try {
 
-                extraPlanten = Integer.parseInt(request.getParameter("extraPlanten"));
+                extraPlanten = Integer.parseInt(request.getParameter("extraPlantenOud"));
             } catch (NumberFormatException ex) {
                 fouten.add("Indien u de link aanpast, gelieve dan ook cijfers te gebruiken.");
                 extraPlanten = spelService.getTerrarium().getAantalExtraPlantenPerDag();
