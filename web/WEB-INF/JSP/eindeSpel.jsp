@@ -8,16 +8,26 @@
         <vdab:head title='Einde spel'/>
     </head>
     <body>
-        
-        <h1>Bedankt om ons spelletje te spelen</h1>
-        <h2>Dit spel is mede mogelijk gemaakt door: </h2>
-        <ul>
-            <li>Lorien Van de Roy</li>
-            <li>Jeno De Keyser</li>
-            <li>Jonas Crombeke</li>
-            <li>Nils D'hont</li>
-            <li>Christophe Devos</li>
-        </ul>
-        <h2>Om terug te keren naar het startscherm druk op Home</h2>
+        <div class="login">
+            <div class="login-top">
+
+                <h2>Bedankt om ons spelletje te spelen</h2>
+            </div>
+            <h2>Dit spel is mede mogelijk gemaakt door: </h2>
+            <ul>
+                <li>Lorien Van de Roy</li>
+                <li>Jeno De Keyser</li>
+                <li>Jonas Crombeke</li>
+                <li>Nils D'hont</li>
+                <li>Christophe Devos</li>
+            </ul>
+            <form action="index.htm">
+                <div class='keepme'>
+                    <div class="keep-loginbutton"><security:csrfInput /> <input
+                            type='submit' value='Home'></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
     </body>
 </html>

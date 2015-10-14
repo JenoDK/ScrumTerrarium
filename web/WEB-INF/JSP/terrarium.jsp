@@ -21,25 +21,27 @@
                 <input type="hidden" value="${terrarium.aantalCarnivoren}" name="carnivorenOud">
                 <input type="hidden" value="${terrarium.aantalOmnivoren}" name="omnivorenOud">
                 <input type="hidden" value="${terrarium.aantalExtraPlantenPerDag}" name="extraPlantenOud">
-                
+
                 <div class='keepme'>
                     <div class="keep-loginbutton"><security:csrfInput /> <input
                             type='submit' value='Opnieuw'></div>
                     <div class="clear"></div>
                 </div>
             </form>
-            <div class='keepme'>
-                <div class="keep-loginbutton"><security:csrfInput /> <input
-                        type='submit' value='Stop'></div>
-                <div class="clear"></div>
-            </div>
+            <form action="eindeSpel.htm">
+                <div class='keepme'>
+                    <div class="keep-loginbutton"><security:csrfInput /> <input
+                            type='submit' value='Stop'></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
             <c:if test="${not empty terrarium}">
                 <div id="spelbord">
                     Dag: ${terrarium.dag}
                     <table id="spelbordTable" style="width: ${terrarium.wareGrootte}">
                         <c:forEach begin="0" end="${terrarium.grootte}" varStatus="statusy">
                             <tr>
-                              <c:forEach begin="0" end="${terrarium.grootte}" varStatus="statusx">
+                                <c:forEach begin="0" end="${terrarium.grootte}" varStatus="statusx">
                                     <td><c:choose><c:when test="${not empty terrarium.array[statusx.index][statusy.index]}">
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Plant'}">
                                                     <img src="images/besjes.png"> ${terrarium.array[statusx.index][statusy.index].leeftijd}
@@ -47,16 +49,16 @@
                                                 <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Herbivoor'}">
                                                     <img src="images/smurf.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}(${terrarium.array[statusx.index][statusy.index].dagenTeller})
                                                 </c:if>
-                                                    <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Carnivoor'}">
+                                                <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Carnivoor'}">
                                                     <img src="images/azreal.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}
                                                 </c:if>
-                                                    <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Omnivoor'}">
+                                                <c:if test="${terrarium.array[statusx.index][statusy.index]['class'].simpleName == 'Omnivoor'}">
                                                     <img src="images/gargamel.png"> ${terrarium.array[statusx.index][statusy.index].levenskracht}
                                                 </c:if>
                                             </c:when>
-                                                    <c:otherwise><img src="images/aarde.png"></c:otherwise>
+                                            <c:otherwise><img src="images/aarde.png"></c:otherwise>
                                         </c:choose></td>
-                                </c:forEach>
+                                    </c:forEach>
                             </tr>
                         </c:forEach>
                     </table>
@@ -65,7 +67,7 @@
             <form method="post">
                 <div class='keepme'>
                     <div class="keep-loginbutton"><security:csrfInput /> <input name="terrButton"
-                            type='submit' value='Volgende dag'></div>
+                                                                                type='submit' value='Volgende dag'></div>
                     <div class="clear"></div>
                 </div>
             </form>
