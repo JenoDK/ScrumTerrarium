@@ -26,12 +26,16 @@
                         type='submit' value='Stop'></div>
                 <div class="clear"></div>
             </div>
-            <div id="spelbord"></div>
-            <div class='keepme'>
-                <div class="keep-loginbutton"><security:csrfInput /> <input
-                        type='submit' value='Volgende dag'></div>
-                <div class="clear"></div>
-            </div>
+            <c:if test="${not empty terrarium}">
+                <div id="spelbord">
+                    <table style="width: ${terrarium.grootte}"></table>
+                </div>
+        </c:if>
+        <div class='keepme'>
+            <div class="keep-loginbutton"><security:csrfInput /> <input
+                    type='submit' value='Volgende dag'></div>
+            <div class="clear"></div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
