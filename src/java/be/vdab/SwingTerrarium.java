@@ -13,6 +13,7 @@ import be.vdab.entities.Plant;
 import be.vdab.entities.Terrarium;
 import be.vdab.services.SpelService;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -36,18 +37,19 @@ public class SwingTerrarium extends javax.swing.JFrame implements ActionListener
     private JPanel paneel, paneel2;
     private SpelService service;
     private Terrarium terrarium;
-    private int aantalPlanten, aantalExtraPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
+    private int grootte, aantalPlanten, aantalExtraPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren;
     private JLabel label, dag;
     private JButton volgendeDag, stoppen, opnieuw;
     private Organisme[][] array;
 
-    public SwingTerrarium(int aantalPlanten, int aantalExtraPlanten, int aantalHerbivoren, int aantalCarnivoren, int aantalOmnivoren) {
+    public SwingTerrarium(int grootte, int aantalPlanten, int aantalExtraPlanten, int aantalHerbivoren, int aantalCarnivoren, int aantalOmnivoren) {
+        this.grootte = grootte;
         this.aantalPlanten = aantalPlanten;
         this.aantalExtraPlanten = aantalExtraPlanten;
         this.aantalHerbivoren = aantalHerbivoren;
         this.aantalCarnivoren = aantalCarnivoren;
         this.aantalOmnivoren = aantalOmnivoren;
-        service = new SpelService(DEFAULT_GROOTTE, aantalPlanten,
+        service = new SpelService(grootte, aantalPlanten,
                 aantalExtraPlanten, aantalHerbivoren, aantalCarnivoren, aantalOmnivoren);
         terrarium = service.getTerrarium();
         initComponents();
@@ -55,7 +57,7 @@ public class SwingTerrarium extends javax.swing.JFrame implements ActionListener
     }
 
     private void initComponents() {
-        paneel = new JPanel(new GridLayout(DEFAULT_GROOTTE, DEFAULT_GROOTTE));
+        paneel = new JPanel(new GridLayout(grootte, grootte));
         paneel.setPreferredSize(new Dimension(600, 600));
         array = terrarium.getArray();
 
@@ -75,12 +77,17 @@ public class SwingTerrarium extends javax.swing.JFrame implements ActionListener
         opnieuw.addActionListener(this);
 
         dag = new JLabel("Dag: " + terrarium.getDag());
-
+        
         this.setLayout(new BorderLayout());
+        dag.setBackground(Color.WHITE);
+        paneel.setBackground(Color.WHITE);
+        paneel2.setBackground(Color.WHITE);
         add(dag, BorderLayout.NORTH);
         add(paneel, BorderLayout.CENTER);
         add(paneel2, BorderLayout.SOUTH);
+        
         setExtendedState(MAXIMIZED_BOTH);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 
@@ -98,9 +105,10 @@ public class SwingTerrarium extends javax.swing.JFrame implements ActionListener
             this.setVisible(true);
 
         } else if (e.getSource() == stoppen) {
-            
+            SwingEinde einde = new SwingEinde();
+            this.dispose();
         } else {
-
+            this.dispose();
         }
     }
 

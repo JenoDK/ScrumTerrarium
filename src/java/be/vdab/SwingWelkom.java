@@ -5,9 +5,8 @@
  */
 package be.vdab;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JSlider;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -20,6 +19,10 @@ public class SwingWelkom extends javax.swing.JFrame {
      */
     public SwingWelkom() {
         initComponents();
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+        this.setLocation(x, y);
     }
 
     /**
@@ -33,18 +36,18 @@ public class SwingWelkom extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
-        jSpinner4 = new javax.swing.JSpinner();
-        jSpinner5 = new javax.swing.JSpinner();
-        jSpinner6 = new javax.swing.JSpinner();
+        extraPlantenSpinner = new javax.swing.JSpinner();
+        herbivorenSpinner = new javax.swing.JSpinner();
+        carnivorenSpinner = new javax.swing.JSpinner();
+        omnivorenSpinner = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        grootteSpinner = new javax.swing.JSpinner();
+        plantenSpinner = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,8 +55,6 @@ public class SwingWelkom extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Welkom!");
-
-        jLabel2.setText("Grootte");
 
         jLabel3.setText("Aantal planten");
 
@@ -65,68 +66,74 @@ public class SwingWelkom extends javax.swing.JFrame {
 
         jLabel7.setText("Aantal omnivoren");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 15, 1));
-        jSpinner1.setName("grootteSpinner"); // NOI18N
+        extraPlantenSpinner.setModel(new javax.swing.SpinnerNumberModel(2, 1, 10, 1));
+        extraPlantenSpinner.setName("extraPlantenSpinner"); // NOI18N
 
-        jSpinner2.setName("plantenSpinner"); // NOI18N
+        herbivorenSpinner.setModel(new javax.swing.SpinnerNumberModel(4, 1, 10, 1));
+        herbivorenSpinner.setName("herbivorenSpinner"); // NOI18N
 
-        jSpinner3.setName("extraPlantenSpinner"); // NOI18N
+        carnivorenSpinner.setModel(new javax.swing.SpinnerNumberModel(6, 0, 10, 1));
+        carnivorenSpinner.setName("carnivorenSpinner"); // NOI18N
 
-        jSpinner4.setName("herbivorenSpinner"); // NOI18N
+        omnivorenSpinner.setModel(new javax.swing.SpinnerNumberModel(6, 0, 10, 1));
+        omnivorenSpinner.setName("omnivorenSpinner"); // NOI18N
 
-        jSpinner5.setName("carnivorenSpinner"); // NOI18N
+        jLabel2.setText("Grootte");
 
-        jSpinner6.setName("omnivorenSpinner"); // NOI18N
+        grootteSpinner.setModel(new javax.swing.SpinnerNumberModel(6, 6, 15, 1));
+
+        plantenSpinner.setModel(new javax.swing.SpinnerNumberModel(2, 1, 10, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel7)
                         .addComponent(jLabel6)))
                 .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(carnivorenSpinner)
+                    .addComponent(omnivorenSpinner)
+                    .addComponent(extraPlantenSpinner, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(herbivorenSpinner, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(grootteSpinner, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(plantenSpinner))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(grootteSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(plantenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(extraPlantenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(herbivorenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(carnivorenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(omnivorenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)))
         );
 
@@ -152,32 +159,33 @@ public class SwingWelkom extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(55, 55, 55)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(57, 57, 57)
                 .addComponent(jButton1)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SwingTerrarium terrariumFrame = new SwingTerrarium((Integer)jSpinner1.getModel().getValue(),
-        (Integer)jSpinner2.getModel().getValue(),
-        (Integer)jSpinner3.getModel().getValue(),
-        (Integer)jSpinner4.getModel().getValue(),
-        (Integer)jSpinner5.getModel().getValue(),
-        (Integer)jSpinner6.getModel().getValue());
+        SwingTerrarium terrariumFrame = new SwingTerrarium(
+                (Integer) grootteSpinner.getModel().getValue(),
+                (Integer) plantenSpinner.getModel().getValue(),
+                (Integer) extraPlantenSpinner.getModel().getValue(),
+                (Integer) herbivorenSpinner.getModel().getValue(),
+                (Integer) carnivorenSpinner.getModel().getValue(),
+                (Integer) omnivorenSpinner.getModel().getValue());
         terrariumFrame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -218,6 +226,10 @@ public class SwingWelkom extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner carnivorenSpinner;
+    private javax.swing.JSpinner extraPlantenSpinner;
+    private javax.swing.JSpinner grootteSpinner;
+    private javax.swing.JSpinner herbivorenSpinner;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -227,11 +239,7 @@ public class SwingWelkom extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
+    private javax.swing.JSpinner omnivorenSpinner;
+    private javax.swing.JSpinner plantenSpinner;
     // End of variables declaration//GEN-END:variables
 }
