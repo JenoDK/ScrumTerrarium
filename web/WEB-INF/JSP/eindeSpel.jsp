@@ -13,7 +13,7 @@
             <div class="login-top">
 
                 <h2>Bedankt om ons spelletje te spelen</h2>
-                <audio id="myAudio" autoplay="true">
+                <audio id="myAudio">
                     <source src="music/smurf.ogg" type="audio/ogg">
                     <source src="music/smurf.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
