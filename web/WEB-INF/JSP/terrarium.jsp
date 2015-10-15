@@ -40,7 +40,7 @@
                 <div class="topBar legende">
                     <strong>Planten: </strong><img class="legendeImg" src="images/besjes.png">
                     <strong>Herbivoor: </strong><img class="legendeImg" src="images/smurf.png">
-                    <strong>Carnivoor: </strong><img class="legendeImg" src="images/azreal.png">
+                    <strong>Carnivoor: </strong><img class="legendeImg" src="images/azreal.png"><br/>
                     <strong>Omnivoor: </strong><img class="legendeImg" src="images/gargamel.png">
                     <strong>Lege plaats: </strong><img class="legendeImg" src="images/aarde.png">
                 </div>
