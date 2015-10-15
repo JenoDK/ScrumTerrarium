@@ -459,12 +459,12 @@ public class Terrarium {
         Herbivoor herbivoor = (Herbivoor) array[x][y];
         if ((herbivoor.getDagenTeller() % (LEVENSDUUR_HERBIVOOR/2)) == 0) {
             herbivoor.verlaagLevenskracht();
-            System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
+            //System.out.println("herbivoor op plaats " + x + " " + y + " verloor levenskracht");
         }
         if (herbivoor.getLevenskracht() == 0) {
             array[x][y] = null;
             dood = true;
-            System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
+            //System.out.println("herbivoor op plaats " + x + " " + y + " is dood");
         }
         return dood;
     }
