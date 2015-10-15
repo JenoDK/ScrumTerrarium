@@ -4,12 +4,13 @@
 #spelbordTable {
     border: 2px solid black;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-bottom: 20px;
     background-color: #d7e7ee;
 }
 #spelbordTable td {
     border: 1px solid black;
-    height: 55px;
+    height: 76px;
+    width: 76px;
 }
 #spelbordTable th{
     border: 1px solid black;
@@ -48,5 +49,5 @@
     margin-right: 10px;
 }
 .smurfenImg {
-    width: 30px;
+    width: 50px;
 }

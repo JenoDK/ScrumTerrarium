@@ -37,17 +37,24 @@
                     <h2>Terrarium</h2>
                     <h3>Spelbord</h3>
                 </div>
-                        <div class="topBar legende">
-                        <strong>Planten: </strong><img class="legendeImg" src="images/besjes.png">
-                        <strong>Herbivoor: </strong><img class="legendeImg" src="images/smurf.png">
-                        <strong>Carnivoor: </strong><img class="legendeImg" src="images/azreal.png">
-                        <strong>Omnivoor: </strong><img class="legendeImg" src="images/gargamel.png">
-                        <strong>Lege plaats: </strong><img class="legendeImg" src="images/aarde.png">
-                    </div>
+                <div class="topBar legende">
+                    <strong>Planten: </strong><img class="legendeImg" src="images/besjes.png">
+                    <strong>Herbivoor: </strong><img class="legendeImg" src="images/smurf.png">
+                    <strong>Carnivoor: </strong><img class="legendeImg" src="images/azreal.png">
+                    <strong>Omnivoor: </strong><img class="legendeImg" src="images/gargamel.png">
+                    <strong>Lege plaats: </strong><img class="legendeImg" src="images/aarde.png">
+                </div>
             </div>
+            <form method="post">
+                <div class='keepme volgendeDagButton'>
+                    <div class="keep-registrerenbutton"><security:csrfInput /> <input name="terrButton"
+                                                                                      type='submit' value='Volgende dag'></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
             <c:if test="${not empty terrarium}">
                 <div id="spelbord">
-                    <table id="spelbordTable" style="width: ${terrarium.wareGrootte}px">
+                    <table id="spelbordTable">
                         <tr><th>Dag: ${terrarium.dag}</th><th colspan="${terrarium.grootte - 1}"> Levenskracht/<span id="leeftijdPlant">Leeftijd</span>/<span id="dagenTeller">Dagen zonder eten</span></th></tr>
                                 <c:forEach begin="0" end="${terrarium.grootte - 1}" varStatus="statusy">
                             <tr>
@@ -81,21 +88,14 @@
                                                     <img class="smurfenImg" src="images/gargamel.png"><br/> ${terrarium.array[statusx.index][statusy.index].levenskracht}
                                                 </c:if>
                                             </c:when>
-                                            <c:otherwise><img src="images/aarde.png"></c:otherwise>
+                                            <c:otherwise><img class="smurfenImg" src="images/aarde.png"></c:otherwise>
                                         </c:choose></td>
                                     </c:forEach>
                             </tr>
                         </c:forEach>
-                    </table>
+                    </table><br/>
                 </div>
             </c:if>
-            <form method="post">
-                <div class='keepme volgendeDagButton'>
-                    <div class="keep-registrerenbutton"><security:csrfInput /> <input name="terrButton"
-                                                                                type='submit' value='Volgende dag'></div>
-                    <div class="clear"></div>
-                </div>
-            </form>
         </div>
     </body>
 </html>
