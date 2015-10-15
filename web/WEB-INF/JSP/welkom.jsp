@@ -15,8 +15,8 @@
                 <h2>Terrarium</h2>
                 <h3>Welkom</h3>
                 <audio id="myAudio">
-                    <source src="music/smurf.ogg" type="audio/ogg">
-                    <source src="music/smurf.mp3" type="audio/mpeg">
+                    <source src="music/smurf2.ogg" type="audio/ogg">
+                    <source src="music/smurf2.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 <button onclick="playAudio()" type="button">Play Audio</button>
